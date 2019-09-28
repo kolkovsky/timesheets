@@ -1,0 +1,18 @@
+<div class="container-fluid course-page">
+  <div class="row pt-5 align-items-center justify-content-center">
+    <div class="col-md-6 col-lg-12 mt-5">
+      <h1 class="display-3 text-white text-center">Выберите Курс обучения</h1>
+    </div>
+    <div class="col-md-6  mt-5 text-center">
+      <select class="custom-select-lg custom-select" (click)="courseChange($event)">
+        <option selected>Выбирете курс...</option>
+        <option value="1">Первый курс</option>
+        <option value="2">Второй курс</option>
+        <option value="3">Третий курс</option>
+        <option value="3">Четвертый курс</option>
+        <option value="3">Пятый курс</option>
+      </select>
+      <button type="button" class="btn btn-primary btn-block mt-4" (click)="navigateToGroupPage()">Перейти к выбору группы</button>
+    </div>
+  </div>
+</div>
