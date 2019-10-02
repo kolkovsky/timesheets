@@ -4,15 +4,10 @@
       <h1 class="display-3 text-white text-center">Выберите Группу</h1>
     </div>
     <div class="col-md-6  mt-5 text-center">
-      <select class="custom-select-lg custom-select">
-        <option selected>Выбирете группу...</option>
-        <option value="1">Первая группа</option>
-        <option value="2">Вторая группа</option>
-        <option value="3">Третья группа</option>
-        <option value="3">Четвертая группа</option>
-        <option value="3">Пятая группа</option>
-      </select>
-      <button type="button" class="btn btn-primary btn-block mt-4" (click)="navigateToGroupPage()">Перейти к расписанию</button>
+      <ttp-selector [items]="items" (valueChange)="groupChange($event)"></ttp-selector>
+      <button type="button" class="btn btn-primary btn-block mt-4" (click)="navigateToGroupPage()"
+              [disabled]="isDisableButton">Перейти к расписанию
+      </button>
     </div>
   </div>
 </div>

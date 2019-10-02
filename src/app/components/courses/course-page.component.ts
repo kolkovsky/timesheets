@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -10,8 +10,16 @@ import {Router} from '@angular/router';
 export class CoursePageComponent {
 
   public isDisabledButton: boolean = true;
+  private selectedCourse: any;
+  public items: any[] = [
+    {value: '', selected: true},
+    {value: '1', selected: false},
+    {value: '2', selected: false},
+    {value: '3', selected: false}
+  ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private changeDetectorRef: ChangeDetectorRef) {
   }
 
   public navigateToGroupPage(): void {
@@ -19,6 +27,8 @@ export class CoursePageComponent {
   }
 
   public courseChange(event) {
-    this.isDisabledButton = true;
+    this.selectedCourse = event;
+    this.isDisabledButton = false;
+    this.changeDetectorRef.detectChanges();
   }
 }

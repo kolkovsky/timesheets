@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { Item } from './item.model';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Item} from './item.model';
 
 @Component({
-  selector: 'app-selector',
+  selector: 'ttp-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.less']
+  styleUrls: ['./selector.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectorComponent implements OnInit {
 
@@ -13,7 +13,7 @@ export class SelectorComponent implements OnInit {
   public items: Item[];
 
   @Input()
-  public enabled: boolean;
+  public enabled: boolean = true;
 
   @Output()
   public valueChange: EventEmitter<Item> = new EventEmitter<Item>();
@@ -21,16 +21,20 @@ export class SelectorComponent implements OnInit {
   @Input()
   public placeholder: string;
 
+  private _value: any;
 
-  constructor() { }
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
+  }
+
+  public ngModelValueChange(): void {
+    this.changeDetectorRef.markForCheck();
   }
 
   public changeValueSelector(event): void {
-    if(event && event.target) {
-      console.log(event);
-    }
-    //this.valueChange.emit();
+    this.items.map(item => item.selected = item.value === this._value);
+    this.valueChange.emit(this._value);
   }
 }

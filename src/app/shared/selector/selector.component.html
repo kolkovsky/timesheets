@@ -1,5 +1,6 @@
-<ng-container *ngIf="true">
-    <select class="custom-select-lg custom-select" *ngFor="let item of items" (change)="changeValueSelector()">
-        <option>item.value</option>
-    </select>    
+<ng-container *ngIf="enabled">
+  <select class="custom-select-lg custom-select" [(ngModel)]="_value" (change)="changeValueSelector($event)"
+          (ngModelChange)="ngModelValueChange()">
+    <option *ngFor="let item of items" [attr.selected]="item.selected">{{item.value}}</option>
+  </select>
 </ng-container>
