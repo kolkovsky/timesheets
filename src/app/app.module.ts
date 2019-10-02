@@ -13,6 +13,8 @@ import {ButtonsModule} from 'ngx-bootstrap';
 import {SelectorComponent} from './shared/selector/selector.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {AdminParsingComponent} from './components/admin-parsing/admin-parsing.component';
+import {AdminParsingService} from './services/admin-parsing.service';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import {FormsModule} from '@angular/forms';
     HeaderComponent,
     CoursePageComponent,
     GroupPageComponent,
-    SelectorComponent
+    SelectorComponent,
+    AdminParsingComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,9 @@ import {FormsModule} from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    AdminParsingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
