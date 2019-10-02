@@ -4,7 +4,6 @@ import {CoursePageComponent} from './courses/course-page.component';
 import {GroupPageComponent} from './groups/group-page.component';
 import {WelcomePageComponent} from './welcome/welcome-page.component';
 import { TimetableComponent } from './timetable/timetable.component';
-import {AdminParsingComponent} from './admin-parsing/admin-parsing.component';
 
 
 
@@ -13,8 +12,7 @@ const routes: Routes = [
   {path: 'course', component: CoursePageComponent, data: {animation : 'CoursePage'}},
   {path: 'group', component: GroupPageComponent, data: {animation: 'GroupPage'}},
   {path: 'welcome', component: WelcomePageComponent, data: {animation: 'WelcomePage'}},
-  {path: '', component: WelcomePageComponent, data: {animation: 'WelcomePage'}},
-  {path: 'admin-parsing', component: AdminParsingComponent}
+  {path: '', component: WelcomePageComponent, data: {animation: 'WelcomePage'}}
 ];
 
 @NgModule({
