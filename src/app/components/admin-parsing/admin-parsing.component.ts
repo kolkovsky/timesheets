@@ -10,6 +10,8 @@ import {AdminParsingService} from '../../services/admin-parsing.service';
 export class AdminParsingComponent implements OnInit {
 
   public file: File;
+  private formatsExcelFiles: string[] = [".xlsx", ".xls"];
+  public showErrorUpload: boolean = false;
 
   constructor(private adminParsingService: AdminParsingService) {
   }
@@ -18,11 +20,15 @@ export class AdminParsingComponent implements OnInit {
   }
 
   selectFile(event: any): void {
-    let fileReader = new FileReader();
-    this.file = event.target.files[0];
+    if (event.target && event.target.files[0]) {
+      let file: File = event.target.files[0];
+      this.showErrorUpload = !this.formatsExcelFiles.some(format => file.name.includes(format));
+      this.file = !this.showErrorUpload ? file : null;
+    }
   }
 
   public sendFile(): void {
+    console.log(this.file);
     this.adminParsingService.importFile(this.file).subscribe((data) => {
       console.log("Work!")
     }, error => {

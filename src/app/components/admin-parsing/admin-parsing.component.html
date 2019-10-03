@@ -11,7 +11,8 @@
           <label class="custom-file-label" for="inputGroupFile04">Выберите файл</label>
         </div>
       </div>
-      <button type="button" class="btn btn-primary btn-block mt-4" (click)="sendFile()">Загрузить</button>
+      <ng-container *ngIf="showErrorUpload"><h1 class="display-3 text-white">Oy shit!!!!</h1></ng-container>
+      <button type="button" class="btn btn-primary btn-block mt-4" (click)="sendFile()" [disabled]="!file || showErrorUpload">Загрузить</button>
     </div>
   </div>
 </div>
