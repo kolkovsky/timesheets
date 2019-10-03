@@ -18,12 +18,15 @@ export class AdminParsingComponent implements OnInit {
   }
 
   selectFile(event: any): void {
-   this.file = event.target.files;
+    let fileReader = new FileReader();
+    this.file = event.target.files[0];
   }
 
   public sendFile(): void {
-    this.adminParsingService.importFile(this.file).subscribe( () => {
-        console.log("SUCCESS!!!!!!!!!!!!!!!");
+    this.adminParsingService.importFile(this.file).subscribe((data) => {
+      console.log("Work!")
+    }, error => {
+      console.log(`This request was failed!(`);
     });
   }
 
