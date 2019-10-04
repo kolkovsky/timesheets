@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AdminParsingComponent} from './components/admin-parsing/admin-parsing.component';
 import {AdminParsingService} from './services/admin-parsing.service';
+import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {AdminParsingService} from './services/admin-parsing.service';
     RouterModule,
     ButtonsModule.forRoot(),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng4LoadingSpinnerModule.forRoot(),
   ],
   providers: [
     AdminParsingService

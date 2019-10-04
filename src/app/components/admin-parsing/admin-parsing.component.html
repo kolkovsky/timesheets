@@ -1,3 +1,4 @@
+<ng4-loading-spinner></ng4-loading-spinner>
 <div class="admin-parsing">
   <div class="row pt-5 align-items-center justify-content-center">
     <div class="col-md-6 col-lg-12 mt-5">
@@ -13,6 +14,9 @@
       </div>
       <ng-container *ngIf="showErrorUpload"><h1 class="display-3 text-white">Oy shit!!!!</h1></ng-container>
       <button type="button" class="btn btn-primary btn-block mt-4" (click)="sendFile()" [disabled]="!file || showErrorUpload">Загрузить</button>
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
   </div>
 </div>

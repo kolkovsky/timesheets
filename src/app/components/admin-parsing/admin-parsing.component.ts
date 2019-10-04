@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminParsingService} from '../../services/admin-parsing.service';
+import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 
 @Component({
   selector: 'admin-parsing',
@@ -13,7 +14,8 @@ export class AdminParsingComponent implements OnInit {
   private formatsExcelFiles: string[] = [".xlsx", ".xls"];
   public showErrorUpload: boolean = false;
 
-  constructor(private adminParsingService: AdminParsingService) {
+  constructor(private adminParsingService: AdminParsingService,
+              private loaderService: Ng4LoadingSpinnerService) {
   }
 
   ngOnInit(): void {
@@ -28,11 +30,12 @@ export class AdminParsingComponent implements OnInit {
   }
 
   public sendFile(): void {
-    console.log(this.file);
+    this.loaderService.show();
     this.adminParsingService.importFile(this.file).subscribe((data) => {
-      console.log("Work!")
+      this.loaderService.hide();
     }, error => {
-      console.log(`This request was failed!(`);
+      console.info("Fuck shit!");
+      this.loaderService.hide();
     });
   }
 
