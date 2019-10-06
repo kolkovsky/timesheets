@@ -9,13 +9,15 @@ import {CoursePageComponent} from './components/courses/course-page.component';
 import {GroupPageComponent} from './components/groups/group-page.component';
 import {AppRouterModule} from './components/app-router.module';
 import {RouterModule} from '@angular/router';
-import {ButtonsModule} from 'ngx-bootstrap';
+import {AlertModule, ButtonsModule, ModalModule} from 'ngx-bootstrap';
 import {SelectorComponent} from './shared/selector/selector.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AdminParsingComponent} from './components/admin-parsing/admin-parsing.component';
 import {AdminParsingService} from './services/admin-parsing.service';
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
+import {PopupComponent} from './shared/popup/popup.component';
+import {PopupService} from "./shared/popup/popup.service";
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
     CoursePageComponent,
     GroupPageComponent,
     SelectorComponent,
-    AdminParsingComponent
+    AdminParsingComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +40,12 @@ import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
     HttpClientModule,
     FormsModule,
     Ng4LoadingSpinnerModule.forRoot(),
+    ModalModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [
-    AdminParsingService
+    AdminParsingService,
+    PopupService
   ],
   bootstrap: [AppComponent]
 })

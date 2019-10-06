@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminParsingService} from '../../services/admin-parsing.service';
 import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
+import {PopupService} from "../../shared/popup/popup.service";
 
 @Component({
   selector: 'admin-parsing',
@@ -15,7 +16,8 @@ export class AdminParsingComponent implements OnInit {
   public showErrorUpload: boolean = false;
 
   constructor(private adminParsingService: AdminParsingService,
-              private loaderService: Ng4LoadingSpinnerService) {
+              private loaderService: Ng4LoadingSpinnerService,
+              private popupService: PopupService) {
   }
 
   ngOnInit(): void {
@@ -33,9 +35,10 @@ export class AdminParsingComponent implements OnInit {
     this.loaderService.show();
     this.adminParsingService.importFile(this.file).subscribe((data) => {
       this.loaderService.hide();
-    }, error => {
-      console.info("Fuck shit!");
+      this.popupService.showNotification("success", true, "Преобразование файла завершено успешно");
+    }, error1 => {
       this.loaderService.hide();
+      this.popupService.showNotification("success", true, "Ошибка преобразования");
     });
   }
 
