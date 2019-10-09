@@ -2,32 +2,22 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {PopupService} from "./popup.service";
 import {Content} from "./content.model";
+import {popupAnimation} from "./popup.animation";
 
-const popupConfig = {
-  backdrop: false,
-  ignoreBackdropClick: false,
-};
 
 @Component({
   selector: 'ttp-popup',
   templateUrl: './popup.component.html',
-  styleUrls: ['./popup.component.less']
+  styleUrls: ['./popup.component.less'],
+  animations: [popupAnimation]
 })
 
 export class PopupComponent implements OnInit {
 
-  @ViewChild('popup', {static: false})
-  private popupTemplateRef: TemplateRef<any>;
-  private popupModalRef: BsModalRef;
   public notificationContent: Content;
-  public showNotification: boolean;
+  private showNotification: boolean = false;
 
-  constructor(private modalService: BsModalService,
-              private popupService: PopupService) {
-  }
-
-  openModal(popupTemplate: TemplateRef<any>) {
-    this.popupModalRef = this.modalService.show(popupTemplate, popupConfig);
+  constructor(private popupService: PopupService) {
   }
 
   ngOnInit() {
@@ -45,13 +35,13 @@ export class PopupComponent implements OnInit {
   }
 
   public showPopup(): void {
-    this.popupModalRef = this.modalService.show(this.popupTemplateRef, popupConfig);
-    setTimeout(() => {
-      this.closePopup();
-    }, 5000);
+    this.showNotification = true;
+    // setTimeout(() => {
+    //   this.closePopup();
+    // }, 5000);
   }
 
   public closePopup(): void {
-    this.popupModalRef.hide();
+    this.showNotification = false;
   }
 }
