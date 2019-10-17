@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, ReplaySubject, Subject} from 'rxjs';
+import {TimetableModel} from "../models/timetable.model";
 
 
 @Injectable({
@@ -10,6 +11,7 @@ import {Observable} from 'rxjs';
 export class AdminParsingService {
 
   private controllerName: string = '/api/v1/ttp-administrator';
+  public importData$: ReplaySubject<TimetableModel> = new ReplaySubject(1);
 
   constructor(private http: HttpClient) {
   }

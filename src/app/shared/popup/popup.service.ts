@@ -9,12 +9,12 @@ export class PopupService {
   public notificationContent$: Subject<any> = new Subject();
   public notificationState$: Subject<boolean> = new Subject();
 
-  private setNotificationContent(type: string, closable: boolean, message: string): void {
-    this.notificationContent$.next({type: type, closable: closable, message: message});
+  private setNotificationContent(type: string, closable: boolean, message: string, autoHide?: boolean): void {
+    this.notificationContent$.next({type: type, closable: closable, message: message, autoHide: autoHide});
   }
 
-  public showNotification(type: string, closalbe: boolean, message: string) {
-    this.setNotificationContent(type, closalbe, message);
+  public showNotification(type: string, closable: boolean, message: string, autoHide?: boolean) {
+    this.setNotificationContent(type, closable, message);
     this.notificationState$.next(true);
   }
 

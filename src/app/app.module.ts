@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {WelcomePageComponent} from './components/welcome/welcome-page.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -18,6 +17,26 @@ import {AdminParsingService} from './services/admin-parsing.service';
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 import {PopupComponent} from './shared/popup/popup.component';
 import {PopupService} from "./shared/popup/popup.service";
+import {TimetableParsingComponent} from "./components/timetable-parsing/timetable-parsing.component";
+import {CourseDetailsComponent} from "./components/timetable-parsing/course-details/course-details.component";
+
+let adminConfigurations = [
+  TimetableParsingComponent,
+  AdminParsingComponent,
+  CourseDetailsComponent
+];
+
+let sharedComponents = [
+  SelectorComponent,
+  PopupComponent
+];
+
+let externalLibs = [
+  ButtonsModule.forRoot(),
+  Ng4LoadingSpinnerModule.forRoot(),
+  ModalModule.forRoot(),
+  AlertModule.forRoot()
+];
 
 
 @NgModule({
@@ -27,21 +46,17 @@ import {PopupService} from "./shared/popup/popup.service";
     HeaderComponent,
     CoursePageComponent,
     GroupPageComponent,
-    SelectorComponent,
-    AdminParsingComponent,
-    PopupComponent
+    sharedComponents,
+    adminConfigurations
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRouterModule,
     RouterModule,
-    ButtonsModule.forRoot(),
     HttpClientModule,
     FormsModule,
-    Ng4LoadingSpinnerModule.forRoot(),
-    ModalModule.forRoot(),
-    AlertModule.forRoot()
+    externalLibs
   ],
   providers: [
     AdminParsingService,

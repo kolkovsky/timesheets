@@ -24,7 +24,9 @@ export class PopupComponent implements OnInit {
     this.loadNotificationContent();
     this.popupService.notificationState$.subscribe(state => {
       this.showNotification = state;
-      this.showNotification ? this.showPopup() : this.closePopup();
+      if(this.notificationContent) {
+        this.showPopup();
+      }
     });
   }
 
@@ -36,12 +38,15 @@ export class PopupComponent implements OnInit {
 
   public showPopup(): void {
     this.showNotification = true;
-    // setTimeout(() => {
-    //   this.closePopup();
-    // }, 5000);
+    if (this.notificationContent.autoHide) {
+      setTimeout(() => {
+        this.closePopup();
+      }, 5000);
+    }
   }
 
   public closePopup(): void {
     this.showNotification = false;
+    this.popupService.closeNotification();
   }
 }

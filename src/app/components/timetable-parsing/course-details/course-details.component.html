@@ -1,0 +1,21 @@
+<ng-container>
+  <h1 class="text-center text-lg-center">{{"Курс:" + timesheet.course}}</h1>
+  <ng-container>
+    <div class="course-details">
+      <div class="course-details-group" *ngFor="let group of groups">
+        <h3>{{"Группа:" + group.name}}</h3>
+        <hr>
+        <div class="course-details-group_container">
+          <div class="course-details-group_container__weekday" *ngFor="let weekDay of weekDays">
+            <h4 class="text-center">{{weekDay}}</h4>
+            <div class="course-details-group_container__weekday__subjects">
+              <div class="list-group" *ngFor="let subject of group.sortedSubjects[weekDay][0]">
+                <div class="list-group-item">{{subject.name}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

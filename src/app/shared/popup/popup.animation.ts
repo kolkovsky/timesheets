@@ -18,13 +18,13 @@ export const popupAnimation =
       "visibility": "visible"
     })),
     transition("show => hide", [
-      animate("1s")
+      animate("0.6s")
     ]),
     transition("hide => show", [
-      animate("1s")
+      animate("0.5s")
     ]),
     transition ('* => show', [
-      animate ('1s'),
+      animate ('0.5s'),
     ]),
   ]);
 

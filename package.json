@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng ",
     "start": "ng serve --proxy-config proxy.config.json",
+    "start stub-server": "json-server --proxy-config proxy.config.json --watch ./src/assets/mocks/import.json --routes ./src/assets/mocks/routes.json ",
+    "stub-server": "node src/assets/stub-server/stub-server.js ",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -20,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
     "bootstrap": "4.1.1",
+    "express": "^4.17.1",
     "ng4-loading-spinner": "^1.2.3",
     "ngx-bootstrap": "^5.1.2",
     "rxjs": "~6.4.0",
