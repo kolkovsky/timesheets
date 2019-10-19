@@ -3,7 +3,7 @@ import {WeekDaysConstant} from "../constants/week-days.constant";
 
 export class TimetableUtils {
 
-  private static lessonTimes: any = {
+  public static lessonTimes: any = {
     "9:00": 1,
     "10:30": 2,
     "12:00": 3,

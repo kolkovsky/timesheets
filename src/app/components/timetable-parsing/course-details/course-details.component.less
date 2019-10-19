@@ -4,13 +4,33 @@
 
     &_container {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+      &__times {
+
+        &_hidden {
+          visibility: hidden;
+          height: 45px;
+        }
+
+        &_item {
+          height: 80px;
+          align-content: center;
+        }
+      }
 
       &__weekday {
 
+        &__name {
+          height: 45px;
+        }
 
         &__subjects {
-            padding: 5px;
+          padding: 5px;
+
+          &__item {
+            height: 80px;
+          }
         }
       }
     }
