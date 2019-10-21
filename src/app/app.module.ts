@@ -19,16 +19,20 @@ import {PopupComponent} from './shared/popup/popup.component';
 import {PopupService} from "./shared/popup/popup.service";
 import {TimetableParsingComponent} from "./components/timetable-parsing/timetable-parsing.component";
 import {CourseDetailsComponent} from "./components/timetable-parsing/course-details/course-details.component";
+import {CardComponent} from "./shared/card/card.component";
+import {ControllersComponent} from "./components/timetable-parsing/controllers/controllers.component";
 
 let adminConfigurations = [
   TimetableParsingComponent,
   AdminParsingComponent,
-  CourseDetailsComponent
+  CourseDetailsComponent,
+  ControllersComponent
 ];
 
 let sharedComponents = [
   SelectorComponent,
-  PopupComponent
+  PopupComponent,
+  CardComponent
 ];
 
 let externalLibs = [
