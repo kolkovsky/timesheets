@@ -14,7 +14,7 @@ export class PopupService {
   }
 
   public showNotification(type: string, closable: boolean, message: string, autoHide?: boolean) {
-    this.setNotificationContent(type, closable, message);
+    this.setNotificationContent(type, closable, message, autoHide);
     this.notificationState$.next(true);
   }
 

@@ -3,8 +3,8 @@
   &-group {
 
     &_container {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      display: flex;
+      flex-wrap: wrap;
 
       &__times {
 
@@ -15,7 +15,8 @@
 
         &_item {
           height: 80px;
-          align-content: center;
+          padding-left: 15px;
+          margin: 15px;
         }
       }
 
@@ -26,10 +27,15 @@
         }
 
         &__subjects {
-          padding: 5px;
 
-          &__item {
-            height: 80px;
+
+          &__card {
+
+
+          }
+
+
+          &__items {
           }
         }
       }

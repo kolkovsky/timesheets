@@ -22,12 +22,9 @@ export class TimetableParsingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.spinnerService.show();
     this.adminParsingService.importData$.subscribe(data => {
       this.timetable = data;
       this.uiTimesheets = this.timetable.timeSheets.map(timesheet => this.convertToUiTimesheet(timesheet));
-      console.log(this.uiTimesheets);
-      this.spinnerService.hide();
     });
   }
 

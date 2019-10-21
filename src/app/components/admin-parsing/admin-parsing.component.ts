@@ -5,7 +5,6 @@ import {PopupService} from "../../shared/popup/popup.service";
 import {PopupTypeConstants} from "../../shared/popup/popup-type.constants";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs";
-import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'admin-parsing',
@@ -18,7 +17,6 @@ export class AdminParsingComponent implements OnInit, OnDestroy {
   public file: File;
   private formatsExcelFiles: string[] = [".xlsx", ".xls"];
   public showErrorUpload: boolean = false;
-  public navigateSubject: Subject<any> = new Subject();
   public unsubscribeStream$: Subject<any> = new Subject();
 
   constructor(private adminParsingService: AdminParsingService,
@@ -40,19 +38,12 @@ export class AdminParsingComponent implements OnInit, OnDestroy {
   }
 
   public sendFile(): void {
-    this.loaderService.show();
     this.adminParsingService.importFile(this.file).subscribe((data) => {
-      this.loaderService.hide();
-      // this.navigateSubject = this.popupService.notificationState$;
-      // this.navigateSubject.pipe(takeUntil(this.unsubscribeStream$))
-      //   .subscribe((state) => {
-      //     if (!state) {
-      //       this.router.navigateByUrl("timetable-parsing")
-      //     }
-      //   });
       this.popupService.showNotification(PopupTypeConstants.SUCCESS_TYPE, true, "Преобразование файла завершено успешно", true);
       this.adminParsingService.importData$.next(data);
-      this.router.navigateByUrl("timetable-parsing");
+      setTimeout(() => {
+        this.router.navigateByUrl("timetable-parsing");
+      }, 2000);
     }, error => {
       this.loaderService.hide();
       this.popupService.showNotification(PopupTypeConstants.DANGER_TYPE, true, "Ошибка преобразования");

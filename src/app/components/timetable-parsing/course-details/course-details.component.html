@@ -12,14 +12,16 @@
               <h4>{{time}}</h4>
             </div>
           </div>
+
           <div class="course-details-group_container__weekday" *ngFor="let weekDay of weekDays">
             <div class="course-details-group_container__weekday__name">
               <h4 class="text-center">{{weekDay}}</h4>
             </div>
             <div class="course-details-group_container__weekday__subjects">
-              <div class="list-group" *ngFor="let subject of group.sortedSubjects[weekDay][0]">
-                <div
-                  class="list-group-item m-2 course-details-group_container__weekday__subjects__item ">{{subject.name}}</div>
+              <div class="course-details-group_container__weekday__subjects__items">
+                <ng-container *ngFor="let subject of group.sortedSubjects[weekDay][0]">
+                  <ttp-shared-card [cardContent]="subject.name"></ttp-shared-card>
+                </ng-container>
               </div>
             </div>
           </div>
@@ -28,3 +30,4 @@
     </div>
   </ng-container>
 </ng-container>
+

@@ -47,6 +47,5 @@ export class PopupComponent implements OnInit {
 
   public closePopup(): void {
     this.showNotification = false;
-    this.popupService.closeNotification();
   }
 }
