@@ -1,6 +1,7 @@
 import {UiGroupModel} from "./ui-group.model";
 
 export class UiTimesheetModel {
+  id: string;
   course: number;
   uiGroups: UiGroupModel[];
 

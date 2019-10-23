@@ -11,7 +11,7 @@ import {TimetableModel} from "../models/timetable.model";
 export class AdminParsingService {
 
   private controllerName: string = '/api/v1/ttp-administrator';
-  public importData$: ReplaySubject<TimetableModel> = new ReplaySubject(1);
+  public importData$: ReplaySubject<any> = new ReplaySubject(1);
 
   constructor(private http: HttpClient) {
   }

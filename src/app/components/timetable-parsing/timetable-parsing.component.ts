@@ -1,10 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {AdminParsingService} from "../../services/admin-parsing.service";
-import {TimetableModel} from "../../models/timetable.model";
 import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 import {TimetableUtils} from "../../utils/timetable.utils";
 import {UiTimesheetModel} from "../../models/ui-timesheet.model";
 import {UiGroupModel} from "../../models/ui-group.model";
+import {TimesheetModel} from "../../models/timesheet.model";
 
 @Component({
   selector: 'ttp-timetable-parsing',
@@ -14,17 +14,22 @@ import {UiGroupModel} from "../../models/ui-group.model";
 
 export class TimetableParsingComponent implements OnInit {
 
-  public timetable: TimetableModel;
+  public timeSheets: TimesheetModel[];
   public uiTimesheets: UiTimesheetModel[];
 
-  constructor(private adminParsingService: AdminParsingService,
-              private spinnerService: Ng4LoadingSpinnerService) {
+  constructor(private adminParsingService: AdminParsingService) {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem("Timetable")) {
+      this.timeSheets = JSON.parse(localStorage.getItem("Timetable"));
+      this.uiTimesheets = this.timeSheets.map(timeSheet => this.convertToUiTimesheet(timeSheet));
+    }
+
     this.adminParsingService.importData$.subscribe(data => {
-      this.timetable = data;
-      this.uiTimesheets = this.timetable.timeSheets.map(timesheet => this.convertToUiTimesheet(timesheet));
+      this.timeSheets = data;
+      localStorage.setItem("Timetable", JSON.stringify(this.timeSheets));
+      this.uiTimesheets = this.timeSheets.map(timeSheet => this.convertToUiTimesheet(timeSheet));
     });
   }
 

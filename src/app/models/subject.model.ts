@@ -1,4 +1,5 @@
 export class SubjectModel {
+  id: string;
   name: string;
   teachers: string[];
   time: string;

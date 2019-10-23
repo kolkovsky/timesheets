@@ -1,4 +1,5 @@
 export class UiGroupModel {
+  id: string;
   name: string;
   sortedSubjects: any;
 
