@@ -1,5 +1,5 @@
 <ng-container *ngIf="cardContent">
-  <div class="ttp-shared-card shadow">
+  <div class="ttp-shared-card shadow" [@resize]="show ? 'on' : 'over'">
     <ng-container *ngIf="cardContent">
       <div class="ttp-shared-card__content">
        <p class="ttp-shared-card__content_text">{{cardContent}}</p>
