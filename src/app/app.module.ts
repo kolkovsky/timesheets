@@ -24,6 +24,7 @@ import {ControllersComponent} from "./components/timetable-parsing/controllers/c
 import {IconComponent} from "./shared/icon/icon.component";
 import {CourseDetailsItemComponent} from "./components/timetable-parsing/course-details/course-details-item/course-details-item.component";
 import {CourseDetailsEmptyComponent} from "./components/timetable-parsing/course-details/course-details-empty/course-details-empty.component";
+import {CourseDetailsContainerComponent} from "./components/timetable-parsing/course-details/course-details-container/course-details-container.component";
 
 let adminConfigurations = [
   TimetableParsingComponent,
@@ -31,7 +32,8 @@ let adminConfigurations = [
   CourseDetailsComponent,
   ControllersComponent,
   CourseDetailsItemComponent,
-  CourseDetailsEmptyComponent
+  CourseDetailsEmptyComponent,
+  CourseDetailsContainerComponent
 ];
 
 let sharedComponents = [
@@ -72,7 +74,8 @@ let externalLibs = [
     AdminParsingService,
     PopupService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CourseDetailsEmptyComponent, CourseDetailsItemComponent]
 })
 export class AppModule {
 }

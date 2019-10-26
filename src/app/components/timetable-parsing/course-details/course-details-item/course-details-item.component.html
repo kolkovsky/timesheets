@@ -1,5 +1,4 @@
-<div class="course-details__item__item" #item (mouseup)="mouseUpChange($event)"
-     (mousedown)="replaceItem($event, item)" [ngClass]="noHover ? '_no-hover' : ''">
+<div class="course-details__item__item" #item>
   <p>{{subject.name}}
   <p></p><br>
   <ng-container *ngIf="subject.classrooms">
