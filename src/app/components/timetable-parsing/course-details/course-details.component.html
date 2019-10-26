@@ -13,13 +13,11 @@
           <p class="display-3 course-details__time__item__display-text">{{time}}</p>
         </div>
       </div>
-      <div class="course-details__blocks">
+      <div class="course-details__blocks" #itemsContainer>
         <ng-container *ngFor="let weekday of weekDays">
           <div class="course-details__blocks__block">
             <ng-container *ngFor="let time of times">
-              <ng-container *ngIf="getSubjectByTime(time, group.sortedSubjects[weekday][0]);
-                            then fillSubject; else emptySubject">
-              </ng-container>
+              <course-details-item [subject]="getSubjectByTime(time, group.sortedSubjects[weekday][0])"></course-details-item>
             </ng-container>
           </div>
         </ng-container>
@@ -27,25 +25,3 @@
     </div>
   </ng-container>
 </ng-container>
-
-<ng-template #emptySubject>
-    <div class="course-details__blocks__block__empty">
-        <ttp-icon [iconName]="'plus'"></ttp-icon>
-    </div>
-</ng-template>
-
-
-<ng-template #fillSubject>
-  <div class="course-details__blocks__block__item"  #item (mousedown)="replaceItem($event, item)">
-    <p>{{subject.name}}
-    <p></p><br>
-    <ng-container *ngIf="subject.classrooms">
-      <ng-container *ngFor="let class of subject.classrooms"><p>{{class}}</p></ng-container>
-      <br>
-    </ng-container>
-    <ng-container *ngFor="let teacher of subject.teachers"><p><strong>{{teacher}}</strong></p>
-    </ng-container>
-    <p><em>{{getLessonType(subject.classLessonType)}}</em>
-      <ttp-icon [iconName]="getClassIconForLessonType(subject.classLessonType)"></ttp-icon>
-  </div>
-</ng-template>

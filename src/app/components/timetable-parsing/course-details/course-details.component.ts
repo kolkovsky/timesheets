@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from "@angular/core";
+import {Component, ComponentFactory, ComponentFactoryResolver, HostListener, Input, OnInit} from "@angular/core";
 import {UiTimesheetModel} from "../../../models/ui-timesheet.model";
 import {UiGroupModel} from "../../../models/ui-group.model";
 import {WeekDaysConstant} from "../../../constants/week-days.constant";
@@ -15,6 +15,8 @@ export class CourseDetailsComponent implements OnInit {
   @Input() timesheet: UiTimesheetModel;
 
   private subject: any;
+  public item: any;
+  public noHover: boolean;
   private smallModeView: boolean = false;
   public weekDays: string[];
   public groups: UiGroupModel[];
@@ -25,19 +27,17 @@ export class CourseDetailsComponent implements OnInit {
     this.checkWindowSize();
   }
 
+  constructor(private componentFactoryRes: ComponentFactoryResolver){
+
+  }
+
   ngOnInit(): void {
+
     this.checkWindowSize();
     this.weekDays = WeekDaysConstant.WEEK_DAYS_ARRAY;
     this.loadGroupsForTimesheet();
   }
 
-  public getLessonType(lessonType: string): string {
-    return TimetableUtils.getformattingLessonType(lessonType);
-  }
-
-  public getClassIconForLessonType(lessonType: string): string {
-    return TimetableUtils.getClassIconForLessonType(lessonType);
-  }
 
   public getSubjectByTime(time: string, subjects: any): any {
     return this.subject = subjects.find(subject => subject.time === time);
@@ -51,12 +51,6 @@ export class CourseDetailsComponent implements OnInit {
     if (this.timesheet) {
       this.groups = this.timesheet.uiGroups;
     }
-  }
-
-  public replaceItem(event: any, item: any): void {
-    console.log(item);
-    item.style.position = "absolute";
-    item.style.zIndex = 1000;
   }
 
 }
