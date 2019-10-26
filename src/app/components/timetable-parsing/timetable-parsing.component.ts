@@ -31,6 +31,8 @@ export class TimetableParsingComponent implements OnInit {
       localStorage.setItem("Timetable", JSON.stringify(this.timeSheets));
       this.uiTimesheets = this.timeSheets.map(timeSheet => this.convertToUiTimesheet(timeSheet));
     });
+
+    console.log(this.uiTimesheets)
   }
 
   private convertToUiTimesheet(timesheet: any): UiTimesheetModel {

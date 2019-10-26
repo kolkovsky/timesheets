@@ -14,6 +14,7 @@ import {TimetableUtils} from "../../../utils/timetable.utils";
 export class CourseDetailsComponent implements OnInit {
   @Input() timesheet: UiTimesheetModel;
 
+  private subject: any;
   private smallModeView: boolean = false;
   public weekDays: string[];
   public groups: UiGroupModel[];
@@ -31,7 +32,15 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   public getLessonType(lessonType: string): string {
-    return  TimetableUtils.getformattingLessonType(lessonType);
+    return TimetableUtils.getformattingLessonType(lessonType);
+  }
+
+  public getClassIconForLessonType(lessonType: string): string {
+    return TimetableUtils.getClassIconForLessonType(lessonType);
+  }
+
+  public getSubjectByTime(time: string, subjects: any): any {
+    return this.subject = subjects.find(subject => subject.time === time);
   }
 
   private checkWindowSize(): void {
@@ -42,6 +51,12 @@ export class CourseDetailsComponent implements OnInit {
     if (this.timesheet) {
       this.groups = this.timesheet.uiGroups;
     }
+  }
+
+  public replaceItem(event: any, item: any): void {
+    console.log(item);
+    item.style.position = "absolute";
+    item.style.zIndex = 1000;
   }
 
 }

@@ -1,12 +1,18 @@
 import {SubjectModel} from "../models/subject.model";
 import {WeekDaysConstant} from "../constants/week-days.constant";
+import {ClassesConstant} from "../constants/classes.constant";
+
+const LAB: string = "LAB";
+const PRACTICE: string = "PRACTICE";
+const LECTURE: string = "LECTURE";
+const PE: string = "PE";
 
 export class TimetableUtils {
 
   public static lessonType: any = {
-    "LAB": "Лабораторная работа",
-    "LECTURE": "Лекция",
-    "PRACTICE": "Практика"
+    [LAB]: "Лабораторная работа",
+    [LECTURE]: "Лекция",
+    [PRACTICE]: "Практика",
   };
 
   public static lessonTimes: any = {
@@ -19,8 +25,15 @@ export class TimetableUtils {
     "17:50": 7
   };
 
+  public static getClassIconForLessonType(lessonType: string): string {
+    return LAB === lessonType ? ClassesConstant.beakerIconClass :
+      LECTURE === lessonType ? ClassesConstant.megaphoneIconClass :
+        PRACTICE === lessonType ? ClassesConstant.pencilIconClass :
+          PE === lessonType ? ClassesConstant.flameIconClass : "";
+  }
+
   public static getformattingLessonType(lessonType: string): string {
-      return TimetableUtils.lessonType[Object.keys(TimetableUtils.lessonType).find(type => lessonType === type)];
+    return TimetableUtils.lessonType[Object.keys(TimetableUtils.lessonType).find(type => lessonType === type)];
   }
 
   public static sortSubjectsByWeekDay(subjects: any[]): { [key: string]: any[] } {

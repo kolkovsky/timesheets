@@ -21,6 +21,7 @@ import {TimetableParsingComponent} from "./components/timetable-parsing/timetabl
 import {CourseDetailsComponent} from "./components/timetable-parsing/course-details/course-details.component";
 import {CardComponent} from "./shared/card/card.component";
 import {ControllersComponent} from "./components/timetable-parsing/controllers/controllers.component";
+import {IconComponent} from "./shared/icon/icon.component";
 
 let adminConfigurations = [
   TimetableParsingComponent,
@@ -32,7 +33,8 @@ let adminConfigurations = [
 let sharedComponents = [
   SelectorComponent,
   PopupComponent,
-  CardComponent
+  CardComponent,
+  IconComponent
 ];
 
 let externalLibs = [

@@ -4,56 +4,48 @@
       <div class="course-details__symbol">
       </div>
       <div class="course-details__days">
-        <div class="course-details__days__item" *ngFor="let weekday of weekDays">
-          {{weekday}}
+        <div class="course-details__days__item text-center" *ngFor="let weekday of weekDays">
+          <p class="display-4 course-details__days__item__display-text">{{weekday}}</p>
         </div>
       </div>
       <div class="course-details__time">
         <div class="course-details__time__item" *ngFor="let time of times">
-          {{time}}
+          <p class="display-3 course-details__time__item__display-text">{{time}}</p>
         </div>
       </div>
       <div class="course-details__blocks">
         <ng-container *ngFor="let weekday of weekDays">
           <div class="course-details__blocks__block">
-            <ng-container *ngFor="let subject of group.sortedSubjects[weekday][0]">
-              <div class="course-details__blocks__block__item">
-                {{subject.name}}
-                <ng-container *ngFor="let class of subject.classrooms">{{class}}</ng-container>
-                {{getLessonType(subject.classLessonType)}}
-              </div>
+            <ng-container *ngFor="let time of times">
+              <ng-container *ngIf="getSubjectByTime(time, group.sortedSubjects[weekday][0]);
+                            then fillSubject; else emptySubject">
+              </ng-container>
             </ng-container>
           </div>
         </ng-container>
       </div>
-      <!--      <div class="course-details-group" *ngFor="let group of groups">-->
-      <!--        <p class="text-ui-medium">{{"Группа:" + group.name}}</p>-->
-      <!--        <hr>-->
-      <!--        <div class="course-details-group_container" [ngClass]="smallModeView ?   '_small': ''">-->
-      <!--          <div class="course-details-group_container__times">-->
-      <!--            <div class="course-details-group_container__times_hidden"></div>-->
-      <!--            <div class="course-details-group_container__times_item" *ngFor="let time of times">-->
-      <!--              <p class="text-ui">{{time}}</p>-->
-      <!--            </div>-->
-      <!--          </div>-->
-
-      <!--          <div class="course-details-group_container__weekday" *ngFor="let weekDay of weekDays">-->
-      <!--            <div class="course-details-group_container__weekday__container">-->
-      <!--              <div class="course-details-group_container__weekday__container__name">-->
-      <!--                <h4 class="text-center">{{weekDay}}</h4>-->
-      <!--              </div>-->
-      <!--            </div>-->
-      <!--            <div class="course-details-group_container__weekday__subjects">-->
-      <!--              <div class="course-details-group_container__weekday__subjects__items">-->
-      <!--                <ng-container *ngFor="let subject of group.sortedSubjects[weekDay][0]">-->
-      <!--                  <ttp-shared-card [cardContent]="subject.name"></ttp-shared-card>-->
-      <!--                </ng-container>-->
-      <!--              </div>-->
-      <!--            </div>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
     </div>
   </ng-container>
 </ng-container>
 
+<ng-template #emptySubject>
+    <div class="course-details__blocks__block__empty">
+        <ttp-icon [iconName]="'plus'"></ttp-icon>
+    </div>
+</ng-template>
+
+
+<ng-template #fillSubject>
+  <div class="course-details__blocks__block__item"  #item (mousedown)="replaceItem($event, item)">
+    <p>{{subject.name}}
+    <p></p><br>
+    <ng-container *ngIf="subject.classrooms">
+      <ng-container *ngFor="let class of subject.classrooms"><p>{{class}}</p></ng-container>
+      <br>
+    </ng-container>
+    <ng-container *ngFor="let teacher of subject.teachers"><p><strong>{{teacher}}</strong></p>
+    </ng-container>
+    <p><em>{{getLessonType(subject.classLessonType)}}</em>
+      <ttp-icon [iconName]="getClassIconForLessonType(subject.classLessonType)"></ttp-icon>
+  </div>
+</ng-template>
