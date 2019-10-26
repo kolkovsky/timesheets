@@ -30,6 +30,10 @@ export class CourseDetailsComponent implements OnInit {
     this.loadGroupsForTimesheet();
   }
 
+  public getLessonType(lessonType: string): string {
+    return  TimetableUtils.getformattingLessonType(lessonType);
+  }
+
   private checkWindowSize(): void {
     this.smallModeView = innerWidth < 1360;
   }

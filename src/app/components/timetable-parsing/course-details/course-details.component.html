@@ -1,38 +1,58 @@
 <ng-container>
-  <h1 class="text-center text-lg-center">{{"Курс:" + timesheet.course}}</h1>
-  <ng-container>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <div class="course-details">
-            <div class="course-details-group" *ngFor="let group of groups">
-              <h3>{{"Группа:" + group.name}}</h3>
-              <hr>
-              <div class="course-details-group_container" [ngClass]="smallModeView ?   '_small': ''">
-                <div class="course-details-group_container__times">
-                  <div class="course-details-group_container__times_hidden"></div>
-                  <div class="course-details-group_container__times_item" *ngFor="let time of times">
-                    <h4>{{time}}</h4>
-                  </div>
-                </div>
-
-                <div class="course-details-group_container__weekday" *ngFor="let weekDay of weekDays">
-                  <div class="course-details-group_container__weekday__name">
-                    <h4 class="text-center">{{weekDay}}</h4>
-                  </div>
-                  <div class="course-details-group_container__weekday__subjects">
-                    <div class="course-details-group_container__weekday__subjects__items">
-                      <ng-container *ngFor="let subject of group.sortedSubjects[weekDay][0]">
-                        <ttp-shared-card [cardContent]="subject.name"></ttp-shared-card>
-                      </ng-container>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  <ng-container *ngFor="let group of groups">
+    <div class="course-details mb-2">
+      <div class="course-details__symbol">
+      </div>
+      <div class="course-details__days">
+        <div class="course-details__days__item" *ngFor="let weekday of weekDays">
+          {{weekday}}
         </div>
       </div>
+      <div class="course-details__time">
+        <div class="course-details__time__item" *ngFor="let time of times">
+          {{time}}
+        </div>
+      </div>
+      <div class="course-details__blocks">
+        <ng-container *ngFor="let weekday of weekDays">
+          <div class="course-details__blocks__block">
+            <ng-container *ngFor="let subject of group.sortedSubjects[weekday][0]">
+              <div class="course-details__blocks__block__item">
+                {{subject.name}}
+                <ng-container *ngFor="let class of subject.classrooms">{{class}}</ng-container>
+                {{getLessonType(subject.classLessonType)}}
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+      <!--      <div class="course-details-group" *ngFor="let group of groups">-->
+      <!--        <p class="text-ui-medium">{{"Группа:" + group.name}}</p>-->
+      <!--        <hr>-->
+      <!--        <div class="course-details-group_container" [ngClass]="smallModeView ?   '_small': ''">-->
+      <!--          <div class="course-details-group_container__times">-->
+      <!--            <div class="course-details-group_container__times_hidden"></div>-->
+      <!--            <div class="course-details-group_container__times_item" *ngFor="let time of times">-->
+      <!--              <p class="text-ui">{{time}}</p>-->
+      <!--            </div>-->
+      <!--          </div>-->
+
+      <!--          <div class="course-details-group_container__weekday" *ngFor="let weekDay of weekDays">-->
+      <!--            <div class="course-details-group_container__weekday__container">-->
+      <!--              <div class="course-details-group_container__weekday__container__name">-->
+      <!--                <h4 class="text-center">{{weekDay}}</h4>-->
+      <!--              </div>-->
+      <!--            </div>-->
+      <!--            <div class="course-details-group_container__weekday__subjects">-->
+      <!--              <div class="course-details-group_container__weekday__subjects__items">-->
+      <!--                <ng-container *ngFor="let subject of group.sortedSubjects[weekDay][0]">-->
+      <!--                  <ttp-shared-card [cardContent]="subject.name"></ttp-shared-card>-->
+      <!--                </ng-container>-->
+      <!--              </div>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
     </div>
   </ng-container>
 </ng-container>

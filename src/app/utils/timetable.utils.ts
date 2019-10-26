@@ -3,6 +3,12 @@ import {WeekDaysConstant} from "../constants/week-days.constant";
 
 export class TimetableUtils {
 
+  public static lessonType: any = {
+    "LAB": "Лабораторная работа",
+    "LECTURE": "Лекция",
+    "PRACTICE": "Практика"
+  };
+
   public static lessonTimes: any = {
     "9:00": 1,
     "10:30": 2,
@@ -13,6 +19,9 @@ export class TimetableUtils {
     "17:50": 7
   };
 
+  public static getformattingLessonType(lessonType: string): string {
+      return TimetableUtils.lessonType[Object.keys(TimetableUtils.lessonType).find(type => lessonType === type)];
+  }
 
   public static sortSubjectsByWeekDay(subjects: any[]): { [key: string]: any[] } {
     return {

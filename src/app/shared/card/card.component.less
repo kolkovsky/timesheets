@@ -3,11 +3,18 @@
   border-radius: 10px;
   width: 175px;
   height: 175px;
-  margin-left: 10px;
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+
+    z-index:100;
+  }
 
   &__header {
 
@@ -22,6 +29,6 @@
   }
 
   &__footer {
-    
+
   }
 }

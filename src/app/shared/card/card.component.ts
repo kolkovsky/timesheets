@@ -4,8 +4,7 @@ import {cardAnimation} from "./card.animation";
 @Component({
   selector: "ttp-shared-card",
   templateUrl: "./card.component.html",
-  styleUrls: ["./card.component.less"],
-  animations: [cardAnimation]
+  styleUrls: ["./card.component.less"]
 })
 
 export class CardComponent implements OnInit {
@@ -14,17 +13,17 @@ export class CardComponent implements OnInit {
 
   public show: boolean;
 
-  @HostListener('mouseover')
-  catchMouseOver() {
-    console.log("mouseover");
-    this.show = true;
-  }
-
-  @HostListener('mouseout')
-  catchMouseOut() {
-    console.log("mouseout");
-    this.show = false;
-  }
+  // @HostListener('mouseover')
+  // catchMouseOver() {
+  //   console.log("mouseover");
+  //   this.show = true;
+  // }
+  //
+  // @HostListener('mouseout')
+  // catchMouseOut() {
+  //   console.log("mouseout");
+  //   this.show = false;
+  // }
 
   ngOnInit(): void {
 
