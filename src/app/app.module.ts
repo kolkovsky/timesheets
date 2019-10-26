@@ -23,13 +23,15 @@ import {CardComponent} from "./shared/card/card.component";
 import {ControllersComponent} from "./components/timetable-parsing/controllers/controllers.component";
 import {IconComponent} from "./shared/icon/icon.component";
 import {CourseDetailsItemComponent} from "./components/timetable-parsing/course-details/course-details-item/course-details-item.component";
+import {CourseDetailsEmptyComponent} from "./components/timetable-parsing/course-details/course-details-empty/course-details-empty.component";
 
 let adminConfigurations = [
   TimetableParsingComponent,
   AdminParsingComponent,
   CourseDetailsComponent,
   ControllersComponent,
-  CourseDetailsItemComponent
+  CourseDetailsItemComponent,
+  CourseDetailsEmptyComponent
 ];
 
 let sharedComponents = [

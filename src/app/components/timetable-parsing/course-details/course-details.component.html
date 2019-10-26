@@ -17,7 +17,8 @@
         <ng-container *ngFor="let weekday of weekDays">
           <div class="course-details__blocks__block">
             <ng-container *ngFor="let time of times">
-              <course-details-item [subject]="getSubjectByTime(time, group.sortedSubjects[weekday][0])"></course-details-item>
+              <ng-container *ngIf="getSubjectByTime(time, group.sortedSubjects[weekday][0]); then fillSubject; else emptySubject">
+              </ng-container>
             </ng-container>
           </div>
         </ng-container>
@@ -25,3 +26,12 @@
     </div>
   </ng-container>
 </ng-container>
+
+
+<ng-template #fillSubject>
+  <course-details-item [subject]="subject"></course-details-item>
+</ng-template>
+
+<ng-template #emptySubject>
+  <course-details-empty></course-details-empty>
+</ng-template>

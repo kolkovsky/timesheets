@@ -1,25 +1,13 @@
-<ng-container *ngIf="subject; then fillSubject; else emptySubject">
-</ng-container>
-
-<ng-template #emptySubject>
-  <div class="course-details__item__empty">
-    <ttp-icon [iconName]="'plus'"></ttp-icon>
-  </div>
-</ng-template>
-
-
-<ng-template #fillSubject>
-  <div class="course-details__item__item" #item (mouseup)="mouseUpChange($event)"
-       (mousedown)="replaceItem($event, item)" [ngClass]="noHover ? '_no-hover' : ''">
-    <p>{{subject.name}}
-    <p></p><br>
-    <ng-container *ngIf="subject.classrooms">
-      <ng-container *ngFor="let class of subject.classrooms"><p>{{class}}</p></ng-container>
-      <br>
-    </ng-container>
-    <ng-container *ngFor="let teacher of subject.teachers"><p><strong>{{teacher}}</strong></p>
-    </ng-container>
-    <p><em>{{getLessonType(subject.classLessonType)}}</em>
-      <ttp-icon [iconName]="getClassIconForLessonType(subject.classLessonType)"></ttp-icon>
-  </div>
-</ng-template>
+<div class="course-details__item__item" #item (mouseup)="mouseUpChange($event)"
+     (mousedown)="replaceItem($event, item)" [ngClass]="noHover ? '_no-hover' : ''">
+  <p>{{subject.name}}
+  <p></p><br>
+  <ng-container *ngIf="subject.classrooms">
+    <ng-container *ngFor="let class of subject.classrooms"><p>{{class}}</p></ng-container>
+    <br>
+  </ng-container>
+  <ng-container *ngFor="let teacher of subject.teachers"><p><strong>{{teacher}}</strong></p>
+  </ng-container>
+  <p><em>{{getLessonType(subject.classLessonType)}}</em>
+    <ttp-icon [iconName]="getClassIconForLessonType(subject.classLessonType)"></ttp-icon>
+</div>
