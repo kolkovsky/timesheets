@@ -4,7 +4,7 @@
       <h1 class="display-3 text-white text-center">Выберите Группу</h1>
     </div>
     <div class="col-md-6  mt-5 text-center">
-      <ttp-selector [items]="items" (valueChange)="groupChange($event)"></ttp-selector>
+      <ttp-selector [items]="availableGroups" (valueChange)="groupChange($event)"></ttp-selector>
       <button type="button" class="btn btn-primary btn-block mt-4" (click)="navigateToGroupPage()"
               [disabled]="isDisableButton">Перейти к расписанию
       </button>

@@ -1,0 +1,238 @@
+{
+  "id": "1232132323",
+  "name": "1+5 ПИ ",
+  "subjects": [
+    {
+      "name": "Физическая культура ",
+      "teachers": [],
+      "time": "9:00",
+      "day": "понедельник",
+      "classrooms": [
+        "Спортзал"
+      ],
+      "classLessonType": "UNDEFINED"
+    },
+    {
+      "name": "СМ\"Основы предпринима- тельства и бизнеса\" ",
+      "teachers": [
+        " доц. Стаганович А.Л."
+      ],
+      "time": "10:30",
+      "day": "понедельник",
+      "classrooms": [
+        "ауд. 117"
+      ],
+      "classLessonType": "LECTURE"
+    },
+    {
+      "name": "Общая   физика ",
+      "teachers": [
+        " <bold>доц. Железнякова Т.А."
+      ],
+      "time": "12:00",
+      "day": "понедельник",
+      "classrooms": [
+        "ауд.613"
+      ],
+      "classLessonType": "PRACTICE"
+    },
+    {
+      "name": "Общая физика ",
+      "teachers": [
+        " <bold>доц. Железнякова Т.А."
+      ],
+      "time": "13:50",
+      "day": "понедельник",
+      "classrooms": [
+        "ауд.117"
+      ],
+      "classLessonType": "LECTURE"
+    },
+    {
+      "name": "Общая физика ",
+      "teachers": [],
+      "time": "9:00",
+      "day": "вторник",
+      "classrooms": [],
+      "classLessonType": "LAB"
+    },
+    {
+      "name": "Общая физика ",
+      "teachers": [],
+      "time": "10:30",
+      "day": "вторник",
+      "classrooms": [],
+      "classLessonType": "LAB"
+    },
+    {
+      "name": "Общая физика ",
+      "teachers": [],
+      "time": "12:00",
+      "day": "вторник",
+      "classrooms": [],
+      "classLessonType": "LAB"
+    },
+    {
+      "name": "Методы математической  физики ",
+      "teachers": [
+        " <bold>доц.Рыпаченко И.В."
+      ],
+      "time": "13:50",
+      "day": "вторник",
+      "classrooms": [
+        "ауд.117"
+      ],
+      "classLessonType": "LECTURE"
+    },
+    {
+      "name": "СМ\"Основы предпринима- тельства и бизнеса\" ",
+      "teachers": [
+        " доц. Стаганович А.Л."
+      ],
+      "time": "10:30",
+      "day": "среда",
+      "classrooms": [
+        "ауд. 613"
+      ],
+      "classLessonType": "UNDEFINED"
+    },
+    {
+      "name": "Методы математической  физики ",
+      "teachers": [
+        " <bold>доц.Рыпаченко И.В."
+      ],
+      "time": "12:00",
+      "day": "среда",
+      "classrooms": [
+        "ауд.111"
+      ],
+      "classLessonType": "PRACTICE"
+    },
+    {
+      "name": "Архитектура компьютеров ",
+      "teachers": [
+        " <bold>ст.пр.Дрозд А.Н."
+      ],
+      "time": "13:50",
+      "day": "среда",
+      "classrooms": [
+        "ауд.615"
+      ],
+      "classLessonType": "LECTURE"
+    },
+    {
+      "name": "Основы теории алгоритмов ",
+      "teachers": [
+        " проф.Котов В.М."
+      ],
+      "time": "15:20",
+      "day": "среда",
+      "classrooms": [
+        "ауд.615"
+      ],
+      "classLessonType": "LECTURE"
+    },
+    {
+      "name": "Военная подготовка ",
+      "teachers": [],
+      "time": "9:00",
+      "day": "четверг",
+      "classrooms": [],
+      "classLessonType": "UNDEFINED"
+    },
+    {
+      "name": "Военная подготовка ",
+      "teachers": [],
+      "time": "10:30",
+      "day": "четверг",
+      "classrooms": [],
+      "classLessonType": "UNDEFINED"
+    },
+    {
+      "name": "Военная подготовка  ",
+      "teachers": [],
+      "time": "12:00",
+      "day": "четверг",
+      "classrooms": [],
+      "classLessonType": "UNDEFINED"
+    },
+    {
+      "name": "Военная подготовка ",
+      "teachers": [],
+      "time": "13:50",
+      "day": "четверг",
+      "classrooms": [],
+      "classLessonType": "UNDEFINED"
+    },
+    {
+      "name": "Интегральная электроника ",
+      "teachers": [
+        " <bold>проф.Садов В.С."
+      ],
+      "time": "9:00",
+      "day": "пятница",
+      "classrooms": [
+        "ауд.119"
+      ],
+      "classLessonType": "LECTURE"
+    },
+    {
+      "name": "Компьютерные сети ",
+      "teachers": [
+        " <bold>доц.Кочин В.П."
+      ],
+      "time": "10:30",
+      "day": "пятница",
+      "classrooms": [
+        "ауд.117"
+      ],
+      "classLessonType": "LECTURE"
+    },
+    {
+      "name": "Операционные системы ",
+      "teachers": [
+        " <bold>доц.Емельяненков В.И."
+      ],
+      "time": "12:00",
+      "day": "пятница",
+      "classrooms": [
+        "ауд.117"
+      ],
+      "classLessonType": "LECTURE"
+    },
+    {
+      "name": "Физическая культура ",
+      "teachers": [],
+      "time": "13:50",
+      "day": "пятница",
+      "classrooms": [
+        "Спортзал"
+      ],
+      "classLessonType": "UNDEFINED"
+    },
+    {
+      "name": "Технологии программирован. ",
+      "teachers": [
+        " <bold>ст.пр.Кизим С.А."
+      ],
+      "time": "9:00",
+      "day": "суббота",
+      "classrooms": [
+        "ауд.117"
+      ],
+      "classLessonType": "UNDEFINED"
+    },
+    {
+      "name": "Технологии программирован. ",
+      "teachers": [
+        " <bold>ст.пр.Кизим С.А."
+      ],
+      "time": "10:30",
+      "day": "суббота",
+      "classrooms": [
+        "ауд.117"
+      ],
+      "classLessonType": "UNDEFINED"
+    }
+  ]
+}

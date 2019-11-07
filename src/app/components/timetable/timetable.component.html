@@ -1,11 +1,50 @@
-<div class="container-fluid img-fluid timetable-page" >
-    <div class="row pt-5">
-      <div class="col-md-6 col-lg-12 mt-5">
-        <h1 class="display-2 text-white text-center">Расписание!</h1>
-        <p class="text-white text-center">Здесь вы сможете быстро и легко получить доступ к своему расписанию</p>
+<ng-container *ngIf="uiGroup">
+  <div class="container-fluid img-fluid timetable-page">
+    <h1 class="display-2 text-white text-center">Расписание!</h1>
+    <div class="timetable-page__container">
+      <div class="timetable-page__container__controllers"></div>
+      <div class="timetable-page__container__days">
+        <div class="timetable-page__container__days__item" *ngFor="let weekday of  weekdays">
+          <p class="timetable-page__container__days__item__display-text display-4 text-light">{{weekday}}</p>
+        </div>
       </div>
-      <!-- <div class="col-md-6 col-lg-12 mt-5 text-center">
-        <button type="button" class="btn btn-primary" (click)="navigateToCoursePage()">Перейти к расписанию</button>
-      </div> -->
+      <div class="timetable-page__container__times">
+        <div class="timetable-page__container__times__item" *ngFor="let time of times">
+          <p class="timetable-page__container__times__item__display-text display-4 text-light">{{time}}</p>
+        </div>
+      </div>
+      <div class="timetable-page__container__blocks">
+        <ng-container *ngFor="let weekday of weekdays">
+          <div class="timetable-page__container__blocks__block">
+            <ng-container *ngFor="let time of times">
+              <ng-container
+                *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday][0]);
+                 then filledSubject; else emptySubject"></ng-container>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
     </div>
-</div>
+  </div>
+</ng-container>
+
+
+<ng-template #filledSubject>
+  <div class="timetable-page__container__blocks__block__item">
+    <p>{{subject.name}}</p><br>
+    <ng-container *ngIf="subject.classrooms">
+      <ng-container *ngFor="let class of subject.classrooms"><p>{{class}}</p></ng-container>
+      <br>
+    </ng-container>
+    <ng-container *ngFor="let teacher of subject.teachers"><p><strong>{{teacher}}</strong></p>
+    </ng-container>
+    <p><em>{{getLessonType(subject.classLessonType)}}</em></p>
+    <ttp-icon [iconName]="getClassIconForLessonType(subject.classLessonType)"></ttp-icon>
+  </div>
+</ng-template>
+
+<ng-template #emptySubject>
+  <div class="timetable-page__container__blocks__block__empty" style="visibility: hidden">
+
+  </div>
+</ng-template>

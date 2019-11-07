@@ -5,8 +5,6 @@ import {GroupPageComponent} from './groups/group-page.component';
 import {WelcomePageComponent} from './welcome/welcome-page.component';
 import { TimetableComponent } from './timetable/timetable.component';
 
-
-
 const routes: Routes = [
   {path: 'timetable', component: TimetableComponent, data: {animation: 'TimetablePage'}},
   {path: 'course', component: CoursePageComponent, data: {animation : 'CoursePage'}},
@@ -17,7 +15,7 @@ const routes: Routes = [
 
 @NgModule({
   imports:[RouterModule.forRoot(routes)],
-  declarations: [TimetableComponent]
+  declarations: []
 })
 
 export class AppRouterModule {}

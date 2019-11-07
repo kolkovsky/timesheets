@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {WelcomePageComponent} from './components/welcome/welcome-page.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -13,6 +12,9 @@ import {ButtonsModule} from 'ngx-bootstrap';
 import {SelectorComponent} from './shared/selector/selector.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {TimetableComponent} from "./components/timetable/timetable.component";
+import {TimetableItemComponent} from "./components/timetable/timetable-item/timetable-item.component";
+import {IconComponent} from "./shared/icon/icon.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +23,10 @@ import {FormsModule} from '@angular/forms';
     HeaderComponent,
     CoursePageComponent,
     GroupPageComponent,
-    SelectorComponent
+    SelectorComponent,
+    TimetableComponent,
+    TimetableItemComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,

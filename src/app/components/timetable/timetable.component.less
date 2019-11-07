@@ -1,5 +1,106 @@
 .timetable-page {
-    background: url("../../../assets/images/taiwan-08-05.jpg");
-    height: 1000px;
-    display: block;
+  background: url("../../../assets/images/taiwan-08-05.jpg");
+  height: 2200px;
+
+  &__container {
+    margin-left: 10px;
+    margin-right: 10px;
+    grid-template-areas: "controllers days" "times blocks";
+    display: grid;
+    grid-template-rows: 5% 70%;
+    grid-template-columns: 10% 90%;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+
+    &__controllers {
+      grid-area: controllers;
+    }
+
+    &__days {
+      padding: 1.2em;
+      background-color: #383F3E;
+      grid-area: days;
+      display: grid;
+      grid-template-rows: 1fr;
+      grid-template-columns: repeat(6, 1fr);
+      border: 2px solid #383F3E;
+      border-radius: 20px;
+
+      &__item {
+        //border: 1px solid #24222B;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__display-text {
+          font-size: 2.5rem;
+
+        }
+      }
+    }
+
+    &__times {
+      padding: 1.2em;
+      grid-area: times;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(7, 1fr);
+      grid-gap: 10px;
+
+      &__item {
+        //border: 1px solid #24222B;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &__display-text {
+          font-size: 2.5rem;
+        }
+      }
+    }
+
+    &__blocks {
+      padding: 1.2em;
+      grid-area: blocks;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 1fr;
+      grid-gap: 10px;
+
+      &__block {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(7, 1fr);
+        grid-gap: 10px;
+
+        &__empty {
+          border: 2px dashed #CBCEC5;
+          border-radius: 10px;
+          padding: 10px;
+          transition: all 0.3s ease;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        &__item {
+          border: 1px solid #24222B;
+          border-radius: 10px;
+          padding: 10px;
+          display: inline-block;
+          transition: all 0.3s ease;
+          background: #F8FBF0;
+
+          &:hover {
+            -webkit-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
 }   
+
+p{
+  margin: 0.1rem;
+}

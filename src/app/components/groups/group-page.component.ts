@@ -1,5 +1,7 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {TimetableService} from "../../services/timetable.service";
+import {Item} from "../../shared/selector/item.model";
 
 @Component({
   selector: 'group-page',
@@ -7,19 +9,25 @@ import {Router} from '@angular/router';
   styleUrls: ['./group-page.component.less']
 })
 
-export class GroupPageComponent {
+export class GroupPageComponent implements OnInit {
 
   public isDisableButton: boolean = true;
   private selectedGroup: any;
-  public items: any[] = [
-    {value: '', selected: true},
-    {value: '1', selected: false},
-    {value: '2', selected: false},
-    {value: '3', selected: false}
-  ];
+  public availableGroups: Item[];
 
   constructor(private router: Router,
-              private changeDetectorRef: ChangeDetectorRef) {
+              private changeDetectorRef: ChangeDetectorRef,
+              private timetableService: TimetableService) {
+  }
+
+  ngOnInit(): void {
+    this.loadAvailableGroups();
+  }
+
+  private loadAvailableGroups(): void {
+    this.timetableService.getGroupByCourseNumber().subscribe(groups => {
+      this.availableGroups = groups.map(group => new Item(group.name, group.id, false));
+    });
   }
 
   public groupChange(event: any): void {
