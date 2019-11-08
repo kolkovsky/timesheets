@@ -35,10 +35,16 @@ export class CourseDetailsContainerComponent implements OnInit {
       const factory = this.componentFactoryResolver.resolveComponentFactory(CourseDetailsItemComponent);
       this.component = this.content.createComponent(factory);
       this.component.instance.subject = this.subject;
+      this.component.instance.dragStartChange.subscribe(() => {
+        console.log("Ddddd");
+      })
     } else {
       this.content.clear();
       const factory = this.componentFactoryResolver.resolveComponentFactory(CourseDetailsEmptyComponent);
-      const componentRef = this.content.createComponent(factory);
+      this.component = this.content.createComponent(factory);
+      this.component.instance.dropEventChange.subscribe(() => {
+        console.log("RRRRR")
+      })
     }
   }
 
@@ -48,6 +54,14 @@ export class CourseDetailsContainerComponent implements OnInit {
     const componentRef = this.emptyContent.createComponent(factory);
   }
 
+  private createContentComponent(): void {
+
+  }
+
+  public dragOverHandler(event: any): void {
+
+  }
+
   ngAfterViewInit() {
     let createdComponent = this.elementRef.nativeElement.querySelector('course-details-item');
     if(createdComponent) {
@@ -55,6 +69,7 @@ export class CourseDetailsContainerComponent implements OnInit {
         createdComponent.style.zIndex = "1000";
         createdComponent.style.position = "absolute";
         createdComponent.style.pointerEvents = "none";
+        createdComponent.style.transition = "all ease-in-out";
         this.moveAt(evt.pageX, evt.pageY, createdComponent);
         document.body.addEventListener("mousemove", ev => {
           this.moveAt(ev.pageX, ev.pageY,createdComponent);
@@ -62,17 +77,18 @@ export class CourseDetailsContainerComponent implements OnInit {
         this.createEmptyComponent();
       });
 
+      createdComponent.addEventListener("ondragstart", () =>{
+        return false;
+      });
       createdComponent.addEventListener("mouseup", evt => {
         document.removeEventListener("mousemove", ()=>{});
-      })
+      });
     }
   }
 
   public moveAt(pageX, pageY, elem): void {
-    elem.style.left = pageX - elem.offsetWidth / 2 + 'px';
-    elem.style.top = pageY - elem.offsetHeight / 2 + 'px';
+    elem.style.left = pageX - elem.offsetWidth / 3 + 'px';
+    elem.style.top = pageY - elem.offsetHeight / 3 + 'px';
   }
-
-
 
 }

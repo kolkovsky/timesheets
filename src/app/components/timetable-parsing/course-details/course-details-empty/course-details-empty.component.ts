@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, EventEmitter, Output} from "@angular/core";
 
 @Component({
   selector: "course-details-empty",
@@ -8,4 +8,11 @@ import {Component} from "@angular/core";
 
 export class CourseDetailsEmptyComponent {
 
+
+  @Output()
+  public dropEventChange: EventEmitter<void> = new EventEmitter();
+
+  public dropHandler(event: any): void {
+    this.dropEventChange.emit();
+  }
 }

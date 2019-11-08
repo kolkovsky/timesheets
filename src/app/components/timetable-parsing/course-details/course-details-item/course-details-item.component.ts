@@ -8,10 +8,11 @@ import {TimetableUtils} from "../../../../utils/timetable.utils";
   styleUrls: ["./course-details-item.component.less"]
 })
 
-export class CourseDetailsItemComponent{
+export class CourseDetailsItemComponent {
 
   @Input() subject: any;
   @Output() replaceEmitter: EventEmitter<void> = new EventEmitter<void>();
+  @Output() dragStartChange: EventEmitter<void> = new EventEmitter();
 
   public item;
   public noHover: boolean;
@@ -22,6 +23,13 @@ export class CourseDetailsItemComponent{
 
   public getClassIconForLessonType(lessonType: string): string {
     return TimetableUtils.getClassIconForLessonType(lessonType);
+  }
+
+
+  public dragStartHandler(event: any): void {
+    this.dragStartChange.emit();
+    // event.dataTransfer.setData("text/html", event.target);
+    // event.dataTransfer.dropEffect = "move";
   }
 
 }
