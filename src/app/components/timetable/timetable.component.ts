@@ -44,4 +44,8 @@ export class TimetableComponent implements OnInit {
   }
 
 
+  public getClassForLessonType(lessonType: string): string {
+    return TimetableUtils.getClassLessonType(lessonType);
+  }
+
 }

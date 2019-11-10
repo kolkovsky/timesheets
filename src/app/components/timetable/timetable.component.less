@@ -1,106 +1,117 @@
-.timetable-page {
-  background: url("../../../assets/images/taiwan-08-05.jpg");
-  height: 2200px;
+html, body {
+  margin: 0;
+  font-family: 'Karla';
+  color: #ECEFF1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@white: #fff;
+.gradient (@origin: left, @fallback: @white,  @stops) {
+  background-color: @fallback;
+  background: -webkit-linear-gradient(@origin, @stops) @fallback no-repeat;
+  background: -moz-linear-gradient(@origin, @stops) @fallback no-repeat;
+  background: -ms-linear-gradient(@origin, @stops) @fallback no-repeat;
+  background: -o-linear-gradient(@origin, @stops) @fallback no-repeat;
+  background: linear-gradient(@origin, @stops) @fallback no-repeat;
+}
+
+.timetable {
 
   &__container {
-    margin-left: 10px;
-    margin-right: 10px;
-    grid-template-areas: "controllers days" "times blocks";
     display: grid;
-    grid-template-rows: 5% 70%;
-    grid-template-columns: 10% 90%;
-    grid-row-gap: 10px;
-    grid-column-gap: 10px;
+    grid-template-areas: ". week" "time content";
+    grid-template-columns: 120px;
+    grid-template-rows: 60px;
+    width: 100vw;
+    height: 100vh;
 
-    &__controllers {
-      grid-area: controllers;
+    &__weekend {
+      //background:
+      //color: lighten($cutty-sark, 20%);
     }
 
-    &__days {
-      padding: 1.2em;
-      background-color: #383F3E;
-      grid-area: days;
+    &__week-names {
+      grid-area: week;
       display: grid;
-      grid-template-rows: 1fr;
-      grid-template-columns: repeat(6, 1fr);
-      border: 2px solid #383F3E;
-      border-radius: 20px;
+      grid-template-columns: repeat(7, 1fr);
+      text-transform: uppercase;
+      font-size: 12px;
 
-      &__item {
-        //border: 1px solid #24222B;
+      & > div {
         display: flex;
         align-items: center;
         justify-content: center;
-
-        &__display-text {
-          font-size: 2.5rem;
-
-        }
+        width: 100%;
+        height: 100%;
+        box-shadow: inset 1px 0 0 #ECEFF1;
       }
     }
 
-    &__times {
-      padding: 1.2em;
-      grid-area: times;
+    &__time-interval {
+      grid-area: time;
       display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(7, 1fr);
-      grid-gap: 10px;
+      grid-template-rows: repeat(6, 1fr);
+      font-size: 14px;
 
-      &__item {
-        //border: 1px solid #24222B;
+      & > div {
         display: flex;
         align-items: center;
         justify-content: center;
-        &__display-text {
-          font-size: 2.5rem;
-        }
+        width: 100%;
+        height: 100%;
+        box-shadow: inset 0 1px 0 0 #ECEFF1;
       }
     }
 
-    &__blocks {
-      padding: 1.2em;
-      grid-area: blocks;
+    &__content {
+      grid-area: content;
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
       grid-template-rows: 1fr;
-      grid-gap: 10px;
+      grid-template-columns: repeat(7, 1fr);
+      box-shadow: inset 1px 0 0 #ECEFF1, inset 0 1px 0 0 #ECEFF1;
 
-      &__block {
+      &__day {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(7, 1fr);
-        grid-gap: 10px;
+        grid-template-rows: repeat(6, 1fr);
 
-        &__empty {
-          border: 2px dashed #CBCEC5;
-          border-radius: 10px;
-          padding: 10px;
-          transition: all 0.3s ease;
+        & > div {
           display: flex;
-          justify-content: center;
           align-items: center;
-        }
-
-        &__item {
-          border: 1px solid #24222B;
-          border-radius: 10px;
-          padding: 10px;
-          display: inline-block;
+          justify-content: center;
+          font-family: 'Karla';
+          font-size: 15px;
+          box-shadow: inset 1px 0 0 #ECEFF1, inset 0 1px 0 0 #ECEFF1;
+          //background-color: linear-gradient(90deg, #ED4264, #FFEDBC);
           transition: all 0.3s ease;
-          background: #F8FBF0;
 
           &:hover {
             -webkit-transform: scale(1.1);
             -ms-transform: scale(1.1);
             transform: scale(1.1);
           }
+          //background: linear-gradient(135deg, #B489F0, #2D79E6);
+
+          &.lecture {
+            background: linear-gradient(135deg, #eec08e, #dcee8e);
+          }
+
+          &.seminar {
+            background: linear-gradient(135deg, #8eeec0, #8edcee);
+          }
+
+          &.practice {
+            background: linear-gradient(135deg, #B489F0, #2D79E6);
+          }
+
+          &.lab {
+            background: linear-gradient(135deg, #ee8ebc, #eea08e);
+          }
         }
       }
     }
   }
-}   
-
-p{
-  margin: 0.1rem;
 }

@@ -1,0 +1,15 @@
+
+<div class="card" style="width: 15rem; ">
+  <div class="card-body">
+    <h5 class="card-title">{{content.name}}</h5>
+    <ng-container *ngIf="content.classrooms">
+      <ng-container *ngFor="let class of content.classrooms">
+        <h6 class="card-subtitle mb-2 text-muted">{{class}}</h6>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngFor="let teacher of content.teachers">
+      <p class="card-text">{{teacher}}</p>
+    </ng-container>
+  </div>
+</div>

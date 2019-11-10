@@ -32,6 +32,13 @@ export class TimetableUtils {
           PE === lessonType ? ClassesConstant.flameIconClass : "";
   }
 
+  public static getClassLessonType(lessonType: string): string {
+    return LAB === lessonType ? "lab" :
+      LECTURE === lessonType ? "lecture" :
+        PRACTICE === lessonType ? "practice" :
+          PE === lessonType ? "seminar" : "";
+  }
+
   public static getformattingLessonType(lessonType: string): string {
     return TimetableUtils.lessonType[Object.keys(TimetableUtils.lessonType).find(type => lessonType === type)];
   }

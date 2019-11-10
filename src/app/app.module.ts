@@ -13,8 +13,9 @@ import {SelectorComponent} from './shared/selector/selector.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {TimetableComponent} from "./components/timetable/timetable.component";
-import {TimetableItemComponent} from "./components/timetable/timetable-item/timetable-item.component";
 import {IconComponent} from "./shared/icon/icon.component";
+import {CardComponent} from "./components/timetable/card/card.component";
+import {GridComponent} from "./components/timetable/grid/grid.component";
 
 @NgModule({
   declarations: [
@@ -25,8 +26,9 @@ import {IconComponent} from "./shared/icon/icon.component";
     GroupPageComponent,
     SelectorComponent,
     TimetableComponent,
-    TimetableItemComponent,
-    IconComponent
+    IconComponent,
+    CardComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
