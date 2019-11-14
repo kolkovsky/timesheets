@@ -32,7 +32,11 @@ export class TimetableComponent implements OnInit {
   }
 
   public getSubjectByTime(time: string, subjects: any): any {
-    return this.subject = subjects.find(subject => subject.time === time);
+    let sortedSubject = subjects ? subjects[0] : "";
+    if (!sortedSubject) {
+      return null;
+    }
+    return this.subject = sortedSubject.find(subject => subject.time === time);
   }
 
   public getLessonType(lessonType: string): string {

@@ -1,13 +1,3 @@
-html, body {
-  margin: 0;
-  font-family: 'Karla';
-  color: #ECEFF1;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 @white: #fff;
 .gradient (@origin: left, @fallback: @white,  @stops) {
   background-color: @fallback;
@@ -29,8 +19,7 @@ html, body {
     height: 100vh;
 
     &__weekend {
-      //background:
-      //color: lighten($cutty-sark, 20%);
+
     }
 
     &__week-names {
@@ -82,33 +71,52 @@ html, body {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-family: 'Karla';
-          font-size: 15px;
+          font-family: 'Roboto', sans-serif;
+          font-size:1rem;
           box-shadow: inset 1px 0 0 #ECEFF1, inset 0 1px 0 0 #ECEFF1;
-          //background-color: linear-gradient(90deg, #ED4264, #FFEDBC);
-          transition: all 0.3s ease;
-
-          &:hover {
-            -webkit-transform: scale(1.1);
-            -ms-transform: scale(1.1);
-            transform: scale(1.1);
-          }
-          //background: linear-gradient(135deg, #B489F0, #2D79E6);
 
           &.lecture {
+            transition: all 0.3s ease;
             background: linear-gradient(135deg, #eec08e, #dcee8e);
+
+            &:hover {
+              -webkit-transform: scale(1.1);
+              -ms-transform: scale(1.1);
+              transform: scale(1.1);
+            }
           }
 
           &.seminar {
+            transition: all 0.3s ease;
             background: linear-gradient(135deg, #8eeec0, #8edcee);
+
+            &:hover {
+              -webkit-transform: scale(1.1);
+              -ms-transform: scale(1.1);
+              transform: scale(1.1);
+            }
           }
 
           &.practice {
+            transition: all 0.3s ease;
             background: linear-gradient(135deg, #B489F0, #2D79E6);
+
+            &:hover {
+              -webkit-transform: scale(1.1);
+              -ms-transform: scale(1.1);
+              transform: scale(1.1);
+            }
           }
 
           &.lab {
+            transition: all 0.3s ease;
             background: linear-gradient(135deg, #ee8ebc, #eea08e);
+
+            &:hover {
+              -webkit-transform: scale(1.1);
+              -ms-transform: scale(1.1);
+              transform: scale(1.1);
+            }
           }
         }
       }

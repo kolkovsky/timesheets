@@ -16,6 +16,8 @@ import {TimetableComponent} from "./components/timetable/timetable.component";
 import {IconComponent} from "./shared/icon/icon.component";
 import {CardComponent} from "./components/timetable/card/card.component";
 import {GridComponent} from "./components/timetable/grid/grid.component";
+import {NavigationGuard} from "./services/navigation.guard";
+import {TimetableService} from "./services/timetable.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +41,10 @@ import {GridComponent} from "./components/timetable/grid/grid.component";
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    NavigationGuard,
+    TimetableService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

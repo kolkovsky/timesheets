@@ -17,7 +17,7 @@
         <ng-container *ngFor="let weekday of weekdays">
           <div class="timetable__container__content__day">
             <ng-container *ngFor="let time of times">
-              <ng-container *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday][0]);
+              <ng-container *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday]);
                                then filledSubject; else emptySubject">
               </ng-container>
             </ng-container>
@@ -35,6 +35,5 @@
 </ng-template>
 
 <ng-template #emptySubject>
-
   <div></div>
 </ng-template>
