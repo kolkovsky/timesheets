@@ -11,7 +11,6 @@ server.get("/api/get/courses", (request, response) => {
 });
 
 server.get("/api/get/groups", (request, response) => {
-  console.log(request);
   response.header("Content-Type", "application/json");
   response.send(JSON.stringify(groups));
 });

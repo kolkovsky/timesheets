@@ -1,0 +1,77 @@
+<ng-container *ngIf="uiGroup">
+  <ng-container *ngIf="viewMode?.toLowerCase() === 'day'; then dayMode; else weekMode"></ng-container>
+</ng-container>
+
+
+<ng-template #weekMode>
+  <div class="timetable">
+    <div class="timetable__container">
+      <div class="timetable__container__week-names">
+        <ng-container *ngFor="let weekday of weekdays">
+          <div>{{weekday}}</div>
+        </ng-container>
+      </div>
+      <div class="timetable__container__time-interval">
+        <ng-container *ngFor="let time of times;">
+          <ng-container *ngIf="times[times.indexOf(time) + 1]">
+            <div>{{time}} - {{times[times.indexOf(time) + 1]}} </div>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div class="timetable__container__content">
+        <ng-container *ngFor="let weekday of weekdays">
+          <div class="timetable__container__content__day">
+            <ng-container *ngFor="let time of times">
+              <ng-container *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday]);
+                               then filledSubject; else emptySubject">
+              </ng-container>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #dayMode>
+  <div class="timetable">
+    <div class="timetable__day-mode">
+      <div class="timetable__day-mode__container">
+        <div class="timetable__day-mode__container__week-days">
+          <ng-container *ngFor="let weekday of weekdays">
+            <div class="timetable__day-mode__container__week-days__day" (click)="changeDay(weekday)">{{weekday}}</div>
+          </ng-container>
+        </div>
+        <div class="timetable__day-mode__container__current">
+          <div class="timetable__day-mode__container__current__header">
+            <div class="timetable__day-mode__container__current__header__text">
+              {{selectedWeekDay}}
+            </div>
+          </div>
+          <div class="timetable__day-mode__container__current__body">
+            <ng-container *ngFor="let time of times;">
+              <ng-container *ngIf="times[times.indexOf(time) + 1]">
+                <div class="timetable__day-mode__container__current__body__item">
+                  <div class="timetable__day-mode__container__current__body__item-time">{{time}}- {{times[times.indexOf(time) + 1]}}</div>
+                  <ng-container *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[selectedWeekDay])">
+                    <div class="timetable__day-mode__container__current__body__item-subject">{{subject.name}}</div>
+                  </ng-container>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #filledSubject>
+  <div [ngClass]="getClassForLessonType(subject.classLessonType)" class="subject-name">
+    <p>{{subject.name}}</p></div>
+</ng-template>
+
+<ng-template #emptySubject>
+  <div></div>
+</ng-template>

@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {TimetableService} from "../../services/timetable.service";
-import {Item} from "../../shared/selector/item.model";
+import {Item} from "../../../shared/selector/item.model";
+import {TimetableService} from "../../../services/timetable.service";
 
 @Component({
   selector: 'group-page',

@@ -17,7 +17,7 @@ export class UserManagerService {
   }
 
   public setUserGroupValue(value: string): void {
-
+    localStorage.setItem("group", value);
   }
 
 }
