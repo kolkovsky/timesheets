@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {TimetableService} from "../../../services/timetable.service";
 import {WeekDaysConstant} from "../../../constants/week-days.constant";
 import {TimetableUtils} from "../../../utils/timetable.utils";
@@ -22,6 +22,7 @@ export class TimetableComponent implements OnInit {
   public selectedWeekDay: string = WeekDaysConstant.WEEK_DAY_MONDAY;
   public visibleSubjectPopupDetails: boolean = false;
   public popupDetails: PopupDetails;
+  public smallMode: boolean = false;
 
   constructor(private timetableService: TimetableService,
               private stateService: StateService) {
@@ -33,8 +34,15 @@ export class TimetableComponent implements OnInit {
       .subscribe();
 
     this.timetableService.getTimetableByGroup()
-      .pipe(tap((timetable) => this.uiGroup = new UiGroupModel(timetable.name, TimetableUtils.sortSubjectsByWeekDay(timetable.subjects))))
+      .pipe(tap((timetable) => {
+        this.uiGroup = new UiGroupModel(timetable.name, TimetableUtils.sortSubjectsByWeekDay(timetable.subjects));
+      }))
       .subscribe();
+  }
+
+
+  @HostListener('window:resize', ['$event']) resizeScreenEvent(): void {
+    this.smallMode = window.innerWidth < 1025
   }
 
   private stateProcess(state: StateApplication): void {

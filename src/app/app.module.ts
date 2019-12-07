@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CoursePageComponent} from './components/content/courses/course-page.component';
 import {GroupPageComponent} from './components/content/groups/group-page.component';
 import {RouterModule} from '@angular/router';
-import {ButtonsModule} from 'ngx-bootstrap';
+import {ButtonsModule, CollapseModule} from 'ngx-bootstrap';
 import {SelectorComponent} from './shared/selector/selector.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
@@ -36,6 +36,7 @@ import {TttPopupComponent} from "./shared/popup/popup.component";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CollapseModule.forRoot(),
     RouterModule.forRoot(routes),
     ButtonsModule.forRoot(),
     HttpClientModule,

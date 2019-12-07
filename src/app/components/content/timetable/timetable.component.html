@@ -1,103 +1,69 @@
 <ng-container *ngIf="uiGroup">
-  <ng-container *ngIf="viewMode?.toLowerCase() === 'day'; then dayMode; else weekMode"></ng-container>
-</ng-container>
-
-
-<ng-template #weekMode>
-  <div class="timetable animated slideInRight">
-    <div class="timetable__container">
-      <div class="timetable__container__week-names">
-        <ng-container *ngFor="let weekday of weekdays">
-          <div>{{weekday}}</div>
-        </ng-container>
-      </div>
-      <div class="timetable__container__time-interval">
-        <ng-container *ngFor="let time of times;">
-          <ng-container *ngIf="times[times.indexOf(time) + 1]">
-            <div>{{time}} - {{times[times.indexOf(time) + 1]}} </div>
-          </ng-container>
-        </ng-container>
-      </div>
-      <div class="timetable__container__content">
-        <ng-container *ngFor="let weekday of weekdays">
-          <div class="timetable__container__content__day">
-            <ng-container *ngFor="let time of times">
-              <ng-container *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday])">
-                <div class="subject-name"
-                     [ngClass]="getClassForLessonType(getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).classLessonType)"
-                     (click)="openSubjectDetails(getSubjectByTime(time, uiGroup.sortedSubjects[weekday]))">
-                  <p>{{getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).name}}</p>
-                </div>
-              </ng-container>
-              <ng-container *ngIf="!getSubjectByTime(time, uiGroup.sortedSubjects[weekday])">
-                <div></div>
-              </ng-container>
-            </ng-container>
-          </div>
-        </ng-container>
+  <div class="timetable">
+    <div class="container">
+      <div class="row pt-5">
+        <div class="col animated slideInRight">
+          <ng-container *ngIf="true then table"></ng-container>
+        </div>
       </div>
     </div>
   </div>
+
+</ng-container>
+
+
+<ng-template #table>
+  <table class="table table-hover table-dark timetable_table table-borderless">
+    <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col" class="text-center" *ngFor="let weekday of weekdays">{{weekday}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="timetable__subjects" *ngFor="let time of times">
+      <th>{{time}}</th>
+      <ng-container *ngFor="let weekday of weekdays">
+        <td class="text-capitalize timetable__subjects__item"
+            (click)="openSubjectDetails(getSubjectByTime(time, uiGroup.sortedSubjects[weekday]))"
+            [ngClass]="getClassForLessonType(getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).classLessonType)"
+            *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday])">
+          {{getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).name}}
+        </td>
+        <td class="timetable__subjects__item text-warning"
+            *ngIf="!getSubjectByTime(time, uiGroup.sortedSubjects[weekday])">
+          [Пусто]
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
 </ng-template>
 
 
 <ng-template #dayMode>
   <div class="container slideInUp animated">
     <div class="row mt-4">
-      <div class="col-4-lg col-md-4 mb-2">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Название карточки</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
+      <ng-container *ngFor="let weekday of weekdays">
+        <div class="col-lg-4 col-md-6 mb-2">
+          <div class="card" style="height: 300px">
+            <div class="card-header">
+              {{weekday}}
+            </div>
+            <div class="card-body">
+              <ng-container *ngFor="let time of times">
+                <ng-container *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday])">
+                  <div (click)="openSubjectDetails(getSubjectByTime(time, uiGroup.sortedSubjects[weekday]))">
+                    <p>{{getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).name}}</p>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="!getSubjectByTime(time, uiGroup.sortedSubjects[weekday])">
+                </ng-container>
+              </ng-container>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-4-lg col-md-4">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Название карточки</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-4-lg col-md-4">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Название карточки</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-4-lg col-md-4">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Название карточки</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-4-lg col-md-4">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Название карточки</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-4-lg col-md-4">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Название карточки</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-          </div>
-        </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </ng-template>

@@ -8,6 +8,6 @@ export class WeekDaysConstant {
   public static WEEK_DAY_SUNDAY: string = "Воскресенье";
 
   public static WEEK_DAYS_ARRAY: string[] = [WeekDaysConstant.WEEK_DAY_MONDAY, WeekDaysConstant.WEEK_DAY_TUESDAY, WeekDaysConstant.WEEK_DAY_WEDNESDAY,
-    WeekDaysConstant.WEEK_DAY_THURSDAY, WeekDaysConstant.WEEK_DAY_FRIDAY, WeekDaysConstant.WEEK_DAY_SATURDAY, WeekDaysConstant.WEEK_DAY_SUNDAY];
+    WeekDaysConstant.WEEK_DAY_THURSDAY, WeekDaysConstant.WEEK_DAY_FRIDAY, WeekDaysConstant.WEEK_DAY_SATURDAY];
 
 }

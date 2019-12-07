@@ -1,6 +1,8 @@
 import {SubjectModel} from "../models/subject.model";
 import {WeekDaysConstant} from "../constants/week-days.constant";
 import {ClassesConstant} from "../constants/classes.constant";
+import {UiSubjectModel} from "../models/ui-subject.model";
+import {element} from "protractor";
 
 const LAB: string = "LAB";
 const PRACTICE: string = "PRACTICE";
@@ -41,11 +43,11 @@ export class TimetableUtils {
 
   public static getClassLessonType(lessonType: string): string {
     if (lessonType === LAB) {
-      return this.lab;
+      return "text-primary";
     } else if (lessonType === LECTURE) {
-      return this.lecture;
+      return "text-info";
     } else if (lessonType === PRACTICE) {
-      return this.practice;
+      return "text-danger";
     } else if (lessonType === PE) {
       return this.pe;
     } else if (lessonType === SEMINAR) {
@@ -73,7 +75,6 @@ export class TimetableUtils {
   private static getSubjectsByDay(day: string, subjects: SubjectModel[]): SubjectModel[] {
     return subjects.filter(subject => subject.day.toLowerCase() === day.toLowerCase()).sort(this.compareToTime);
   }
-
 
   private static compareToTime(subject1: SubjectModel, subject2: SubjectModel): number {
     return TimetableUtils.lessonTimes[subject1.day] < TimetableUtils.lessonTimes[subject2.day] ? 1 :
