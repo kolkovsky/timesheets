@@ -6,16 +6,23 @@ const LAB: string = "LAB";
 const PRACTICE: string = "PRACTICE";
 const LECTURE: string = "LECTURE";
 const PE: string = "PE";
+const SEMINAR: string = "SEMINAR";
 
 export class TimetableUtils {
 
-  public static lessonType: any = {
+  public static readonly lessonType: any = {
     [LAB]: "Лабораторная работа",
     [LECTURE]: "Лекция",
     [PRACTICE]: "Практика",
   };
 
-  public static lessonTimes: any = {
+  public static readonly lab = "lab";
+  public static readonly lecture = "lecture";
+  public static readonly practice = "practice";
+  public static readonly seminar = "seminar";
+  public static readonly pe = "pe";
+
+  public static readonly lessonTimes: any = {
     "9:00": 1,
     "10:30": 2,
     "12:00": 3,
@@ -33,24 +40,33 @@ export class TimetableUtils {
   }
 
   public static getClassLessonType(lessonType: string): string {
-    return LAB === lessonType ? "lab" :
-      LECTURE === lessonType ? "lecture" :
-        PRACTICE === lessonType ? "practice" :
-          PE === lessonType ? "seminar" : "";
+    if (lessonType === LAB) {
+      return this.lab;
+    } else if (lessonType === LECTURE) {
+      return this.lecture;
+    } else if (lessonType === PRACTICE) {
+      return this.practice;
+    } else if (lessonType === PE) {
+      return this.pe;
+    } else if (lessonType === SEMINAR) {
+      return this.seminar;
+    } else {
+      return "";
+    }
   }
 
-  public static getformattingLessonType(lessonType: string): string {
+  public static getFormattingLessonType(lessonType: string): string {
     return TimetableUtils.lessonType[Object.keys(TimetableUtils.lessonType).find(type => lessonType === type)];
   }
 
   public static sortSubjectsByWeekDay(subjects: any[]): { [key: string]: any[] } {
     return {
-      [WeekDaysConstant.WEEK_DAY_MONDAY]: [this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_MONDAY, subjects)],
-      [WeekDaysConstant.WEEK_DAY_TUESDAY]: [this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_TUESDAY, subjects)],
-      [WeekDaysConstant.WEEK_DAY_WEDNESDAY]: [this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_WEDNESDAY, subjects)],
-      [WeekDaysConstant.WEEK_DAY_THURSDAY]: [this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_THURSDAY, subjects)],
-      [WeekDaysConstant.WEEK_DAY_FRIDAY]: [this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_FRIDAY, subjects)],
-      [WeekDaysConstant.WEEK_DAY_SATURDAY]: [this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_SATURDAY, subjects)],
+      [WeekDaysConstant.WEEK_DAY_MONDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_MONDAY, subjects),
+      [WeekDaysConstant.WEEK_DAY_TUESDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_TUESDAY, subjects),
+      [WeekDaysConstant.WEEK_DAY_WEDNESDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_WEDNESDAY, subjects),
+      [WeekDaysConstant.WEEK_DAY_THURSDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_THURSDAY, subjects),
+      [WeekDaysConstant.WEEK_DAY_FRIDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_FRIDAY, subjects),
+      [WeekDaysConstant.WEEK_DAY_SATURDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_SATURDAY, subjects),
     };
   }
 

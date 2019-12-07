@@ -1,4 +1,11 @@
-import {Component} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+
+
+export interface PopupDetails {
+  leftSideHeader: any;
+  rightSideContent: any;
+  closable?: boolean;
+}
 
 @Component({
   selector: "ttp-popup",
@@ -6,6 +13,24 @@ import {Component} from "@angular/core";
   styleUrls: ["./popup.component.less"]
 })
 
-export class TttPopupComponent {
+export class TttPopupComponent implements OnInit{
 
+  @Input()
+  public popupDetails: PopupDetails;
+
+  @Input()
+  public visiblePopup: boolean;
+
+  @Output()
+  public closePopupChange: EventEmitter<void> = new EventEmitter();
+
+  ngOnInit(): void {
+    console.log(this.popupDetails)
+  }
+
+
+
+  public closePopup(): void {
+    this.closePopupChange.emit();
+  }
 }

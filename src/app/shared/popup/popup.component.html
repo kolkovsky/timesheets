@@ -1,8 +1,16 @@
-<ng-container>
+<ng-container *ngIf="visiblePopup">
   <div class="ttp-popup">
-    <div class="ttp-popup-container">
-      <div class="ttp-popup-container-left-side">sdfsd</div>
-      <div class="ttp-popup-container-right-side">sfsdf</div>
+    <div class="ttp-popup-container animated" [ngClass]="'flipInY'">
+      <div class="ttp-popup-container-left-side">{{popupDetails.leftSideHeader}}</div>
+      <div class="ttp-popup-container-right-side">{{popupDetails.rightSideContent}}</div>
+      <ttp-icon *ngIf="popupDetails?.closable"
+                [iconName]="'x'"
+                [ngClass]="'ttp-popup-container-close-icon'"
+                (click)="closePopup()">
+        
+      </ttp-icon>
     </div>
   </div>
 </ng-container>
+
+<div class="overlay" *ngIf="visiblePopup"></div>

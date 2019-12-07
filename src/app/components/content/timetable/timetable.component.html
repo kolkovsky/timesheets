@@ -4,7 +4,7 @@
 
 
 <ng-template #weekMode>
-  <div class="timetable">
+  <div class="timetable animated slideInRight">
     <div class="timetable__container">
       <div class="timetable__container__week-names">
         <ng-container *ngFor="let weekday of weekdays">
@@ -22,8 +22,15 @@
         <ng-container *ngFor="let weekday of weekdays">
           <div class="timetable__container__content__day">
             <ng-container *ngFor="let time of times">
-              <ng-container *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday]);
-                               then filledSubject; else emptySubject">
+              <ng-container *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday])">
+                <div class="subject-name"
+                     [ngClass]="getClassForLessonType(getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).classLessonType)"
+                     (click)="openSubjectDetails(getSubjectByTime(time, uiGroup.sortedSubjects[weekday]))">
+                  <p>{{getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).name}}</p>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="!getSubjectByTime(time, uiGroup.sortedSubjects[weekday])">
+                <div></div>
               </ng-container>
             </ng-container>
           </div>
@@ -35,31 +42,59 @@
 
 
 <ng-template #dayMode>
-  <div class="timetable">
-    <div class="timetable__day-mode">
-      <div class="timetable__day-mode__container">
-        <div class="timetable__day-mode__container__week-days">
-          <ng-container *ngFor="let weekday of weekdays">
-            <div class="timetable__day-mode__container__week-days__day" (click)="changeDay(weekday)">{{weekday}}</div>
-          </ng-container>
-        </div>
-        <div class="timetable__day-mode__container__current">
-          <div class="timetable__day-mode__container__current__header">
-            <div class="timetable__day-mode__container__current__header__text">
-              {{selectedWeekDay}}
-            </div>
+  <div class="container slideInUp animated">
+    <div class="row mt-4">
+      <div class="col-4-lg col-md-4 mb-2">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Название карточки</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
           </div>
-          <div class="timetable__day-mode__container__current__body">
-            <ng-container *ngFor="let time of times;">
-              <ng-container *ngIf="times[times.indexOf(time) + 1]">
-                <div class="timetable__day-mode__container__current__body__item">
-                  <div class="timetable__day-mode__container__current__body__item-time">{{time}}- {{times[times.indexOf(time) + 1]}}</div>
-                  <ng-container *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[selectedWeekDay])">
-                    <div class="timetable__day-mode__container__current__body__item-subject">{{subject.name}}</div>
-                  </ng-container>
-                </div>
-              </ng-container>
-            </ng-container>
+        </div>
+      </div>
+      <div class="col-4-lg col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Название карточки</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-4-lg col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Название карточки</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-4-lg col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Название карточки</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-4-lg col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Название карточки</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-4-lg col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Название карточки</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
           </div>
         </div>
       </div>
@@ -67,11 +102,8 @@
   </div>
 </ng-template>
 
-<ng-template #filledSubject>
-  <div [ngClass]="getClassForLessonType(subject.classLessonType)" class="subject-name">
-    <p>{{subject.name}}</p></div>
-</ng-template>
-
-<ng-template #emptySubject>
-  <div></div>
-</ng-template>
+<ttp-popup *ngIf="visibleSubjectPopupDetails"
+           [visiblePopup]="visibleSubjectPopupDetails"
+           [popupDetails]="popupDetails"
+           (closePopupChange)="closeSubjectDetailsPopup($event)"
+></ttp-popup>

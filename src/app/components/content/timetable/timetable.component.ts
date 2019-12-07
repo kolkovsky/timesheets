@@ -6,6 +6,7 @@ import {UiGroupModel} from "../../../models/ui-group.model";
 import {StateApplication, StateService} from "../../../services/state.service";
 import {tap} from "rxjs/operators";
 import {SystemsConstant} from "../../../constants/systems.constant";
+import {PopupDetails} from "../../../shared/popup/popup.component";
 
 @Component({
   selector: 'timetable',
@@ -14,13 +15,13 @@ import {SystemsConstant} from "../../../constants/systems.constant";
 })
 export class TimetableComponent implements OnInit {
 
-
-  private subject: any;
   public uiGroup: UiGroupModel;
   public weekdays: any [] = WeekDaysConstant.WEEK_DAYS_ARRAY;
   public times: any[] = Object.keys(TimetableUtils.lessonTimes);
   public viewMode: string;
-  public selectedWeekDay: string = WeekDaysConstant.WEEK_DAY_WEDNESDAY;
+  public selectedWeekDay: string = WeekDaysConstant.WEEK_DAY_MONDAY;
+  public visibleSubjectPopupDetails: boolean = false;
+  public popupDetails: PopupDetails;
 
   constructor(private timetableService: TimetableService,
               private stateService: StateService) {
@@ -43,28 +44,23 @@ export class TimetableComponent implements OnInit {
   }
 
   public getSubjectByTime(time: string, subjects: any): any {
-    let sortedSubject = subjects ? subjects[0] : "";
-    if (!sortedSubject) {
-      return null;
-    }
-    return this.subject = sortedSubject.find(subject => subject.time === time);
+    return subjects ? subjects.find(subject => subject.time === time) : null;
   }
 
-  public changeDay(day: string):void {
+  public changeDay(day: string): void {
     this.selectedWeekDay = day;
   }
 
-  public getLessonType(lessonType: string): string {
-    return TimetableUtils.getformattingLessonType(lessonType);
+  public openSubjectDetails(subject: any): void {
+    this.popupDetails = {leftSideHeader: subject.name, rightSideContent: subject.toString(), closable: true};
+    this.visibleSubjectPopupDetails = true;
   }
 
-  public getClassIconForLessonType(lessonType: string): string {
-    return TimetableUtils.getClassIconForLessonType(lessonType);
+  public closeSubjectDetailsPopup(event): void {
+    this.visibleSubjectPopupDetails = false;
   }
-
 
   public getClassForLessonType(lessonType: string): string {
     return TimetableUtils.getClassLessonType(lessonType);
   }
-
 }

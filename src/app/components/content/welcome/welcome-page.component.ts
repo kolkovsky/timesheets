@@ -10,6 +10,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class WelcomePageComponent implements OnInit {
 
 
+  public visiblePopup: boolean = true;
+
   constructor(private router: Router) {
   }
 
@@ -20,5 +22,14 @@ export class WelcomePageComponent implements OnInit {
   public navigateToCoursePage(): void {
     this.router.navigateByUrl('/course');
   }
+
+
+  public closePopupEvent(event): void {
+    this.visiblePopup = !this.visiblePopup;
+  }
+
+  public showPopup(): void {
+    this.visiblePopup = true;
+}
 
 }
