@@ -32,5 +32,4 @@ export class MobileTimetableComponent extends TimetableComponentClass implements
         tap((group: GroupModel) => this.uiGroup = this.processUiGroup(group)))
       .subscribe();
   }
-
 }

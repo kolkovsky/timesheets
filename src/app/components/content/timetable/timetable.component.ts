@@ -6,6 +6,8 @@ import {takeUntil, tap} from "rxjs/operators";
 import {PopupDetails} from "../../../shared/popup/popup.component";
 import {TimetableComponentClass} from "./timetable.model";
 import {GroupModel} from "../../../models/group.model";
+import {SubjectDetailsEvent} from "./table/table.component";
+import {SystemsConstant} from "../../../constants/systems.constant";
 
 @Component({
   selector: 'timetable',
@@ -19,11 +21,7 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
   public visibleSubjectPopupDetails: boolean = false;
   public visibleSubjectCardDetails: boolean = false;
   public popupDetails: PopupDetails;
-
   public selectedSubject: any;
-  public selectedWeekDay: string = this.weekdays[0];
-  public selectedTime: string = this.times[0];
-  public selectedLessonType: string = this.lessonTypes[0];
 
   constructor(private timetableService: TimetableService,
               private stateService: StateService) {
@@ -43,33 +41,22 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
       .subscribe();
   }
 
-  public openSubjectDetails(subject: any): void {
-    //todo Refactoring
-
-    // if (this.subjectDetailsViewMode === this.popupViewMode) {
-    //   this.popupDetails = {leftSideHeader: subject.name, rightSideContent: subject.toString(), closable: true};
-    //   this.visibleSubjectPopupDetails = true;
-    // } else {
-    //   this.selectedSubject = subject;
-    //   this.visibleSubjectCardDetails = true;
-    // }
+  public openSubjectDetails(event: SubjectDetailsEvent){
+    console.log(event);
+    if(event.viewMode === SystemsConstant.POPUP_VIEW_MODE) {
+      this.selectedSubject = event.subject;
+      this.visibleSubjectPopupDetails = true;
+    } else {
+      this.selectedSubject = event.subject;
+      this.visibleSubjectCardDetails = true;
+    }
   }
 
   public closeSubjectDetailsPopup(event): void {
     this.visibleSubjectPopupDetails = false;
   }
 
-  public changeTime(event) {
-    this.selectedTime = event;
-  }
 
-  public changeLessonType(event) {
-    this.selectedLessonType = event;
-  }
-
-  public changeWeekday(event) {
-    this.selectedWeekDay = event;
-  }
 
   ngOnDestroy(): void {
     this.unsubscribeStream$.next();

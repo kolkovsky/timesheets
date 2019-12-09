@@ -53,15 +53,7 @@ export class TimetableComponentClass implements TtpComponentInterface {
     }
   }
 
-  public getClassForLessonType(lessonType: string): string {
-    return TimetableUtils.getClassLessonType(lessonType);
-  }
-
   public processUiGroup(group: GroupModel): any {
     return new UiGroupModel(group.name, TimetableUtils.sortSubjectsByWeekDay(group.subjects));
-  }
-
-  public getSubjectByTime(time: string, subjects: any): any {
-    return subjects ? subjects.find(subject => subject.time === time) : null;
   }
 }

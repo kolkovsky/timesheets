@@ -4,7 +4,7 @@ export class SubjectModel {
   teachers: string[];
   time: string;
   day: string;
-  classsrooms: string[];
+  classrooms: string[];
   classLessonType: string;
 
   public copySubject(subjectModel: SubjectModel): void {
@@ -13,7 +13,7 @@ export class SubjectModel {
     this.teachers = subjectModel.teachers;
     this.day = subjectModel.day;
     this.time = subjectModel.time;
-    this.classsrooms = subjectModel.classsrooms;
+    this.classrooms = subjectModel.classrooms;
     this.classLessonType = subjectModel.classLessonType;
   }
 }

@@ -1,0 +1,23 @@
+<ng-container *ngIf="selectedSubject && visibleCard">
+  <div class="card ttp-card animated bounceInRight bounceInRight">
+    <div class="card-header text-center">Понедельник</div>
+    <div class="ttp-card-img" [ngClass]="getClassForLessonType(selectedSubject.classLessonType)">
+      {{selectedSubject.name}}
+    </div>
+    <div class="card-body">
+      <div class="ttp-card-container">
+        <div class="text-uppercase w-50">Время начала:</div>
+        <div class="text-right w-50">{{selectedSubject.time}}</div>
+        <div class="text-uppercase w-50">Преподаватель</div>
+        <div class="text-right w-50">{{selectedSubject.teachers}}</div>
+        <ng-container *ngIf="selectedSubject.classLessonType">
+          <div class="text-uppercase w-50">Тип</div>
+          <div class="text-right w-50">{{selectedSubject.classLessonType}}</div>
+        </ng-container>
+        <div class="text-uppercase w-50">Аудитория</div>
+        <div class="text-right w-50">{{selectedSubject.classrooms}}</div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

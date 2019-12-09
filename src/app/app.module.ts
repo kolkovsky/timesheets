@@ -21,6 +21,9 @@ import {routes} from "./routes/routes";
 import {TttPopupComponent} from "./shared/popup/popup.component";
 import {DropdownComponent} from "./shared/dropdown/dropdown.component";
 import {MobileTimetableComponent} from "./components/content/timetable/mobile-view/mobile-timetable.component";
+import {TableComponent} from "./components/content/timetable/table/table.component";
+import {ControllersComponent} from "./components/content/timetable/controllers/controllers.component";
+import {CardComponent} from "./shared/card/card.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import {MobileTimetableComponent} from "./components/content/timetable/mobile-vi
     FooterComponent,
     TttPopupComponent,
     DropdownComponent,
-    MobileTimetableComponent
+    MobileTimetableComponent,
+    TableComponent,
+    ControllersComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,76 @@
+<ng-container *ngIf="screenMode.largeMode">
+  <table class="table table-hover table-dark ttp-controllers table-borderless">
+    <thead>
+    <tr>
+      <th scope="col" colspan="2" class="text-center">Функции</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th class="text-lg-center">День недели:</th>
+      <td class="text-center">
+        <ttp-dropdown [dropdownItems]="weekdays"
+                      [selectedItem]="selectedWeekDay"
+                      (dropdownItemChange)="changeWeekday($event)">
+        </ttp-dropdown>
+      </td>
+    </tr>
+    <tr>
+      <th class="text-lg-center">Тип занятий:</th>
+      <td class="text-center">
+        <ttp-dropdown [selectedItem]="selectedLessonType"
+                      [dropdownItems]="lessonTypes"
+                      (dropdownItemChange)="changeLessonType($event)">
+        </ttp-dropdown>
+      </td>
+    </tr>
+    <tr>
+      <th class="text-lg-center">Время:</th>
+      <td class="text-center">
+        <ttp-dropdown [selectedItem]="selectedTime"
+                      [dropdownItems]="times"
+                      (dropdownItemChange)="changeTime($event)">
+        </ttp-dropdown>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+
+<ng-container *ngIf="screenMode.tabletMode || screenMode.mediumMode">
+  <table class="table table-hover table-dark ttp-controllers table-borderless">
+    <thead>
+    <tr>
+      <th scope="col" class="text-center">День недели</th>
+      <th scope="col" class="text-center">Время</th>
+      <th class="text-lg-center">Тип занятий</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="timetable__subjects">
+      <td class="text-center">
+        <ttp-dropdown [dropdownItems]="weekdays"
+                      [selectedItem]="selectedWeekDay"
+                      (dropdownItemChange)="changeWeekday($event)">
+
+        </ttp-dropdown>
+      </td>
+      <td class="text-center">
+        <ttp-dropdown [selectedItem]="selectedTime"
+                      [dropdownItems]="times"
+                      (dropdownItemChange)="changeTime($event)">
+
+        </ttp-dropdown>
+      </td>
+      <td class="text-center">
+        <ttp-dropdown [selectedItem]="selectedLessonType"
+                      [dropdownItems]="lessonTypes"
+                      (dropdownItemChange)="changeLessonType($event)">
+
+        </ttp-dropdown>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>

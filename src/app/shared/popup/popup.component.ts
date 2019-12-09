@@ -25,7 +25,6 @@ export class TttPopupComponent implements OnInit{
   public closePopupChange: EventEmitter<void> = new EventEmitter();
 
   ngOnInit(): void {
-    console.log(this.popupDetails)
   }
 
   public closePopup(): void {
