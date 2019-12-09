@@ -2,18 +2,18 @@
   <div class="timetable">
     <div class="container-fluid">
       <div class="row pt-5 animated slideInRight">
-        <ng-container *ngIf="largeModeEnabled">
+        <ng-container *ngIf="screenMode.largeMode">
           <div class="col-9 timetable-table-container">
             <ng-container *ngIf="true then table"></ng-container>
           </div>
           <div class="col-3">
-            <ng-container *ngIf="largeModeEnabled then largeControllers"></ng-container>
-            <ng-container *ngIf="largeModeEnabled then currentDay"></ng-container>
+            <ng-container *ngIf="screenMode.largeMode then largeControllers"></ng-container>
+            <ng-container *ngIf="screenMode.largeMode then currentDay"></ng-container>
           </div>
         </ng-container>
-        <ng-container *ngIf="!largeModeEnabled">
+        <ng-container *ngIf="!screenMode.largeMode">
           <div class="col-12">
-            <ng-container *ngIf="!largeModeEnabled then smallControllers"></ng-container>
+            <ng-container *ngIf="!screenMode.largeMode then smallControllers"></ng-container>
           </div>
           <div class="col-12 timetable-table-container">
             <ng-container *ngIf="true then table"></ng-container>

@@ -4,7 +4,6 @@ import {UiGroupModel} from "../../../models/ui-group.model";
 import {StateService} from "../../../services/state.service";
 import {takeUntil, tap} from "rxjs/operators";
 import {PopupDetails} from "../../../shared/popup/popup.component";
-import {ScreensEnum} from "../../../constants/screens.enum";
 import {TimetableComponentClass} from "./timetable.model";
 import {GroupModel} from "../../../models/group.model";
 
@@ -13,7 +12,7 @@ import {GroupModel} from "../../../models/group.model";
   templateUrl: './timetable.component.html',
   styleUrls: ['./timetable.component.less']
 })
-export class TimetableComponent extends TimetableComponentClass implements OnInit, OnDestroy  {
+export class TimetableComponent extends TimetableComponentClass implements OnInit, OnDestroy {
 
   public uiGroup: UiGroupModel;
 
@@ -32,7 +31,7 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
   }
 
   ngOnInit() {
-    this.largeModeEnabled = window.innerWidth >= ScreensEnum.large1440px;
+    this.changeScreenMode(window.innerWidth);
     this.stateService.getScreenState()
       .pipe(takeUntil(this.unsubscribeStream$))
       .subscribe(state => this.changeScreenMode(state));
@@ -45,13 +44,15 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
   }
 
   public openSubjectDetails(subject: any): void {
-    if (this.subjectDetailsViewMode === this.popupViewMode) {
-      this.popupDetails = {leftSideHeader: subject.name, rightSideContent: subject.toString(), closable: true};
-      this.visibleSubjectPopupDetails = true;
-    } else {
-      this.selectedSubject = subject;
-      this.visibleSubjectCardDetails = true;
-    }
+    //todo Refactoring
+
+    // if (this.subjectDetailsViewMode === this.popupViewMode) {
+    //   this.popupDetails = {leftSideHeader: subject.name, rightSideContent: subject.toString(), closable: true};
+    //   this.visibleSubjectPopupDetails = true;
+    // } else {
+    //   this.selectedSubject = subject;
+    //   this.visibleSubjectCardDetails = true;
+    // }
   }
 
   public closeSubjectDetailsPopup(event): void {
