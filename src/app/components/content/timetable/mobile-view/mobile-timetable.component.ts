@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {TimetableComponentClass} from "../timetable.model";
 
 @Component({
   selector: "ttp-mobile-timetable",
@@ -6,6 +7,6 @@ import {Component} from "@angular/core";
   styleUrls: ["./mobile-timetable.component.less"]
 })
 
-export class MobileTimetableComponent {
+export class MobileTimetableComponent extends TimetableComponentClass{
 
 }

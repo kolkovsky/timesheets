@@ -11,7 +11,6 @@
             <ng-container *ngIf="largeModeEnabled then currentDay"></ng-container>
           </div>
         </ng-container>
-
         <ng-container *ngIf="!largeModeEnabled">
           <div class="col-12">
             <ng-container *ngIf="!largeModeEnabled then smallControllers"></ng-container>
@@ -29,13 +28,33 @@
   <table class="table table-hover table-dark timetable_table table-borderless">
     <thead>
     <tr>
-      <th scope="col" class="text-center"></th>
+      <th scope="col" class="text-center">День недели</th>
+      <th scope="col" class="text-center">Время</th>
+      <th class="text-lg-center">Тип занятий</th>
     </tr>
     </thead>
     <tbody>
     <tr class="timetable__subjects">
-      <td>
+      <td class="text-center">
+        <ttp-dropdown [dropdownItems]="weekdays"
+                      [selectedItem]="selectedWeekDay"
+                      (dropdownItemChange)="changeWeekday($event)">
 
+        </ttp-dropdown>
+      </td>
+      <td class="text-center">
+        <ttp-dropdown [selectedItem]="selectedTime"
+                      [dropdownItems]="times"
+                      (dropdownItemChange)="changeTime($event)">
+
+        </ttp-dropdown>
+      </td>
+      <td class="text-center">
+        <ttp-dropdown [selectedItem]="selectedLessonType"
+                      [dropdownItems]="lessonTypes"
+                      (dropdownItemChange)="changeLessonType($event)">
+
+        </ttp-dropdown>
       </td>
     </tr>
     </tbody>
