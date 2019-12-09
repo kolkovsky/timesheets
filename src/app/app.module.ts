@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CoursePageComponent} from './components/content/courses/course-page.component';
 import {GroupPageComponent} from './components/content/groups/group-page.component';
 import {RouterModule} from '@angular/router';
-import {ButtonsModule, CollapseModule} from 'ngx-bootstrap';
+import {BsDropdownModule, ButtonsModule, CollapseModule} from 'ngx-bootstrap';
 import {SelectorComponent} from './shared/selector/selector.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
@@ -19,6 +19,8 @@ import {FooterComponent} from "./components/footer/footer.component";
 import {StateService} from "./services/state.service";
 import {routes} from "./routes/routes";
 import {TttPopupComponent} from "./shared/popup/popup.component";
+import {DropdownComponent} from "./shared/dropdown/dropdown.component";
+import {MobileTimetableComponent} from "./components/content/timetable/mobile-view/mobile-timetable.component";
 
 @NgModule({
   declarations: [
@@ -31,12 +33,15 @@ import {TttPopupComponent} from "./shared/popup/popup.component";
     TimetableComponent,
     IconComponent,
     FooterComponent,
-    TttPopupComponent
+    TttPopupComponent,
+    DropdownComponent,
+    MobileTimetableComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
+    BsDropdownModule.forRoot(),
     RouterModule.forRoot(routes),
     ButtonsModule.forRoot(),
     HttpClientModule,

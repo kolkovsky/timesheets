@@ -12,10 +12,12 @@ const SEMINAR: string = "SEMINAR";
 
 export class TimetableUtils {
 
-  public static readonly lessonType: any = {
-    [LAB]: "Лабораторная работа",
+  public static readonly lessonTypes: any = {
+    [LAB]: "Лабораторная",
     [LECTURE]: "Лекция",
     [PRACTICE]: "Практика",
+    [PE]: "Физкультура",
+    [SEMINAR]: "Семинар"
   };
 
   public static readonly lab = "lab";
@@ -58,7 +60,7 @@ export class TimetableUtils {
   }
 
   public static getFormattingLessonType(lessonType: string): string {
-    return TimetableUtils.lessonType[Object.keys(TimetableUtils.lessonType).find(type => lessonType === type)];
+    return TimetableUtils.lessonTypes[Object.keys(TimetableUtils.lessonTypes).find(type => lessonType === type)];
   }
 
   public static sortSubjectsByWeekDay(subjects: any[]): { [key: string]: any[] } {

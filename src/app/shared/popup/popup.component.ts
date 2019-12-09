@@ -28,8 +28,6 @@ export class TttPopupComponent implements OnInit{
     console.log(this.popupDetails)
   }
 
-
-
   public closePopup(): void {
     this.closePopupChange.emit();
   }
