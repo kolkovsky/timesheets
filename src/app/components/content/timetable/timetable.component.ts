@@ -3,7 +3,6 @@ import {TimetableService} from "../../../services/timetable.service";
 import {UiGroupModel} from "../../../models/ui-group.model";
 import {StateService} from "../../../services/state.service";
 import {takeUntil, tap} from "rxjs/operators";
-import {PopupDetails} from "../../../shared/popup/popup.component";
 import {TimetableComponentClass} from "./timetable.model";
 import {GroupModel} from "../../../models/group.model";
 import {SubjectDetailsEvent} from "./table/table.component";
@@ -20,7 +19,6 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
 
   public visibleSubjectPopupDetails: boolean = false;
   public visibleSubjectCardDetails: boolean = false;
-  public popupDetails: PopupDetails;
   public selectedSubject: any;
 
   constructor(private timetableService: TimetableService,

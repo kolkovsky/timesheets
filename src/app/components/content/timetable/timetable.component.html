@@ -51,6 +51,6 @@
 
 <ttp-popup *ngIf="visibleSubjectPopupDetails"
            [visiblePopup]="visibleSubjectPopupDetails"
-           [popupDetails]="popupDetails"
-           (closePopupChange)="closeSubjectDetailsPopup($event)"
-></ttp-popup>
+           [selectedSubject]="selectedSubject"
+           (closePopupChange)="closeSubjectDetailsPopup($event)">
+</ttp-popup>

@@ -1,27 +1,16 @@
 <ng-container *ngIf="visiblePopup">
-
-
-
-  <div class="ttp-popup">
-    <div class="ttp-popup-container animated" [ngClass]="'flipInY'">
-<!--      <div class="ttp-popup-container-left-side">{{popupDetails.leftSideHeader}}</div>-->
-<!--      <div class="ttp-popup-container-right-side">{{popupDetails.rightSideContent}}</div>-->
-<!--      <ttp-icon *ngIf="popupDetails?.closable"-->
-<!--                [iconName]="'x'"-->
-<!--                [ngClass]="'ttp-popup-container-close-icon'"-->
-<!--                (click)="closePopup()">-->
-<!--        -->
-<!--      </ttp-icon>-->
-      <div class="card bg-dark mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            tetxt
+  <div class="ttp-popup" (click)="closePopup()">
+    <div class="ttp-popup-container animated" [ngClass]="'slideInUp'">
+      <div class="card mb-3">
+        <div class="row no-gutters ttp-popup-container-subject" >
+          <div class="col-md-4 bg-primary">
+            {{selectedSubject.classLessonType}}
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">Название карточки</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <h5 class="card-title">{{selectedSubject.day}}</h5>
+              <p class="card-text">{{selectedSubject.name}}</p>
+              <p class="card-text">{{selectedSubject.teachers}}</p>
             </div>
           </div>
         </div>
@@ -29,5 +18,4 @@
     </div>
   </div>
 </ng-container>
-
-<div class="overlay" *ngIf="visiblePopup"></div>
+<div class="overlay" *ngIf="visiblePopup" (click)="closePopup()"></div>

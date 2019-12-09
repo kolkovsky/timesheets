@@ -1,11 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-
-
-export interface PopupDetails {
-  leftSideHeader: any;
-  rightSideContent: any;
-  closable?: boolean;
-}
+import {SubjectModel} from "../../models/subject.model";
 
 @Component({
   selector: "ttp-popup",
@@ -13,10 +7,17 @@ export interface PopupDetails {
   styleUrls: ["./popup.component.less"]
 })
 
+/*TODO ADD STYLES FOR POPUP
+*  1) make text with rotate function
+*   2) Add hide logic with animation
+*   3) Add fixed width and height
+*   4) Add dark background
+*   5) Add <hr> after each text line*/
+
 export class TttPopupComponent implements OnInit{
 
   @Input()
-  public popupDetails: PopupDetails;
+  public selectedSubject: SubjectModel;
 
   @Input()
   public visiblePopup: boolean;
