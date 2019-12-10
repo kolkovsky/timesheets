@@ -1,5 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {SubjectModel} from "../../models/subject.model";
+import {TimetableUtils} from "../../utils/timetable.utils";
+import {interval} from "rxjs";
+import {finalize} from "rxjs/operators";
 
 @Component({
   selector: "ttp-popup",
@@ -14,7 +17,7 @@ import {SubjectModel} from "../../models/subject.model";
 *   4) Add dark background
 *   5) Add <hr> after each text line*/
 
-export class TttPopupComponent implements OnInit{
+export class TttPopupComponent implements OnInit {
 
   @Input()
   public selectedSubject: SubjectModel;
@@ -22,13 +25,35 @@ export class TttPopupComponent implements OnInit{
   @Input()
   public visiblePopup: boolean;
 
+  @Input()
+  set closeWithAnimation(value: boolean) {
+    this._closeWithAnimation = value;
+  };
+
+  get closeWithAnimation(): boolean {
+    return this._closeWithAnimation;
+  }
+
+  private _closeWithAnimation: boolean;
+
   @Output()
   public closePopupChange: EventEmitter<void> = new EventEmitter();
+
+  private lessonTypes: any = TimetableUtils.lessonTypes;
+
+  public flag: boolean = false;
+
+  constructor(private changeDetector: ChangeDetectorRef) {
+  }
 
   ngOnInit(): void {
   }
 
   public closePopup(): void {
     this.closePopupChange.emit();
+  }
+
+  public getClassForLessonType(lessonType: string): string {
+    return TimetableUtils.getClassLessonType(lessonType);
   }
 }

@@ -45,15 +45,15 @@ export class TimetableUtils {
 
   public static getClassLessonType(lessonType: string): string {
     if (lessonType === LAB) {
-      return "text-primary";
+      return "primary";
     } else if (lessonType === LECTURE) {
-      return "text-info";
+      return "info";
     } else if (lessonType === PRACTICE) {
-      return "text-danger";
+      return "danger";
     } else if (lessonType === PE) {
-      return this.pe;
+      return "warning";
     } else if (lessonType === SEMINAR) {
-      return this.seminar;
+      return "success";
     } else {
       return "";
     }

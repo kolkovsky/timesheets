@@ -11,7 +11,7 @@
     <ng-container *ngFor="let weekday of weekdays">
       <td class="text-capitalize ttp-table-subjects-item"
           (click)="openSubjectDetails(getSubjectByTime(time, uiGroup.sortedSubjects[weekday]))"
-          [ngClass]="getClassForLessonType(getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).classLessonType)"
+          [ngClass]="'text-' + getClassForLessonType(getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).classLessonType)"
           *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday])">
         {{getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).name}}
       </td>

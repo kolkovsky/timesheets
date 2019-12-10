@@ -19,6 +19,7 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
 
   public visibleSubjectPopupDetails: boolean = false;
   public visibleSubjectCardDetails: boolean = false;
+  public closeWithAnimation: boolean = false;
   public selectedSubject: any;
 
   constructor(private timetableService: TimetableService,
@@ -51,6 +52,7 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
   }
 
   public closeSubjectDetailsPopup(event): void {
+    // this.closeWithAnimation = true;
     this.visibleSubjectPopupDetails = false;
   }
 

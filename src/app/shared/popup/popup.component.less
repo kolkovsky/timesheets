@@ -12,8 +12,44 @@
     height: 400px;
     position: relative;
 
-    &-subject {
-      height: 100%;
+    &-card {
+      width: 600px;
+      border-radius: 20px;
+
+      &-subject {
+        height: 100%;
+
+        &-type {
+          border-radius: 20px 0 0 20px;
+          display: flex;
+          margin: 0 auto;
+          justify-content: center;
+          align-items: center;
+
+          &-text {
+            transform: rotate(270deg);
+            font-size: 50px;
+          }
+        }
+
+        &-details {
+          height: 100%;
+          margin: 0 auto;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: space-around;
+
+          &-item {
+            width: 100%;
+            word-wrap: break-word;
+          }
+
+          &-button {
+            align-self: flex-end;
+          }
+        }
+      }
     }
   }
 }
