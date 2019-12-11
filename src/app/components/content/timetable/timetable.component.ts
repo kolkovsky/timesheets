@@ -17,8 +17,8 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
 
   public uiGroup: UiGroupModel;
 
-  public visibleSubjectPopupDetails: boolean = false;
-  public visibleSubjectCardDetails: boolean = false;
+  public visibleSubjectDetailsPopup: boolean = false;
+  public visibleSubjectDetailsCard: boolean = false;
   public closeWithAnimation: boolean = false;
   public selectedSubject: any;
 
@@ -44,16 +44,16 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
     console.log(event);
     if(event.viewMode === SystemsConstant.POPUP_VIEW_MODE) {
       this.selectedSubject = event.subject;
-      this.visibleSubjectPopupDetails = true;
+      this.visibleSubjectDetailsPopup = true;
     } else {
       this.selectedSubject = event.subject;
-      this.visibleSubjectCardDetails = true;
+      this.visibleSubjectDetailsCard = true;
     }
   }
 
   public closeSubjectDetailsPopup(event): void {
     // this.closeWithAnimation = true;
-    this.visibleSubjectPopupDetails = false;
+    this.visibleSubjectDetailsPopup = false;
   }
 
 

@@ -1,6 +1,6 @@
 <ng-container *ngIf="visiblePopup">
-  <div class="ttp-popup">
-    <div class="ttp-popup-container animated" [ngClass]="closeWithAnimation ? 'slideOutDown' : 'slideInUp'">
+  <div class="ttp-popup" [class.mobile]="isMobilePopup">
+    <div class="ttp-popup-container animated" [class.mobile]="isMobilePopup" [ngClass]="closeWithAnimation ? 'slideOutDown' : 'slideInUp'">
       <div class="card mb-3 bg-dark ttp-popup-container-card">
         <div class="row no-gutters ttp-popup-container-card-subject">
           <div class="col-2 ttp-popup-container-card-subject-type"
@@ -41,7 +41,6 @@
                   <hr class="bg-white">
                 </div>
               </ng-container>
-
               <div class="ttp-popup-container-card-subject-details-button">
                 <button type="button" class="btn btn-lg" (click)="closePopup()"
                         [ngClass]="'btn-outline-' + getClassForLessonType(selectedSubject.classLessonType)">

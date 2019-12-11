@@ -6,7 +6,6 @@ import {HeaderComponent} from './components/header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CoursePageComponent} from './components/content/courses/course-page.component';
 import {GroupPageComponent} from './components/content/groups/group-page.component';
-import {RouterModule} from '@angular/router';
 import {BsDropdownModule, ButtonsModule, CollapseModule} from 'ngx-bootstrap';
 import {SelectorComponent} from './shared/selector/selector.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -17,13 +16,17 @@ import {NavigationGuard} from "./services/navigation.guard";
 import {TimetableService} from "./services/timetable.service";
 import {FooterComponent} from "./components/footer/footer.component";
 import {StateService} from "./services/state.service";
-import {routes} from "./routes/routes";
 import {TttPopupComponent} from "./shared/popup/popup.component";
 import {DropdownComponent} from "./shared/dropdown/dropdown.component";
 import {MobileTimetableComponent} from "./components/content/timetable/mobile-view/mobile-timetable.component";
 import {TableComponent} from "./components/content/timetable/table/table.component";
 import {ControllersComponent} from "./components/content/timetable/controllers/controllers.component";
 import {CardComponent} from "./shared/card/card.component";
+import {WeekdayDetailsComponent} from "./components/content/timetable/mobile-view/weekday-details/weekday-details.component";
+import {SubjectDetailsComponent} from "./components/content/timetable/mobile-view/subject-details/subject-details.component";
+import {RouteRoutingModule} from "./routes/route-routing.module";
+import {MobileRoutingModule} from "./routes/mobile-routing.module";
+import {WeekdaysComponent} from "./components/content/timetable/mobile-view/weekdays/weekdays.component";
 
 @NgModule({
   declarations: [
@@ -41,14 +44,18 @@ import {CardComponent} from "./shared/card/card.component";
     MobileTimetableComponent,
     TableComponent,
     ControllersComponent,
-    CardComponent
+    CardComponent,
+    WeekdayDetailsComponent,
+    SubjectDetailsComponent,
+    WeekdaysComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
-    RouterModule.forRoot(routes),
+    RouteRoutingModule,
+    MobileRoutingModule,
     ButtonsModule.forRoot(),
     HttpClientModule,
     FormsModule

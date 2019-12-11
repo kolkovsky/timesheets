@@ -5,12 +5,22 @@
   right: 0;
   z-index: 5;
 
+  &.mobile {
+    top: 0 !important;
+    height: 100%;
+
+  }
+
   &-container {
     display: flex;
     margin: 0 auto;
     width: 500px;
     height: 400px;
     position: relative;
+
+    &.mobile {
+      height: 100% !important;
+    }
 
     &-card {
       width: 600px;

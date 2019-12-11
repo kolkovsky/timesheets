@@ -1,21 +1,12 @@
 import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {SubjectModel} from "../../models/subject.model";
 import {TimetableUtils} from "../../utils/timetable.utils";
-import {interval} from "rxjs";
-import {finalize} from "rxjs/operators";
 
 @Component({
   selector: "ttp-popup",
   templateUrl: "./popup.component.html",
   styleUrls: ["./popup.component.less"]
 })
-
-/*TODO ADD STYLES FOR POPUP
-*  1) make text with rotate function
-*   2) Add hide logic with animation
-*   3) Add fixed width and height
-*   4) Add dark background
-*   5) Add <hr> after each text line*/
 
 export class TttPopupComponent implements OnInit {
 
@@ -24,6 +15,9 @@ export class TttPopupComponent implements OnInit {
 
   @Input()
   public visiblePopup: boolean;
+
+  @Input()
+  public isMobilePopup: boolean = false;
 
   @Input()
   set closeWithAnimation(value: boolean) {

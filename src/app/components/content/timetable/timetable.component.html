@@ -5,6 +5,7 @@
         <ng-container *ngIf="screenMode.largeMode; then largeMode">
         </ng-container>
         <ng-container *ngIf="screenMode.mediumMode; then mediumMode "></ng-container>
+        <ng-container *ngIf="screenMode.mobileMode || screenMode.smallMode; then mobileMode"></ng-container>
       </div>
     </div>
   </div>
@@ -27,7 +28,7 @@
     </ttp-controllers>
 
     <ttp-card [selectedSubject]="selectedSubject"
-              [visibleCard]="visibleSubjectCardDetails"></ttp-card>
+              [visibleCard]="visibleSubjectDetailsCard"></ttp-card>
   </div>
 </ng-template>
 
@@ -49,8 +50,12 @@
   </div>
 </ng-template>
 
-<ttp-popup *ngIf="visibleSubjectPopupDetails"
-           [visiblePopup]="visibleSubjectPopupDetails"
+<ng-template #mobileMode>
+  <ttp-mobile-timetable></ttp-mobile-timetable>
+</ng-template>
+
+<ttp-popup *ngIf="visibleSubjectDetailsPopup"
+           [visiblePopup]="visibleSubjectDetailsPopup"
            [selectedSubject]="selectedSubject"
            [closeWithAnimation]="closeWithAnimation"
            (closePopupChange)="closeSubjectDetailsPopup($event)">
