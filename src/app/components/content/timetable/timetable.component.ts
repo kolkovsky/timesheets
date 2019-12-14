@@ -16,7 +16,6 @@ import {SystemsConstant} from "../../../constants/systems.constant";
 export class TimetableComponent extends TimetableComponentClass implements OnInit, OnDestroy {
 
   public uiGroup: UiGroupModel;
-
   public visibleSubjectDetailsPopup: boolean = false;
   public visibleSubjectDetailsCard: boolean = false;
   public closeWithAnimation: boolean = false;
@@ -38,7 +37,6 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
         takeUntil(this.unsubscribeStream$),
         tap((group: GroupModel) => {
           this.uiGroup = this.processUiGroup(group);
-          console.log(this.uiGroup);
           this.stateService.setStateComponent({componentName: SystemsConstant.timetableComponent,
             states: {sortedSubjects: this.uiGroup.sortedSubjects}});
         }))

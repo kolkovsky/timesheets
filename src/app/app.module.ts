@@ -23,6 +23,7 @@ import {WeekdayDetailsComponent} from "./components/content/timetable/mobile-vie
 import {RouteRoutingModule} from "./routes/route-routing.module";
 import {WeekdaysComponent} from "./components/content/timetable/mobile-view/weekdays/weekdays.component";
 import {LegendsComponent} from "./components/content/timetable/legends/legends.component";
+import {MediumViewComponent} from "./components/content/timetable/medium-view/medium-view.component";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {LegendsComponent} from "./components/content/timetable/legends/legends.c
     CardComponent,
     WeekdayDetailsComponent,
     WeekdaysComponent,
-    LegendsComponent
+    LegendsComponent,
+    MediumViewComponent
   ],
   imports: [
     BrowserModule,

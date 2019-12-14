@@ -1,13 +1,27 @@
 .welcome-page {
-  &__text {
+  display: flex;
+  align-items: center;
+  margin-top: 300px;
 
-    &-container {
-      margin-top: 100px;
-      padding-top: 2rem;
+  &-container {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
 
-      &__medium {
+    &-card {
+      border-radius: 20px;
+      opacity: 0.9;
+    }
 
-      }
+    &-text {
+      padding: 10px 10px 10px 10px;
+      flex: 100%;
+    }
+
+    &-buttons {
+      padding: 10px 10px 10px 10px;
+      flex: 100%;
     }
   }
 }

@@ -1,11 +1,15 @@
-<div class="container-fluid img-fluid welcome-page" >
-    <div class="row pt-5">
-      <div class="col-md-6 col-lg-12 mt-5">
-        <div class="welcome-page__text-container text-center">
-          <h1 class="display-2 text-white ml-4">Добро пожаловать!</h1>
-          <p class="text-white ml-4 ttp-text-medium">Здесь вы сможете быстро и легко получить доступ к своему расписанию</p>
-          <button class="btn btn-dark" (click)="navigateToCoursePage()">Перейти к расписанию</button>
+<div class="welcome-page">
+  <div class="welcome-page-container animated zoomIn">
+    <div class="card bg-dark mb-3 welcome-page-container-card">
+      <div class="card-body ttp-mobile-timetable-card-body">
+        <div class="welcome-page-container-text">
+          <h1 class="display-3 text-white ml-4">Добро пожаловать!</h1>
+          <h4 class="text-white ml-4">Здесь вы сможете быстро и легко получить доступ к своему расписанию</h4>
+        </div>
+        <div class="welcome-page-container-buttons">
+          <button class="btn btn-danger btn-lg btn-block" (click)="navigateToCoursePage()">Перейти к расписанию</button>
         </div>
       </div>
     </div>
+  </div>
 </div>

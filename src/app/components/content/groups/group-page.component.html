@@ -1,13 +1,17 @@
 <div class="group-page">
   <div class="group-page-container animated zoomIn">
-    <div class="group-page-container-text">
-      <h1>Выберите номер группы:</h1>
-    </div>
-    <div class="group-page-container-buttons">
-      <ttp-selector [items]="availableGroups" (valueChange)="groupChange($event)"></ttp-selector>
-      <button type="button" class="btn btn-dark btn-block mt-4" (click)="navigateToGroupPage()"
-              [disabled]="isDisableButton">Перейти к расписанию
-      </button>
+    <div class="card bg-dark mb-3 group-page-container-card">
+      <div class="card-body ttp-mobile-timetable-card-body">
+        <div class="group-page-container-text">
+          <h1>Выберите номер группы:</h1>
+        </div>
+        <div class="group-page-container-buttons">
+          <ttp-selector [items]="availableGroups" (valueChange)="groupChange($event)"></ttp-selector>
+          <button type="button" class="btn btn-danger btn-block mt-4" (click)="navigateToGroupPage()"
+                  [disabled]="isDisableButton">Перейти к расписанию
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

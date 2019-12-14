@@ -27,7 +27,6 @@ export class CoursePageComponent implements OnInit {
   private loadAvailableCourses(): void {
     this.timetableService.getCourses().subscribe(courses => {
       this.availableCourse = courses.map(course => new Item(course.name, course.id, false));
-      console.log(this.availableCourse)
     });
   }
 
