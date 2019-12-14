@@ -20,6 +20,19 @@ export class TimetableUtils {
     [SEMINAR]: "Семинар"
   };
 
+  public static readonly LAB_RU = "Лабораторная";
+  public static readonly LECTURE_RU = "Лекция";
+  public static readonly PRACTICE_RU = "Практика";
+  public static readonly PE_RU = "Физкультура";
+  public static readonly SEMINAR_RU = "Семинар";
+  public static readonly OTHER_RU = "Другое";
+
+  public static readonly LESSON_TYPE_ARRAY: string [] = [
+    TimetableUtils.LAB_RU, TimetableUtils.LECTURE_RU,
+    TimetableUtils.PRACTICE_RU, TimetableUtils.PE_RU,
+    TimetableUtils.SEMINAR_RU, TimetableUtils.OTHER_RU
+  ];
+
   public static readonly lab = "lab";
   public static readonly lecture = "lecture";
   public static readonly practice = "practice";
@@ -44,18 +57,18 @@ export class TimetableUtils {
   }
 
   public static getClassLessonType(lessonType: string): string {
-    if (lessonType === LAB) {
+    if (lessonType === LAB || lessonType === TimetableUtils.LAB_RU) {
       return "primary";
-    } else if (lessonType === LECTURE) {
+    } else if (lessonType === LECTURE || lessonType === TimetableUtils.LECTURE_RU) {
       return "info";
-    } else if (lessonType === PRACTICE) {
+    } else if (lessonType === PRACTICE || lessonType === TimetableUtils.PRACTICE_RU) {
       return "danger";
-    } else if (lessonType === PE) {
+    } else if (lessonType === PE || lessonType === TimetableUtils.PE_RU) {
       return "warning";
-    } else if (lessonType === SEMINAR) {
+    } else if (lessonType === SEMINAR || lessonType === TimetableUtils.SEMINAR_RU) {
       return "success";
     } else {
-      return "";
+      return "default";
     }
   }
 

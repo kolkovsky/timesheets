@@ -21,11 +21,8 @@
     </ttp-table>
   </div>
   <div class="col-3">
-    <ttp-controllers [weekdays]="weekdays"
-                     [times]="times"
-                     [lessonTypes]="lessonTypes"
-                     [screenMode]="screenMode">
-    </ttp-controllers>
+    <ttp-legends [screenMode]="screenMode">
+    </ttp-legends>
 
     <ttp-card [selectedSubject]="selectedSubject"
               [visibleCard]="visibleSubjectDetailsCard"></ttp-card>
@@ -34,11 +31,8 @@
 
 <ng-template #mediumMode>
   <div class="col-12">
-    <ttp-controllers [weekdays]="weekdays"
-                     [times]="times"
-                     [lessonTypes]="lessonTypes"
-                     [screenMode]="screenMode">
-    </ttp-controllers>
+    <ttp-legends [screenMode]="screenMode">
+    </ttp-legends>
   </div>
   <div class="col-12">
     <ttp-table [times]="times"

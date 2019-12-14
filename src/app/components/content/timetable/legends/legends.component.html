@@ -1,0 +1,41 @@
+<ng-container *ngIf="screenMode.largeMode">
+  <table class="table table-hover table-dark ttp-legends table-borderless">
+    <thead>
+    <tr>
+      <th scope="col" colspan="2" class="text-center">Легенда</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let lessonType of lessonTypes">
+      <tr>
+        <th class="text-lg-center">{{lessonType}}</th>
+        <td class="text-center">
+          <div class="ttp-legends-item" [ngClass]="'bg-' + getClassForLessonType(lessonType)"></div>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</ng-container>
+
+
+<ng-container *ngIf="screenMode.tabletMode || screenMode.mediumMode">
+  <table class="table table-hover table-dark ttp-legends table-borderless">
+    <thead>
+    <tr>
+      <ng-container *ngFor="let lessonType of lessonTypes">
+        <th scope="col" class="text-center">{{lessonType}}</th>
+      </ng-container>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="timetable__subjects">
+      <ng-container *ngFor="let lessonType of lessonTypes">
+        <td class="text-center">
+          <div class="ttp-legends-item" [ngClass]="'bg-' + getClassForLessonType(lessonType)"></div>
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>

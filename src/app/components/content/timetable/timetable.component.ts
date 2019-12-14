@@ -59,8 +59,6 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
     this.visibleSubjectDetailsPopup = false;
   }
 
-
-
   ngOnDestroy(): void {
     this.unsubscribeStream$.next();
     this.unsubscribeStream$.complete();

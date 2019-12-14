@@ -25,6 +25,7 @@ import {CardComponent} from "./shared/card/card.component";
 import {WeekdayDetailsComponent} from "./components/content/timetable/mobile-view/weekday-details/weekday-details.component";
 import {RouteRoutingModule} from "./routes/route-routing.module";
 import {WeekdaysComponent} from "./components/content/timetable/mobile-view/weekdays/weekdays.component";
+import {LegendsComponent} from "./components/content/timetable/legends/legends.component";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {WeekdaysComponent} from "./components/content/timetable/mobile-view/week
     ControllersComponent,
     CardComponent,
     WeekdayDetailsComponent,
-    WeekdaysComponent
+    WeekdaysComponent,
+    LegendsComponent
   ],
   imports: [
     BrowserModule,

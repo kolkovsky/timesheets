@@ -6,15 +6,12 @@ export class WeekDaysConstant {
   public static WEEK_DAY_FRIDAY_RU: string = "Пятница";
   public static WEEK_DAY_SATURDAY_RU: string = "Суббота";
 
-
-
   public static WEEK_DAY_MONDAY_EN: string = "monday";
   public static WEEK_DAY_TUESDAY_EN: string = "tuesday";
   public static WEEK_DAY_WEDNESDAY_EN: string = "wednesday";
   public static WEEK_DAY_THURSDAY_EN: string = "thursday";
   public static WEEK_DAY_FRIDAY_EN: string = "friday";
   public static WEEK_DAY_SATURDAY_EN: string = "saturday";
-
 
   public static WEEKDAYS_ON_ENGLISH = {
     [WeekDaysConstant.WEEK_DAY_MONDAY_RU]: WeekDaysConstant.WEEK_DAY_MONDAY_EN,
