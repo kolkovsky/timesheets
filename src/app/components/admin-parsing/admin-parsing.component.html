@@ -1,21 +1,22 @@
 <ng4-loading-spinner></ng4-loading-spinner>
 <div class="admin-parsing">
-  <div class="row pt-5 align-items-center justify-content-center">
-    <div class="col-md-6 col-lg-12 mt-5">
-      <h1 class="display-3 text-white text-center">Загрузите файл для расписания!</h1>
-    </div>
-    <div class="col-md-6  mt-5 text-center">
-      <div class="input-group">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile04" (select)="selectFile($event)"
-                 (change)="selectFile($event)">
-          <label class="custom-file-label" for="inputGroupFile04">Выберите файл</label>
+  <div class="admin-parsing-container animated zoomIn">
+    <div class="card bg-dark mb-3 admin-parsing-container-card">
+      <div class="card-body">
+        <div class="admin-parsing-container-text">
+          <h1 class="display-4 text-white text-center">Загрузите файл для расписания!</h1>
+        </div>
+        <div class="admin-parsing-container-buttons">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile04" (select)="selectFile($event)"
+                   (change)="selectFile($event)">
+            <label class="custom-file-label" for="inputGroupFile04">Выберите файл</label>
+          </div>
+          <button type="button" class="btn btn-danger btn-block mt-4" (click)="sendFile()"
+                  [disabled]="!file || showErrorUpload">Загрузить
+          </button>
         </div>
       </div>
-      <ng-container *ngIf="showErrorUpload"><h1 class="display-3 text-white">Oy shit!!!!</h1></ng-container>
-      <button type="button" class="btn btn-primary btn-block mt-4" (click)="sendFile()"
-              [disabled]="!file || showErrorUpload">Загрузить
-      </button>
     </div>
   </div>
 </div>

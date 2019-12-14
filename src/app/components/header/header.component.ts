@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'header',
+  selector: 'ttp-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.less']
 })

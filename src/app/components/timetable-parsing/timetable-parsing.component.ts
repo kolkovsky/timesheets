@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {AdminParsingService} from "../../services/admin-parsing.service";
-import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 import {TimetableUtils} from "../../utils/timetable.utils";
 import {UiTimesheetModel} from "../../models/ui-timesheet.model";
 import {UiGroupModel} from "../../models/ui-group.model";

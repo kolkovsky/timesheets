@@ -1,9 +1,12 @@
-<ng-container *ngIf="cardContent">
-  <div class="ttp-shared-card shadow">
-    <ng-container *ngIf="cardContent">
-      <div class="ttp-shared-card__content">
-       <p class="ttp-shared-card__content_text">{{cardContent}}</p>
-      </div>
-    </ng-container>
+<div class="card ttp-card bg-dark">
+  <div class="card-text ttp-card-header">
+    <img [src]="'../../assets/images/svg/' + iconName +'.svg'" class="ttp-card-header-icon">
   </div>
-</ng-container>
+  <div class="card-body">
+    <div class="ttp-card-body">
+      <h5 class="card-title text-white">{{headerText}}</h5>
+      <p class="card-text text-white">{{description}}</p>
+      <button class="btn btn-block btn-lg btn-danger text-white" (click)="clickHandler()">{{buttonName}}</button>
+    </div>
+  </div>
+</div>

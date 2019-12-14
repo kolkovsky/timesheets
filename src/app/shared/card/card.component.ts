@@ -1,5 +1,4 @@
-import {Component, HostListener, Input, OnInit} from "@angular/core";
-import {cardAnimation} from "./card.animation";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 
 @Component({
   selector: "ttp-shared-card",
@@ -9,25 +8,23 @@ import {cardAnimation} from "./card.animation";
 
 export class CardComponent implements OnInit {
 
-  @Input() cardContent: string;
-
-  public show: boolean;
-
-  // @HostListener('mouseover')
-  // catchMouseOver() {
-  //   console.log("mouseover");
-  //   this.show = true;
-  // }
-  //
-  // @HostListener('mouseout')
-  // catchMouseOut() {
-  //   console.log("mouseout");
-  //   this.show = false;
-  // }
+  @Input()
+  public iconName: string;
+  @Input()
+  public headerText: string;
+  @Input()
+  public description: string;
+  @Input()
+  public buttonName: string;
+  @Output()
+  public navigateChange: EventEmitter<void> = new EventEmitter();
 
   ngOnInit(): void {
 
   }
 
+  public clickHandler(): void {
+    this.navigateChange.emit();
+  }
 
 }

@@ -1,34 +1,25 @@
-.ttp-shared-card {
-  padding: 20px;
-  border-radius: 10px;
-  width: 175px;
-  height: 175px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+.ttp-card {
+  width: 400px;
+  border-radius: 20px;
 
-  &:hover {
-    -webkit-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    transform: scale(1.2);
+  &-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px 20px 0 0;
 
-    z-index:100;
-  }
-
-  &__header {
-
-  }
-
-  &__content {
-    margin: 0;
-
-    &_text {
-
+    &-icon {
+      width: 150px !important;
+      height: 150px !important;
     }
   }
 
-  &__footer {
-
+  &-body {
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
   }
 }

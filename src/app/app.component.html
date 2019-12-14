@@ -1,16 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <ul class="navbar-nav">
-    <li class="nav-item active">
-      <a class="nav-link" routerLink="/admin-parsing">Admin</a>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link" routerLink="/timetable-parsing">TimetableParsing</a>
-    </li>
-  </ul>
-</nav>
 <ttp-popup></ttp-popup>
-<div class="router-navigation" [@routeAnimations]="prepareRoute(outlet)">
+<ttp-header></ttp-header>
+<div class="router-navigation">
   <router-outlet #outlet="outlet"></router-outlet>
 </div>
 

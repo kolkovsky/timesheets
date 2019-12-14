@@ -17,8 +17,11 @@ export class WelcomePageComponent implements OnInit {
   }
 
 
-  public navigateToCoursePage(): void {
-    this.router.navigateByUrl('/course');
+  public navigateToTimetable(): void {
+    this.router.navigateByUrl('/timetable-parsing');
   }
 
+  public navigateToAdminParsing(): void {
+    this.router.navigateByUrl('/admin-parsing');
+  }
 }
