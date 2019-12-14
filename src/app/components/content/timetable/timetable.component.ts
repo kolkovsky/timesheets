@@ -36,12 +36,16 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
     this.timetableService.getTimetableByGroup()
       .pipe(
         takeUntil(this.unsubscribeStream$),
-        tap((group: GroupModel) => this.uiGroup = this.processUiGroup(group)))
+        tap((group: GroupModel) => {
+          this.uiGroup = this.processUiGroup(group);
+          console.log(this.uiGroup);
+          this.stateService.setStateComponent({componentName: SystemsConstant.timetableComponent,
+            states: {sortedSubjects: this.uiGroup.sortedSubjects}});
+        }))
       .subscribe();
   }
 
   public openSubjectDetails(event: SubjectDetailsEvent){
-    console.log(event);
     if(event.viewMode === SystemsConstant.POPUP_VIEW_MODE) {
       this.selectedSubject = event.subject;
       this.visibleSubjectDetailsPopup = true;
@@ -52,7 +56,6 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
   }
 
   public closeSubjectDetailsPopup(event): void {
-    // this.closeWithAnimation = true;
     this.visibleSubjectDetailsPopup = false;
   }
 

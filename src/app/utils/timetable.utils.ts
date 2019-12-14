@@ -65,12 +65,12 @@ export class TimetableUtils {
 
   public static sortSubjectsByWeekDay(subjects: any[]): { [key: string]: any[] } {
     return {
-      [WeekDaysConstant.WEEK_DAY_MONDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_MONDAY, subjects),
-      [WeekDaysConstant.WEEK_DAY_TUESDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_TUESDAY, subjects),
-      [WeekDaysConstant.WEEK_DAY_WEDNESDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_WEDNESDAY, subjects),
-      [WeekDaysConstant.WEEK_DAY_THURSDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_THURSDAY, subjects),
-      [WeekDaysConstant.WEEK_DAY_FRIDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_FRIDAY, subjects),
-      [WeekDaysConstant.WEEK_DAY_SATURDAY]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_SATURDAY, subjects),
+      [WeekDaysConstant.WEEK_DAY_MONDAY_RU]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_MONDAY_RU, subjects),
+      [WeekDaysConstant.WEEK_DAY_TUESDAY_RU]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_TUESDAY_RU, subjects),
+      [WeekDaysConstant.WEEK_DAY_WEDNESDAY_RU]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_WEDNESDAY_RU, subjects),
+      [WeekDaysConstant.WEEK_DAY_THURSDAY_RU]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_THURSDAY_RU, subjects),
+      [WeekDaysConstant.WEEK_DAY_FRIDAY_RU]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_FRIDAY_RU, subjects),
+      [WeekDaysConstant.WEEK_DAY_SATURDAY_RU]: this.getSubjectsByDay(WeekDaysConstant.WEEK_DAY_SATURDAY_RU, subjects),
     };
   }
 

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import {Observable} from 'rxjs';
+import {GroupModel} from "../models/group.model";
 
 @Injectable({providedIn: 'root'})
 export class TimetableService {
@@ -18,5 +19,9 @@ export class TimetableService {
 
   public getTimetableByGroup(): Observable<any> {
     return this.httpClient.get("/api/get/timetable");
+  }
+
+  public getSubjectsByGroup(group: GroupModel): Observable<any> {
+    return this.httpClient.post("/api/get/subjects/", group);
   }
 }

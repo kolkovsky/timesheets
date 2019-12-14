@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 
 @Component({
   selector: "ttp-mobile-timetable",
@@ -7,7 +7,7 @@ import {Component, OnInit} from "@angular/core";
 })
 
 export class MobileTimetableComponent implements OnInit {
+
   ngOnInit(): void {
   }
-
 }

@@ -1,5 +1,11 @@
-<div class="container animated slideInRight" *ngIf="visibleSubjectDetails">
+<div class="container animated slideInRight" *ngIf="subjectsByDay">
   <div class="row">
-    <div class="col-12">sfdsffdf</div>
+    <ng-container *ngFor="let subject of subjectsByDay">
+      <div class="col-12 mb-3 ttp-mobile-timetable">
+        <ttp-card [selectedSubject]="subject"
+                  [visibleCard]="true">
+        </ttp-card>
+      </div>
+    </ng-container>
   </div>
 </div>

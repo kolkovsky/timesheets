@@ -23,9 +23,7 @@ import {TableComponent} from "./components/content/timetable/table/table.compone
 import {ControllersComponent} from "./components/content/timetable/controllers/controllers.component";
 import {CardComponent} from "./shared/card/card.component";
 import {WeekdayDetailsComponent} from "./components/content/timetable/mobile-view/weekday-details/weekday-details.component";
-import {SubjectDetailsComponent} from "./components/content/timetable/mobile-view/subject-details/subject-details.component";
 import {RouteRoutingModule} from "./routes/route-routing.module";
-import {MobileRoutingModule} from "./routes/mobile-routing.module";
 import {WeekdaysComponent} from "./components/content/timetable/mobile-view/weekdays/weekdays.component";
 
 @NgModule({
@@ -46,7 +44,6 @@ import {WeekdaysComponent} from "./components/content/timetable/mobile-view/week
     ControllersComponent,
     CardComponent,
     WeekdayDetailsComponent,
-    SubjectDetailsComponent,
     WeekdaysComponent
   ],
   imports: [
@@ -55,7 +52,6 @@ import {WeekdaysComponent} from "./components/content/timetable/mobile-view/week
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
     RouteRoutingModule,
-    MobileRoutingModule,
     ButtonsModule.forRoot(),
     HttpClientModule,
     FormsModule
