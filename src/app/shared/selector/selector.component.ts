@@ -1,10 +1,17 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import {Item} from './item.model';
 
 @Component({
   selector: 'ttp-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectorComponent implements OnInit {
@@ -21,7 +28,7 @@ export class SelectorComponent implements OnInit {
   @Input()
   public placeholder: string;
 
-  private _value: any;
+  public value: any;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
@@ -34,7 +41,7 @@ export class SelectorComponent implements OnInit {
   }
 
   public changeValueSelector(event): void {
-    this.items.map(item => item.selected = item.value === this._value);
-    this.valueChange.emit(this._value);
+    this.items.map(item => item.selected = item.value === this.value);
+    this.valueChange.emit(this.value);
   }
 }

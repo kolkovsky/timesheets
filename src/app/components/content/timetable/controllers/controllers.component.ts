@@ -7,13 +7,11 @@ export interface ControllerState {
   selectedWeekDay?: string;
 }
 
-
 @Component({
   selector: "ttp-controllers",
   templateUrl: "./controllers.component.html",
   styleUrls: ["./controllers.component.less"]
 })
-
 export class ControllersComponent implements OnInit {
 
   @Input()
@@ -41,7 +39,6 @@ export class ControllersComponent implements OnInit {
   public controllerStateChange: EventEmitter<ControllerState> = new EventEmitter<ControllerState>();
 
   ngOnInit(): void {
-    //todo Make this value by default selected
   }
 
   public changeTime(event) {

@@ -13,7 +13,8 @@ export class AppComponent {
   constructor(private stateService: StateService) {
   }
 
-  @HostListener('window:resize', ['$event']) resizeScreenEvent(): void {
+  @HostListener('window:resize')
+  resizeScreenEvent(): void {
     this.stateService.setScreenState(window.innerWidth);
   }
 

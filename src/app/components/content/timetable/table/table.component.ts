@@ -37,7 +37,6 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   public openSubjectDetails(subject: any): void {
     if (this.screenMode.largeMode) {
       this.openSubjectDetailsChange.emit({

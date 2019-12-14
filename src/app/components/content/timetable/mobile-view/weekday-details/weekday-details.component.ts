@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {StateApplication, StateService} from "../../../../../services/state.service";
 import {SystemsConstant} from "../../../../../constants/systems.constant";
 import {WeekDaysConstant} from "../../../../../constants/week-days.constant";

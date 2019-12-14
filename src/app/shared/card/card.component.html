@@ -1,6 +1,6 @@
 <ng-container *ngIf="selectedSubject && visibleCard">
   <div class="card ttp-card animated bounceInRight bounceInRight">
-    <div class="card-header text-center">Понедельник</div>
+    <div class="card-header text-center">{{selectedSubject.day}}</div>
     <div class="ttp-card-img" [ngClass]="getClassForLessonType(selectedSubject.classLessonType)">
       {{selectedSubject.name}}
     </div>

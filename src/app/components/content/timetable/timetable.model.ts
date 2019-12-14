@@ -17,9 +17,8 @@ export interface ScreenMode {
 
 export class TimetableComponentClass implements TtpComponentInterface {
 
-  protected weekdays: any[] = WeekDaysConstant.WEEK_DAYS_ARRAY;
-  protected times: any[] = Object.keys(TimetableUtils.lessonTimes);
-  protected lessonTypes: any[] = Object.values(TimetableUtils.lessonTypes);
+  public weekdays: any[] = WeekDaysConstant.WEEK_DAYS_ARRAY;
+  public times: any[] = Object.keys(TimetableUtils.lessonTimes);
   public uiGroup: UiGroupModel;
   public screenMode: ScreenMode;
   public unsubscribeStream$: Subject<void> = new Subject();

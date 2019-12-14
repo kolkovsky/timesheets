@@ -33,5 +33,4 @@ export class WeekDaysConstant {
 
   public static WEEK_DAYS_ARRAY: string[] = [WeekDaysConstant.WEEK_DAY_MONDAY_RU, WeekDaysConstant.WEEK_DAY_TUESDAY_RU, WeekDaysConstant.WEEK_DAY_WEDNESDAY_RU,
     WeekDaysConstant.WEEK_DAY_THURSDAY_RU, WeekDaysConstant.WEEK_DAY_FRIDAY_RU, WeekDaysConstant.WEEK_DAY_SATURDAY_RU];
-
 }

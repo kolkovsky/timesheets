@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {SubjectModel} from "../../models/subject.model";
 import {TimetableUtils} from "../../utils/timetable.utils";
 
@@ -33,12 +33,8 @@ export class TttPopupComponent implements OnInit {
   @Output()
   public closePopupChange: EventEmitter<void> = new EventEmitter();
 
-  private lessonTypes: any = TimetableUtils.lessonTypes;
-
+  public lessonTypes: any = TimetableUtils.lessonTypes;
   public flag: boolean = false;
-
-  constructor(private changeDetector: ChangeDetectorRef) {
-  }
 
   ngOnInit(): void {
   }

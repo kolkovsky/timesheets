@@ -1,6 +1,5 @@
 import {animate, animateChild, group, query, style, transition, trigger} from '@angular/animations';
 
-
 // tslint:disable-next-line: comment-format
 export const slideInAnimation =
   trigger('routeAnimations', [

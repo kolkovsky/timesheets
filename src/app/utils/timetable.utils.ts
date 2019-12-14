@@ -1,8 +1,5 @@
 import {SubjectModel} from "../models/subject.model";
 import {WeekDaysConstant} from "../constants/week-days.constant";
-import {ClassesConstant} from "../constants/classes.constant";
-import {UiSubjectModel} from "../models/ui-subject.model";
-import {element} from "protractor";
 
 const LAB: string = "LAB";
 const PRACTICE: string = "PRACTICE";
@@ -33,12 +30,6 @@ export class TimetableUtils {
     TimetableUtils.SEMINAR_RU, TimetableUtils.OTHER_RU
   ];
 
-  public static readonly lab = "lab";
-  public static readonly lecture = "lecture";
-  public static readonly practice = "practice";
-  public static readonly seminar = "seminar";
-  public static readonly pe = "pe";
-
   public static readonly lessonTimes: any = {
     "9:00": 1,
     "10:30": 2,
@@ -48,13 +39,6 @@ export class TimetableUtils {
     "16:40": 6,
     "17:50": 7
   };
-
-  public static getClassIconForLessonType(lessonType: string): string {
-    return LAB === lessonType ? ClassesConstant.beakerIconClass :
-      LECTURE === lessonType ? ClassesConstant.megaphoneIconClass :
-        PRACTICE === lessonType ? ClassesConstant.pencilIconClass :
-          PE === lessonType ? ClassesConstant.flameIconClass : "";
-  }
 
   public static getClassLessonType(lessonType: string): string {
     if (lessonType === LAB || lessonType === TimetableUtils.LAB_RU) {
@@ -70,10 +54,6 @@ export class TimetableUtils {
     } else {
       return "default";
     }
-  }
-
-  public static getFormattingLessonType(lessonType: string): string {
-    return TimetableUtils.lessonTypes[Object.keys(TimetableUtils.lessonTypes).find(type => lessonType === type)];
   }
 
   public static sortSubjectsByWeekDay(subjects: any[]): { [key: string]: any[] } {

@@ -18,7 +18,6 @@ export class LegendsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   public getClassForLessonType(lessonType: string): string {
     console.log(lessonType)
     console.log(TimetableUtils.getClassLessonType(lessonType));

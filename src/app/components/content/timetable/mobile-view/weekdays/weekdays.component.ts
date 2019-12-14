@@ -12,7 +12,6 @@ import {WeekDaysConstant} from "../../../../../constants/week-days.constant";
   templateUrl: "./weekdays.component.html",
   styleUrls: ["./weekdays.component.less"]
 })
-
 export class WeekdaysComponent extends TimetableComponentClass implements OnInit {
 
   constructor(private timetableService: TimetableService,
@@ -34,7 +33,6 @@ export class WeekdaysComponent extends TimetableComponentClass implements OnInit
         tap((group: GroupModel) => this.uiGroup = this.processUiGroup(group)))
       .subscribe();
   }
-
 
   public goToWeekdayDetails(weekday: string): void {
     const weekday_on_en = WeekDaysConstant.WEEKDAYS_ON_ENGLISH[weekday];

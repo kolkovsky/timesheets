@@ -2,8 +2,7 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
 
 @Component({
   selector: "ttp-dropdown",
-  templateUrl: "./dropdown.component.html",
-  styleUrls: ["./dropdown.component.less"]
+  templateUrl: "./dropdown.component.html"
 })
 
 export class DropdownComponent {
