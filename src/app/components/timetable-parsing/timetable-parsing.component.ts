@@ -4,6 +4,7 @@ import {TimetableUtils} from "../../utils/timetable.utils";
 import {UiTimesheetModel} from "../../models/ui-timesheet.model";
 import {UiGroupModel} from "../../models/ui-group.model";
 import {TimesheetModel} from "../../models/timesheet.model";
+import {WeekDaysConstant} from "../../constants/week-days.constant";
 
 @Component({
   selector: 'ttp-timetable-parsing',
@@ -13,6 +14,8 @@ import {TimesheetModel} from "../../models/timesheet.model";
 
 export class TimetableParsingComponent implements OnInit {
 
+  public weekday:string[] = WeekDaysConstant.WEEK_DAYS_ARRAY;
+  public times: string[] = Object.keys(TimetableUtils.lessonTimes);
   public timeSheets: TimesheetModel[];
   public uiTimesheets: UiTimesheetModel[];
 
@@ -23,6 +26,7 @@ export class TimetableParsingComponent implements OnInit {
     if (localStorage.getItem("Timetable")) {
       this.timeSheets = JSON.parse(localStorage.getItem("Timetable"));
       this.uiTimesheets = this.timeSheets.map(timeSheet => this.convertToUiTimesheet(timeSheet));
+      console.log(this.uiTimesheets);
     }
 
     this.adminParsingService.importData$.subscribe(data => {

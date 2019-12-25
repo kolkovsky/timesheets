@@ -6,7 +6,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRouterModule} from './components/app-router.module';
 import {RouterModule} from '@angular/router';
-import {AlertModule, ButtonsModule, ModalModule} from 'ngx-bootstrap';
+import {AlertModule, ButtonsModule, ModalModule, TabsModule} from 'ngx-bootstrap';
 import {SelectorComponent} from './shared/selector/selector.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
@@ -19,10 +19,12 @@ import {CardComponent} from "./shared/card/card.component";
 import {IconComponent} from "./shared/icon/icon.component";
 import {PopupComponent} from "./shared/popup/popup.component";
 import {StateService} from "./services/state.service";
+import {TableComponent} from "./components/timetable-parsing/table/table.component";
 
 let adminConfigurations = [
   TimetableParsingComponent,
-  AdminParsingComponent
+  AdminParsingComponent,
+  TableComponent
 ];
 
 let sharedComponents = [
@@ -36,7 +38,8 @@ let externalLibs = [
   ButtonsModule.forRoot(),
   Ng4LoadingSpinnerModule.forRoot(),
   ModalModule.forRoot(),
-  AlertModule.forRoot()
+  AlertModule.forRoot(),
+  TabsModule.forRoot()
 ];
 
 

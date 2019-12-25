@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 mt-3">
+      <tabset type="pills" [justified]="true">
+        <ng-container *ngFor="let uiTimesheet of uiTimesheets">
+          <tab [heading]="'Курс' + uiTimesheet.course" class="mt-3">
+            <tabset type="pills" [justified]="true">
+              <ng-container *ngFor="let uiGroup of uiTimesheet.uiGroups">
+                <tab [heading]="'Группа' + uiGroup.name" class="mt-3">
+                  <ttp-table [weekdays]="weekday"
+                             [uiGroup]="uiGroup"
+                             [times]="times"></ttp-table>
+                </tab>
+              </ng-container>
+            </tabset>
+          </tab>
+        </ng-container>
+      </tabset>
+
+    </div>
+  </div>
+</div>
