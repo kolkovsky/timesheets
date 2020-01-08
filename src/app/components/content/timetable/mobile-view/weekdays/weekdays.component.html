@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <ng-container *ngFor="let weekday of weekdays">
       <div class="col-12">
-        <div class="card bg-dark mb-3 ttp-mobile-timetable-card" (click)="goToWeekdayDetails(weekday)">
+        <div class="card mb-3 ttp-mobile-timetable-card" (click)="goToWeekdayDetails(weekday)">
           <div class="card-body ttp-mobile-timetable-card-body">
             <h5 class="card-title ttp-mobile-timetable-card-body-text">{{weekday}}</h5>
           </div>

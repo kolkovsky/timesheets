@@ -17,6 +17,8 @@ export class CardComponent implements OnInit {
   @Input()
   visibleCard: boolean = false;
 
+  @Input() mobileMode: boolean = false;
+
   public lessonTypes: any = TimetableUtils.lessonTypes;
 
   ngOnInit(): void {

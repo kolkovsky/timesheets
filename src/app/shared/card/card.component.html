@@ -1,7 +1,7 @@
 <ng-container *ngIf="selectedSubject && visibleCard">
   <div class="card ttp-card animated bounceInRight bounceInRight">
     <div class="card-header text-center text-capitalize"><h5>{{selectedSubject.day}}</h5></div>
-    <div class="ttp-card-img" [ngClass]="'text-'+getClassForLessonType(selectedSubject.classLessonType)">
+    <div [ngClass]="mobileMode ? 'ttp-card-img-mobile' : 'ttp-card-img'" [class]="'text-'+getClassForLessonType(selectedSubject.classLessonType)">
       {{selectedSubject.name}}
     </div>
     <div class="card-body">
