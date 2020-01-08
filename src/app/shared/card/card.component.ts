@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {SubjectModel} from "../../models/subject.model";
 import {TimetableUtils} from "../../utils/timetable.utils";
+import DateTimeFormatPartTypes = Intl.DateTimeFormatPartTypes;
 
 @Component({
   selector: "ttp-card",
@@ -15,6 +16,8 @@ export class CardComponent implements  OnInit {
 
   @Input()
   visibleCard: boolean = false;
+
+  public lessonTypes: any = TimetableUtils.lessonTypes;
 
   ngOnInit(): void {
   }
