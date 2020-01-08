@@ -6,6 +6,7 @@ const PRACTICE: string = "PRACTICE";
 const LECTURE: string = "LECTURE";
 const PE: string = "PE";
 const SEMINAR: string = "SEMINAR";
+const UNDEFINED: string = "UNDEFINED";
 
 export class TimetableUtils {
 
@@ -14,7 +15,8 @@ export class TimetableUtils {
     [LECTURE]: "Лекция",
     [PRACTICE]: "Практика",
     [PE]: "Физкультура",
-    [SEMINAR]: "Семинар"
+    [SEMINAR]: "Семинар",
+    [UNDEFINED]: "Что-то интересное"
   };
 
   public static readonly LAB_RU = "Лабораторная";

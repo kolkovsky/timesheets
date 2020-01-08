@@ -9,7 +9,7 @@ import DateTimeFormatPartTypes = Intl.DateTimeFormatPartTypes;
   styleUrls: ["./card.component.less"]
 })
 
-export class CardComponent implements  OnInit {
+export class CardComponent implements OnInit {
 
   @Input()
   selectedSubject: SubjectModel;
