@@ -23,7 +23,8 @@ import {WeekdayDetailsComponent} from "./components/content/timetable/mobile-vie
 import {RouteRoutingModule} from "./routes/route-routing.module";
 import {WeekdaysComponent} from "./components/content/timetable/mobile-view/weekdays/weekdays.component";
 import {LegendsComponent} from "./components/content/timetable/legends/legends.component";
-import {MediumViewComponent} from "./components/content/timetable/medium-view/medium-view.component";
+import {TabletModeComponent} from "./components/content/timetable/tablet-mode/tablet-mode.component";
+
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import {MediumViewComponent} from "./components/content/timetable/medium-view/me
     WeekdayDetailsComponent,
     WeekdaysComponent,
     LegendsComponent,
-    MediumViewComponent
+    TabletModeComponent
   ],
   imports: [
     BrowserModule,
