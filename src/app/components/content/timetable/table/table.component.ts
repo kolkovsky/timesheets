@@ -16,7 +16,7 @@ export interface SubjectDetailsEvent {
   styleUrls: ["./table.component.less"]
 })
 
-export class TableComponent implements OnInit {
+export class TableComponent {
 
   @Input()
   public weekdays: string[];
@@ -32,10 +32,6 @@ export class TableComponent implements OnInit {
 
   @Output()
   public openSubjectDetailsChange: EventEmitter<SubjectDetailsEvent> = new EventEmitter<SubjectDetailsEvent>();
-
-
-  ngOnInit(): void {
-  }
 
   public openSubjectDetails(subject: any): void {
     if (this.screenMode.largeMode) {

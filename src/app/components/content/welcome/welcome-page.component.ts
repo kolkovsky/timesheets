@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'welcome-page',
@@ -7,29 +7,12 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./welcome-page.component.less']
 })
 
-export class WelcomePageComponent implements OnInit {
-
-
-  public visiblePopup: boolean = true;
+export class WelcomePageComponent {
 
   constructor(private router: Router) {
   }
 
-  ngOnInit(): void {
-  }
-
-
   public navigateToCoursePage(): void {
     this.router.navigateByUrl('/course');
   }
-
-
-  public closePopupEvent(event): void {
-    this.visiblePopup = !this.visiblePopup;
-  }
-
-  public showPopup(): void {
-    this.visiblePopup = true;
-}
-
 }

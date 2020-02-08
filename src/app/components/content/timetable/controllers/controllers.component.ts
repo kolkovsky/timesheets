@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {ScreenMode} from "../timetable.model";
 
 export interface ControllerState {
@@ -12,7 +12,7 @@ export interface ControllerState {
   templateUrl: "./controllers.component.html",
   styleUrls: ["./controllers.component.less"]
 })
-export class ControllersComponent implements OnInit {
+export class ControllersComponent {
 
   @Input()
   public weekdays: string[];
@@ -38,20 +38,17 @@ export class ControllersComponent implements OnInit {
   @Output()
   public controllerStateChange: EventEmitter<ControllerState> = new EventEmitter<ControllerState>();
 
-  ngOnInit(): void {
-  }
-
-  public changeTime(event) {
+  public changeTime(event: string): void {
     this.selectedTime = event;
     this.controllerStateChange.emit({selectedTime: this.selectedTime});
   }
 
-  public changeLessonType(event) {
+  public changeLessonType(event: string): void {
     this.selectedLessonType = event;
     this.controllerStateChange.emit({selectedLessonType: this.selectedLessonType});
   }
 
-  public changeWeekday(event) {
+  public changeWeekday(event: string): void {
     this.selectedWeekDay = event;
     this.controllerStateChange.emit({selectedWeekDay: this.selectedWeekDay});
   }

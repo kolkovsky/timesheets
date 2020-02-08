@@ -20,7 +20,7 @@ export class WeekdaysComponent extends TimetableComponentClass implements OnInit
     super();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.stateService.getScreenState()
       .pipe(takeUntil(this.unsubscribeStream$))
       .subscribe(state => {

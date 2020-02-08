@@ -23,7 +23,7 @@ export class TimetableComponentClass implements TtpComponentInterface {
   public screenMode: ScreenMode;
   public unsubscribeStream$: Subject<void> = new Subject();
 
-  changeScreenMode(screenState: any) {
+  changeScreenMode(screenState: number) {
     if (screenState >= ScreensEnum.large1440px) {
       this.screenMode = {
         screenSize: window.innerWidth,
@@ -52,7 +52,7 @@ export class TimetableComponentClass implements TtpComponentInterface {
     }
   }
 
-  public processUiGroup(group: GroupModel): any {
+  public processUiGroup(group: GroupModel): UiGroupModel {
     return new UiGroupModel(group.name, TimetableUtils.sortSubjectsByWeekDay(group.subjects));
   }
 }

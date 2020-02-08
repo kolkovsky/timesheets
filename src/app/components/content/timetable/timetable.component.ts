@@ -26,25 +26,29 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
     super();
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.changeScreenMode(window.innerWidth);
     this.stateService.getScreenState()
-      .pipe(takeUntil(this.unsubscribeStream$))
-      .subscribe(state => this.changeScreenMode(state));
+      .pipe(
+        tap((state: number) => this.changeScreenMode(state)),
+        takeUntil(this.unsubscribeStream$))
+      .subscribe();
 
     this.timetableService.getTimetableByGroup()
       .pipe(
-        takeUntil(this.unsubscribeStream$),
         tap((group: GroupModel) => {
           this.uiGroup = this.processUiGroup(group);
-          this.stateService.setStateComponent({componentName: SystemsConstant.timetableComponent,
-            states: {sortedSubjects: this.uiGroup.sortedSubjects}});
-        }))
+          this.stateService.setStateComponent({
+            componentName: SystemsConstant.timetableComponent,
+            states: {sortedSubjects: this.uiGroup.sortedSubjects}
+          });
+        }),
+        takeUntil(this.unsubscribeStream$))
       .subscribe();
   }
 
-  public openSubjectDetails(event: SubjectDetailsEvent){
-    if(event.viewMode === SystemsConstant.POPUP_VIEW_MODE) {
+  public openSubjectDetails(event: SubjectDetailsEvent) {
+    if (event.viewMode === SystemsConstant.POPUP_VIEW_MODE) {
       this.selectedSubject = event.subject;
       this.visibleSubjectDetailsPopup = true;
     } else {
@@ -53,11 +57,11 @@ export class TimetableComponent extends TimetableComponentClass implements OnIni
     }
   }
 
-  public closeSubjectDetailsPopup(event): void {
+  public closeSubjectDetailsPopup(): void {
     this.visibleSubjectDetailsPopup = false;
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.unsubscribeStream$.next();
     this.unsubscribeStream$.complete();
   }

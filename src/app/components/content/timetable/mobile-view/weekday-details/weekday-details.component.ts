@@ -20,7 +20,7 @@ export class WeekdayDetailsComponent extends TimetableComponentClass implements 
     super();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.stateService.getComponentState().subscribe((state: StateApplication) => {
       if (state.componentName === SystemsConstant.timetableComponent) {
         this.sortedSubject = state.states.sortedSubjects;

@@ -11,7 +11,7 @@ export interface StateApplication {
 export class StateService {
 
   private stateComponent: ReplaySubject<StateApplication> = new ReplaySubject(1);
-  private screenState: ReplaySubject<any> = new ReplaySubject(1);
+  private screenState: ReplaySubject<number> = new ReplaySubject(1);
 
   public setStateComponent(state: StateApplication): void {
     this.stateComponent.next(state);
@@ -21,11 +21,11 @@ export class StateService {
     return this.stateComponent;
   }
 
-  public setScreenState(state: any): void {
+  public setScreenState(state: number): void {
     this.screenState.next(state);
   }
 
-  public getScreenState(): ReplaySubject<any> {
+  public getScreenState(): ReplaySubject<number> {
     return this.screenState;
   }
 }

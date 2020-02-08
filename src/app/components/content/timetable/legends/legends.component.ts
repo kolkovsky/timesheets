@@ -8,19 +8,14 @@ import {TimetableUtils} from "../../../../utils/timetable.utils";
   styleUrls: ["./legends.component.less"]
 })
 
-export class LegendsComponent implements OnInit {
+export class LegendsComponent {
 
   @Input()
   public screenMode: ScreenMode;
 
   public lessonTypes: string[] = TimetableUtils.LESSON_TYPE_ARRAY;
 
-  ngOnInit(): void {
-  }
-
   public getClassForLessonType(lessonType: string): string {
-    console.log(lessonType)
-    console.log(TimetableUtils.getClassLessonType(lessonType));
     return TimetableUtils.getClassLessonType(lessonType);
   }
 }
