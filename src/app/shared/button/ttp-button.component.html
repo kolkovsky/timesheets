@@ -1,0 +1,3 @@
+<button class="btn" [id]="buttonModel?.id"
+        [ngClass]="{'btn-outline-danger': !buttonModel.clicked, 'btn-danger': buttonModel.clicked}"
+        (click)="clickOnButton()">{{buttonModel.label}}</button>

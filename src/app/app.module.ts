@@ -6,7 +6,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRouterModule} from './components/app-router.module';
 import {RouterModule} from '@angular/router';
-import {AlertModule, ButtonsModule, ModalModule, TabsModule} from 'ngx-bootstrap';
+import {AlertModule, BsDropdownModule, ButtonsModule, ModalModule, ProgressbarModule, TabsModule} from 'ngx-bootstrap';
 import {SelectorComponent} from './shared/selector/selector.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
@@ -20,8 +20,14 @@ import {IconComponent} from "./shared/icon/icon.component";
 import {PopupComponent} from "./shared/popup/popup.component";
 import {StateService} from "./services/state.service";
 import {TableComponent} from "./components/timetable-parsing/table/table.component";
+import {TtpGroupButtonComponent} from './shared/group-button/ttp-group-button.component';
+import {TtpButtonComponent} from './shared/button/ttp-button.component';
+import {TtpDropdownComponent} from './shared/dropdown/ttp-dropdown.component';
 
 let adminConfigurations = [
+  AppComponent,
+  WelcomePageComponent,
+  HeaderComponent,
   TimetableParsingComponent,
   AdminParsingComponent,
   TableComponent
@@ -31,7 +37,15 @@ let sharedComponents = [
   SelectorComponent,
   CardComponent,
   IconComponent,
-  PopupComponent
+  PopupComponent,
+  TtpGroupButtonComponent,
+  TtpButtonComponent,
+  TtpDropdownComponent
+];
+
+export const AppComponents = [
+  sharedComponents,
+  adminConfigurations
 ];
 
 let externalLibs = [
@@ -39,17 +53,15 @@ let externalLibs = [
   Ng4LoadingSpinnerModule.forRoot(),
   ModalModule.forRoot(),
   AlertModule.forRoot(),
-  TabsModule.forRoot()
+  TabsModule.forRoot(),
+  ProgressbarModule.forRoot(),
+  BsDropdownModule.forRoot()
 ];
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    WelcomePageComponent,
-    HeaderComponent,
-    sharedComponents,
-    adminConfigurations
+    AppComponents
   ],
   imports: [
     BrowserModule,
