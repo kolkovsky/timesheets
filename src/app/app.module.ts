@@ -23,6 +23,7 @@ import {TableComponent} from "./components/timetable-parsing/table/table.compone
 import {TtpGroupButtonComponent} from './shared/group-button/ttp-group-button.component';
 import {TtpButtonComponent} from './shared/button/ttp-button.component';
 import {TtpDropdownComponent} from './shared/dropdown/ttp-dropdown.component';
+import {TtpBaseComponent} from './ng-core/ttp-base.component';
 
 let adminConfigurations = [
   AppComponent,

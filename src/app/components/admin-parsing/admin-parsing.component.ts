@@ -5,15 +5,15 @@ import {PopupService} from '../../shared/popup/popup.service';
 import {PopupTypeConstants} from '../../shared/popup/popup-type.constants';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
-import {TtpComponent} from '../../models/ttp-component';
 import {StateInterface} from '../../interfaces/state.interface';
+import {StateService} from '../../services/state.service';
 
 @Component({
   selector: 'admin-parsing',
   templateUrl: './admin-parsing.component.html',
   styleUrls: ['./admin-parsing.component.less']
 })
-export class AdminParsingComponent extends TtpComponent implements OnInit, OnDestroy {
+export class AdminParsingComponent  implements OnInit, OnDestroy {
 
   public file: File;
   private formatsExcelFiles: string[] = ['.xlsx', '.xls'];
@@ -23,13 +23,11 @@ export class AdminParsingComponent extends TtpComponent implements OnInit, OnDes
   constructor(private adminParsingService: AdminParsingService,
               private loaderService: Ng4LoadingSpinnerService,
               private popupService: PopupService,
-              private router: Router) {
-    super();
+              private router: Router,
+              protected stateService: StateService) {
   }
 
   public ngOnInit(): void {
-    this.loadStateComponent();
-    this.processState()
   }
 
   public selectFile(event: any): void {
@@ -40,8 +38,8 @@ export class AdminParsingComponent extends TtpComponent implements OnInit, OnDes
     }
   }
 
-  public processState(state?: StateInterface): void {
-    console.log(this.isComponent(AdminParsingComponent.name));
+  public processState(state: StateInterface): void {
+    console.log('Fuck you NgRx!!!');
   }
 
   public sendFile(): void {

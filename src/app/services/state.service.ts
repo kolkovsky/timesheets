@@ -2,7 +2,9 @@ import {Injectable} from '@angular/core';
 import {ReplaySubject} from 'rxjs';
 import {StateInterface} from '../interfaces/state.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class StateService {
   private stateComponent: ReplaySubject<any> = new ReplaySubject<any>();
 
@@ -10,7 +12,7 @@ export class StateService {
     this.stateComponent.next(state);
   }
 
-  public getStateComponent(): any {
+  public getStateComponent(): ReplaySubject<StateInterface> {
     return this.stateComponent;
   }
 }
