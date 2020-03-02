@@ -3,8 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'welcome-page',
-  templateUrl: './welcome-page.component.html',
-  styleUrls: ['./welcome-page.component.less']
+  templateUrl: './welcome-page.component.html'
 })
 
 export class WelcomePageComponent implements OnInit {

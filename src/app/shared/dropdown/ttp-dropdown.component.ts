@@ -10,7 +10,6 @@ export class DropdownModel implements BaseInterface {
 @Component({
   selector: 'ttp-dropdown',
   templateUrl: './ttp-dropdown.component.html',
-  styleUrls: ['./ttp-dropdown.component.less'],
   providers: [{provide: BsDropdownConfig, useValue: {isAnimated: true, autoClose: true}}]
 })
 export class TtpDropdownComponent implements OnInit {

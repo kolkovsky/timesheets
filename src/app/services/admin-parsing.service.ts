@@ -3,11 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, ReplaySubject, Subject} from 'rxjs';
 import {TimetableModel} from "../models/timetable.model";
 
-
 @Injectable({
   providedIn: 'root'
 })
-
 export class AdminParsingService {
 
   private controllerName: string = '/api/v1/ttp-administrator';

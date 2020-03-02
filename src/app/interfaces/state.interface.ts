@@ -1,4 +1,6 @@
+import {Paylod} from './paylod.interface';
+
 export interface StateInterface {
   componentName: string;
-  payload: any;
+  payload: Paylod;
 }

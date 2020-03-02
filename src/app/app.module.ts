@@ -24,6 +24,7 @@ import {TtpGroupButtonComponent} from './shared/group-button/ttp-group-button.co
 import {TtpButtonComponent} from './shared/button/ttp-button.component';
 import {TtpDropdownComponent} from './shared/dropdown/ttp-dropdown.component';
 import {TtpBaseComponent} from './ng-core/ttp-base.component';
+import {TtpBannerComponent} from './shared/banner/ttp-banner.component';
 
 let adminConfigurations = [
   AppComponent,
@@ -41,7 +42,8 @@ let sharedComponents = [
   PopupComponent,
   TtpGroupButtonComponent,
   TtpButtonComponent,
-  TtpDropdownComponent
+  TtpDropdownComponent,
+  TtpBannerComponent
 ];
 
 export const AppComponents = [

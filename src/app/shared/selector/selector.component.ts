@@ -4,7 +4,6 @@ import {Item} from './item.model';
 @Component({
   selector: 'ttp-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectorComponent implements OnInit {

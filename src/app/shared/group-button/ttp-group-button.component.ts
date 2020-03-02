@@ -3,11 +3,11 @@ import {ButtonModel} from '../../models/button.model';
 import {StateInterface} from '../../interfaces/state.interface';
 import {StateService} from '../../services/state.service';
 import {TtpBaseComponent} from '../../ng-core/ttp-base.component';
+import {States} from 'src/app/constants/states';
 
 @Component({
   selector: 'ttp-group-button',
-  templateUrl: './ttp-group-button.component.html',
-  styleUrls: ['./ttp-group-button.component.less']
+  templateUrl: './ttp-group-button.component.html'
 })
 export class TtpGroupButtonComponent extends TtpBaseComponent {
   @Input()
@@ -45,7 +45,10 @@ export class TtpGroupButtonComponent extends TtpBaseComponent {
     const clickedButton = this.items.find((button: ButtonModel) => button.clicked = (button.label.toLowerCase() === item.label.toLowerCase()));
     this.stateService.setStateComponent({
       componentName: TtpGroupButtonComponent.name,
-      payload: {clickedButton: clickedButton}
+      payload: {
+        stateName: States.clickButton,
+        value: clickedButton
+      }
     });
     this.buttonClickChange.emit(clickedButton);
   }

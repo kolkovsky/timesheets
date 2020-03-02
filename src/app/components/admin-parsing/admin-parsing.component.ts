@@ -10,10 +10,9 @@ import {StateService} from '../../services/state.service';
 
 @Component({
   selector: 'admin-parsing',
-  templateUrl: './admin-parsing.component.html',
-  styleUrls: ['./admin-parsing.component.less']
+  templateUrl: './admin-parsing.component.html'
 })
-export class AdminParsingComponent  implements OnInit, OnDestroy {
+export class AdminParsingComponent implements OnInit, OnDestroy {
 
   public file: File;
   private formatsExcelFiles: string[] = ['.xlsx', '.xls'];
@@ -43,6 +42,7 @@ export class AdminParsingComponent  implements OnInit, OnDestroy {
   }
 
   public sendFile(): void {
+    console.log(this.file);
     this.adminParsingService.importFile(this.file).subscribe((data) => {
       this.popupService.showNotification(PopupTypeConstants.SUCCESS_TYPE, true, 'Преобразование файла завершено успешно', true);
       this.adminParsingService.importData$.next(data);

@@ -1,9 +1,11 @@
-<div class="ttp-button-container" [style.background-color]="backgroundColor">
+<div class="ttp-button-container">
   <ng-container *ngFor="let item of items">
-    <button type="button" class="btn"
-            [ngClass]="item.clicked ? buttonClass : buttonOutlineClass"
-            (click)="chooseElement(item)">
-      {{item.label}}
-    </button>
+    <div class="ttp-button-container-item">
+      <button type="button" class="btn"
+              [ngClass]="item.clicked ? buttonClass : buttonOutlineClass"
+              (click)="chooseElement(item)">
+        {{item.label}}
+      </button>
+    </div>
   </ng-container>
 </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {AdminParsingService} from '../../services/admin-parsing.service';
 import {TimetableUtils} from '../../utils/timetable.utils';
 import {UiTimesheetModel} from '../../models/ui-timesheet.model';
@@ -10,27 +10,28 @@ import {ButtonModel} from '../../models/button.model';
 import {TtpBaseComponent} from '../../ng-core/ttp-base.component';
 import {StateService} from '../../services/state.service';
 import {takeUntil} from 'rxjs/operators';
+import {GroupModel} from '../../models/group.model';
 
 @Component({
   selector: 'ttp-timetable-parsing',
-  templateUrl: './timetable-parsing.component.html',
-  styleUrls: ['./timetable-parsing.component.less']
+  templateUrl: './timetable-parsing.component.html'
 })
 export class TimetableParsingComponent extends TtpBaseComponent {
 
+  //todo test performance
+  /*
+  @HostListener('window:resize') screenResize(): void {
+    this.stateService.setStateComponent({
+      componentName: TimetableParsingComponent.name, payload: {
+        stateName: States.screenResizeState,
+        screenWidth: window.innerWidth
+      }
+    });
+  }
+   */
 
-  public groupsButtons: ButtonModel[] = [
-    {
-      id: 'sdsd', label: '12', clicked: false
-    },
-    {
-      id: 's5', label: '213', clicked: false
-    },
-    {
-      id: 's132', label: '234324', clicked: false
-    }
-  ];
-
+  public courses: ButtonModel[];
+  public groups: ButtonModel[];
   public weekday: string[] = WeekDaysConstant.WEEK_DAYS_ARRAY;
   public times: string[] = Object.keys(TimetableUtils.lessonTimes);
   public timeSheets: TimesheetModel[];
@@ -43,29 +44,35 @@ export class TimetableParsingComponent extends TtpBaseComponent {
 
   public ngOnInit(): void {
     super.ngOnInit();
-    if (localStorage.getItem('Timetable')) {
-      this.timeSheets = JSON.parse(localStorage.getItem('Timetable'));
-      this.uiTimesheets = this.timeSheets.map(timeSheet => this.convertToUiTimesheet(timeSheet));
-    }
+    this.loadTimetable();
+  }
 
+  private loadTimetable(): void {
     this.adminParsingService.importData$
       .pipe(takeUntil(this.unsubscribeStream$))
-      .subscribe(data => {
+      .subscribe((data: TimesheetModel[]) => {
         this.timeSheets = data;
-        localStorage.setItem('Timetable', JSON.stringify(this.timeSheets));
+        this.courses = this.initCourses(this.timeSheets);
         this.uiTimesheets = this.timeSheets.map(timeSheet => this.convertToUiTimesheet(timeSheet));
       });
   }
 
-  public processState(state: StateInterface): void {
-    console.log('Yep');
+  public chooseCourse(event: ButtonModel): void {
+    const timesheetModel: TimesheetModel = this.timeSheets
+      .find((timesheet: TimesheetModel) => timesheet.course.toString() === event.label);
+    this.groups = timesheetModel.groups.map((group: GroupModel) => new ButtonModel(group.name, false));
   }
 
-  public click(): void {
-    this.stateService.setStateComponent({
-      componentName: TimetableParsingComponent.name,
-      payload: {name: 'dfdf'}
-    });
+  public processState(state: StateInterface): void {
+
+  }
+
+  private initGroups(timesheets: TimesheetModel[]): ButtonModel[] {
+    return timesheets.map((timesheet: TimesheetModel) => new ButtonModel(timesheet.course.toString() + ' курс', false));
+  }
+
+  private initCourses(timesheets: TimesheetModel[]): ButtonModel[] {
+    return timesheets.map((timesheet: TimesheetModel) => new ButtonModel(timesheet.course.toString(), false));
   }
 
   private convertToUiTimesheet(timesheet: any): UiTimesheetModel {

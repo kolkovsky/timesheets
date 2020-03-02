@@ -1,4 +1,3 @@
-<ng-container *ngIf="iconName">
-  <img [src]="'../../../assets/images/svg/' + iconName +'.svg'" class="ttp-icon">
-</ng-container>
-
+<svg [ngClass]="customClass" [style.fill]="'white'" >
+  <use [attr.xlink:href]="'#'+iconName"></use>
+</svg>

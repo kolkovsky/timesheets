@@ -3,7 +3,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 @Component({
   selector: "ttp-shared-card",
   templateUrl: "./card.component.html",
-  styleUrls: ["./card.component.less"]
+  styleUrls: ["../../../assets/styles/components/card.component.less"]
 })
 
 export class CardComponent implements OnInit {

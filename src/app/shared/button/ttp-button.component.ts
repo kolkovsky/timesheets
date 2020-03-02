@@ -1,11 +1,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ButtonModel} from '../../models/button.model';
 
-
 @Component({
   selector: 'ttp-button',
-  templateUrl: './ttp-button.component.html',
-  styleUrls: ['./ttp-button.component.less']
+  templateUrl: './ttp-button.component.html'
 })
 export class TtpButtonComponent {
 
