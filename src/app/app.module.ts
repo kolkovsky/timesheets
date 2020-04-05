@@ -9,7 +9,7 @@ import {RouterModule} from '@angular/router';
 import {AlertModule, BsDropdownModule, ButtonsModule, ModalModule, ProgressbarModule, TabsModule} from 'ngx-bootstrap';
 import {SelectorComponent} from './shared/selector/selector.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AdminParsingComponent} from './components/admin-parsing/admin-parsing.component';
 import {AdminParsingService} from './services/admin-parsing.service';
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
@@ -25,6 +25,7 @@ import {TtpButtonComponent} from './shared/button/ttp-button.component';
 import {TtpDropdownComponent} from './shared/dropdown/ttp-dropdown.component';
 import {TtpBaseComponent} from './ng-core/ttp-base.component';
 import {TtpBannerComponent} from './shared/banner/ttp-banner.component';
+import {LoginComponent} from './components/login/login.component';
 
 let adminConfigurations = [
   AppComponent,
@@ -32,7 +33,8 @@ let adminConfigurations = [
   HeaderComponent,
   TimetableParsingComponent,
   AdminParsingComponent,
-  TableComponent
+  TableComponent,
+  LoginComponent
 ];
 
 let sharedComponents = [
@@ -73,6 +75,7 @@ let externalLibs = [
     RouterModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     externalLibs
   ],
   providers: [

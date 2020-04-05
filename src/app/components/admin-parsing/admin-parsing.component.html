@@ -3,8 +3,16 @@
   <div class="admin-parsing-container animated zoomIn">
     <div class="card bg-dark mb-3 admin-parsing-container-card">
       <div class="card-body">
-        <div class="admin-parsing-container-text">
+        <div class="admin-parsing-container-text" *ngIf="!file">
           <h1 class="display-4 text-white text-center">Загрузите файл для расписания!</h1>
+        </div>
+        <div class="admin-parsing-container-info animated fadeIn" *ngIf="file">
+          <ttp-icon iconName="issue-closed"
+                    customFill="#0f804a"
+                    customClass="admin-parsing-container-info-icon"></ttp-icon>
+          <div class="admin-parsing-container-info-text">
+            File was uploaded, size {{fileSize}} kb
+          </div>
         </div>
         <div class="admin-parsing-container-buttons">
           <div class="custom-file">
@@ -19,9 +27,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<!--todo Implement in Sprint 2-->
-<div class="admin-parsing__progress-bar-container" *ngIf="false">
-  <progressbar class="progress-striped active" [value]="100" [type]="'danger'"></progressbar>
 </div>

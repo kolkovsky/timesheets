@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpProgressEvent, HttpEventType, HttpHeaders} from '@angular/common/http';
 import {Observable, ReplaySubject, Subject} from 'rxjs';
-import {TimetableModel} from "../models/timetable.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class AdminParsingService {
 
   public importFile(file: File): Observable<any> {
     let body = new FormData();
-    body.append("file", file);
+    body.append('file', file);
     return this.http.post<any>(this.controllerName.concat('/time-tables/import'), body);
   }
 }

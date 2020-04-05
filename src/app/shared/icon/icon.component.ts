@@ -11,4 +11,7 @@ export class IconComponent {
 
   @Input()
   public customClass: string;
+
+  @Input()
+  public customFill: string = "white";
 }
