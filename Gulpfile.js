@@ -1,9 +1,14 @@
+const pathMainLess = './src/assets/styles/common.less';
+const pathDist = "./dist";
+
 const gulp = require("gulp");
 const svgstore = require("gulp-svgstore");
 const cheerio = require("gulp-cheerio");
 const path = require("path");
 const svgmin = require("gulp-svgmin");
 const inject = require("gulp-inject");
+const less = require("gulp-less");
+const minifyCss = require("gulp-clean-css");
 
 gulp.task("prepare-svgstore", () => {
   var svgs = gulp
@@ -40,4 +45,11 @@ gulp.task("prepare-svgstore", () => {
     .src('./src/index.html')
     .pipe(inject(svgs, {transform: fileContents}))
     .pipe(gulp.dest("./src/"));
+});
+
+gulp.task("prepare-styles", () => {
+           return gulp.src(pathMainLess)
+                  .pipe(less())
+                  .pipe(minifyCss())
+                  .pipe(gulp.dest([pathDist]))
 });

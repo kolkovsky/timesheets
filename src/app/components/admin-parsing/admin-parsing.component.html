@@ -11,7 +11,7 @@
                     customFill="#0f804a"
                     customClass="admin-parsing-container-info-icon"></ttp-icon>
           <div class="admin-parsing-container-info-text">
-            File was uploaded, size {{fileSize}} kb
+            Файл загружен, размер {{fileSize}} kb
           </div>
         </div>
         <div class="admin-parsing-container-buttons">
@@ -21,7 +21,8 @@
             <label class="custom-file-label" for="inputGroupFile04">Выберите файл</label>
           </div>
           <button type="button" class="btn btn-danger btn-block mt-4" (click)="sendFile()"
-                  [disabled]="!file || showErrorUpload">Загрузить
+                  [disabled]="!file || showErrorUpload">
+                  Загрузить
           </button>
         </div>
       </div>

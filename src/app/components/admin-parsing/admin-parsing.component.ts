@@ -1,7 +1,6 @@
 import {Component, OnDestroy} from '@angular/core';
 import {AdminParsingService} from '../../services/admin-parsing.service';
 import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
-import {PopupService} from '../../shared/popup/popup.service';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
 
@@ -11,15 +10,14 @@ import {Subject} from 'rxjs';
 })
 export class AdminParsingComponent implements OnDestroy {
   public fileSize: number;
-  public showErrorUpload: boolean = false;
-  public unsubscribeStream$: Subject<any> = new Subject();
-  private file: File;
-  private formatsExcelFiles: string[] = ['.xlsx', '.xls'];
   public add:boolean;
+  public showErrorUpload: boolean = false;
+  public file: File;
+  public unsubscribeStream$: Subject<any> = new Subject();
+  private readonly formatsExcelFiles: string[] = ['.xlsx', '.xls'];
 
   constructor(private adminParsingService: AdminParsingService,
               private loaderService: Ng4LoadingSpinnerService,
-              private popupService: PopupService,
               private router: Router) {
   }
 
@@ -43,7 +41,7 @@ export class AdminParsingComponent implements OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.unsubscribeStream$.next();
     this.unsubscribeStream$.complete();
   }

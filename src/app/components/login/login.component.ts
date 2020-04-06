@@ -1,5 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+
+interface CarouselItem {
+  header: string;
+  description: string;
+  imageLink: string;
+}
 
 @Component({
   selector: 'ttp-login',
@@ -8,6 +14,10 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '
 export class LoginComponent implements OnInit {
 
   public fromGroup: FormGroup;
+  public carouselContent: any[] = [
+    {header: "Hello", description: "Fuck you", imageLink: null}
+  ];
+  public showErrorNotification: boolean = false;
 
   public ngOnInit(): void {
     this.initForm();
@@ -21,6 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   public submitForm(): void {
-    console.log("LOGIN");
+    this.showErrorNotification = !this.showErrorNotification;
   }
 }

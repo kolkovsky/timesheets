@@ -6,7 +6,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRouterModule} from './components/app-router.module';
 import {RouterModule} from '@angular/router';
-import {AlertModule, BsDropdownModule, ButtonsModule, ModalModule, ProgressbarModule, TabsModule} from 'ngx-bootstrap';
+import {AlertModule, BsDropdownModule, ButtonsModule, ModalModule, ProgressbarModule, TabsModule, CarouselModule} from 'ngx-bootstrap';
 import {SelectorComponent} from './shared/selector/selector.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -26,6 +26,7 @@ import {TtpDropdownComponent} from './shared/dropdown/ttp-dropdown.component';
 import {TtpBaseComponent} from './ng-core/ttp-base.component';
 import {TtpBannerComponent} from './shared/banner/ttp-banner.component';
 import {LoginComponent} from './components/login/login.component';
+import { NotificationComponent } from './shared/notification/notification.component';
 
 let adminConfigurations = [
   AppComponent,
@@ -45,7 +46,8 @@ let sharedComponents = [
   TtpGroupButtonComponent,
   TtpButtonComponent,
   TtpDropdownComponent,
-  TtpBannerComponent
+  TtpBannerComponent,
+  NotificationComponent
 ];
 
 export const AppComponents = [
@@ -60,7 +62,8 @@ let externalLibs = [
   AlertModule.forRoot(),
   TabsModule.forRoot(),
   ProgressbarModule.forRoot(),
-  BsDropdownModule.forRoot()
+  BsDropdownModule.forRoot(),
+  CarouselModule.forRoot()
 ];
 
 

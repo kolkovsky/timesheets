@@ -1,13 +1,37 @@
 <div class="ttp-login-container">
-  <div class="ttp-login-container-form">
-    <form [formGroup]="fromGroup" (ngSubmit)="submitForm()">
-      <label for="form-login-login">Имя пользователя:</label>
-      <input class="ttp-login-container-form-login" id="form-login-login">
-      <label for="form-login-password">Пароль</label>
-      <input class="ttp-login-container-form-password" id="form-login-password">
-    </form>
+  <div class="ttp-login-container__info-container">
+      <div class="ttp-login-container__info">
+        <div class="ttp-login-container__info-header">
+          Система управлением расписанием
+        </div>
+        <div class="ttp-login-container__info-text">
+          Используйте уже готовое расписание
+        </div>
+        <div class="ttp-login-container__info-text">
+          Cоздавайте новоe
+        </div>
+        <div class="ttp-login-container__info-text">
+          Изменяйтe существующие
+        </div>
+        <div class="ttp-login-container__info-text">
+          Откажитесь от бумажных копий.
+        </div>
+      </div>
   </div>
-  <div class="ttp-login-container-submit">
-    <button type="submit" (click)="submitForm()">Войти</button>
+  <div class="ttp-login-container__form-container">
+
+    <ttp-notification [visible]="showErrorNotification"
+                      header="Ошибка"
+                      description="Введенные данные неверны"
+                      (closeNotificationChange)="showErrorNotification=false">
+    </ttp-notification>
+
+    <div class="ttp-login-container__form animated fadeInDown">
+        <label class="ttp-login-container__form-label" for="form-login">Имя пользователя:</label>
+        <input class="ttp-login-container__form-input form-control" id="form-login" placeholder="Username">
+        <label class="ttp-login-container__form-label" for="form-password">Пароль:</label>
+        <input class="ttp-login-container__form-input form-control" id="form-password" type="password" placeholder="Password">
+      <button class="btn btn-block btn-outline-danger" type="submit" (click)="submitForm()">Войти</button>
+    </div>
   </div>
 </div>
