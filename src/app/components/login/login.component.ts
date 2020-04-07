@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
-
-interface CarouselItem {
-  header: string;
-  description: string;
-  imageLink: string;
-}
+import { LoginService } from 'src/app/services/login.service';
+import { takeUntil, tap, catchError } from 'rxjs/operators';
+import { Subject, of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -17,43 +14,57 @@ export class LoginComponent implements OnInit {
   public isSmallScreen: boolean;
   public errorLoginMessage: string;
   public errorPasswordMessage: string;
+  public submitEnabled: boolean = false;
+  public unsubscribeStream$: Subject<void> = new Subject();
+
+  constructor(private loginService: LoginService){}
 
   public ngOnInit(): void {
     this.isSmallScreen = !(window.innerWidth > 1080);
     this.initForm();
-
-    this.fromGroup.statusChanges.subscribe(state => console.log(state));
   }
 
   private initForm(): void {
     this.fromGroup = new FormGroup({
-      login: new FormControl("", Validators.compose([Validators.required])),
+      login: new FormControl("", Validators.compose([Validators.required, Validators.maxLength(30)])),
       password: new FormControl("", Validators.compose([Validators.required]))
+    });
+    this.fromGroup.statusChanges.subscribe(state => {
+      this.submitEnabled = "valid" === state.toLowerCase();
     });
   }
 
   public submitForm(): void {
-    this.showErrorNotification = !this.showErrorNotification;
-  }
-
-  public getErrorText(controlName: string): string {
-    const control: AbstractControl = this.fromGroup.controls[controlName];
-    if (control && control.touched && control.errors) {
-      console.log(control.errors);
-      return "suck"
+    if(this.fromGroup.valid) {
+      this.submitEnabled = false;
+      const login: string = this.fromGroup.controls['login'].value;
+      const password: string = this.fromGroup.controls['password'].value;
+      this.loginService.sendLoginRequest(login, password).pipe(
+        takeUntil(this.unsubscribeStream$),
+        tap(() => console.log("Good")),
+        catchError(() => {
+          this.showErrorNotification = true;
+          this.submitEnabled = true;
+          return of(null);
+        })).subscribe();
     }
-    return null;
   }
-
 
   public checkInputState(controlName: string): void {
     const control: AbstractControl = this.fromGroup.controls[controlName];
-    if (control && control.touched && control.errors) {
-        if(control.errors["required"] && controlName === "login") {
-            this.errorLoginMessage = "*это поле является обязательным!";
-        }
-        if(control.errors["required"] && controlName === "password") {
-          this.errorPasswordMessage = "*это поле является обязательным!";
+    if (control &&  control.errors) {
+      if(control.errors["required"] && controlName === "login") {
+        this.errorLoginMessage = "*это поле является обязательным!";
+      }
+      if(control.errors["required"] && controlName === "password") {
+        this.errorPasswordMessage = "*это поле является обязательным!";
+      }
+      if(control.errors["maxlength"] && controlName === "login") {
+        this.errorLoginMessage = "*максимальное число символов 30"
+      }
+    } else {
+      if(controlName === "login") {
+        this.errorLoginMessage = undefined;
       }
     }
   }

@@ -38,7 +38,8 @@
             placeholder="Username" 
             formControlName="login"  
             (focus)="clearErrorMessage('login')"    
-            (blur)="checkInputState('login')">
+            (blur)="checkInputState('login')"
+            (input)="checkInputState('login')">
       <p *ngIf="errorLoginMessage" 
         class="ttp-login-container__form-error animated fadeInDown">
         <ttp-icon iconName="alert"
@@ -64,8 +65,10 @@
         </ttp-icon>
         {{errorPasswordMessage}}
       </p>
-      <button class="btn btn-block btn-outline-danger"
+      <button class="btn btn-block"
+              [ngClass]="submitEnabled ? 'btn-danger' : 'btn-outline-danger'"
               type="submit" 
+              [disabled]="!submitEnabled"
               (click)="submitForm()">
               Войти
       </button>

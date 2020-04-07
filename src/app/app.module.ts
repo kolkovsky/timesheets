@@ -27,6 +27,7 @@ import {TtpBaseComponent} from './ng-core/ttp-base.component';
 import {TtpBannerComponent} from './shared/banner/ttp-banner.component';
 import {LoginComponent} from './components/login/login.component';
 import { NotificationComponent } from './shared/notification/notification.component';
+import { LoginService } from './services/login.service';
 
 let adminConfigurations = [
   AppComponent,
@@ -84,7 +85,8 @@ let externalLibs = [
   providers: [
     AdminParsingService,
     PopupService,
-    StateService
+    StateService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
