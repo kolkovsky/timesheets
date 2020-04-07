@@ -9,10 +9,10 @@ export class NotificationComponent {
     public visible: boolean;
 
     @Input()
-    public header: string;
+    public text: string;
 
     @Input()
-    public description: string;
+    public animationType: string = "fadeIdDown";
 
     @Output()
     public closeNotificationChange: EventEmitter<any> = new EventEmitter<any>();

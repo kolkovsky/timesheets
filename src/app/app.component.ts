@@ -15,5 +15,6 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    console.log(this.router.routerState.snapshot.url);
   }
 }

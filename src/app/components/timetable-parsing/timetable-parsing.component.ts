@@ -1,35 +1,22 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {AdminParsingService} from '../../services/admin-parsing.service';
-import {TimetableUtils} from '../../utils/timetable.utils';
-import {UiTimesheetModel} from '../../models/ui-timesheet.model';
-import {UiGroupModel} from '../../models/ui-group.model';
-import {TimesheetModel} from '../../models/timesheet.model';
-import {WeekDaysConstant} from '../../constants/week-days.constant';
-import {StateInterface} from '../../interfaces/state.interface';
-import {ButtonModel} from '../../models/button.model';
-import {TtpBaseComponent} from '../../ng-core/ttp-base.component';
-import {StateService} from '../../services/state.service';
-import {takeUntil} from 'rxjs/operators';
-import {GroupModel} from '../../models/group.model';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { AdminParsingService } from '../../services/admin-parsing.service';
+import { TimetableUtils } from '../../utils/timetable.utils';
+import { UiTimesheetModel } from '../../models/ui-timesheet.model';
+import { UiGroupModel } from '../../models/ui-group.model';
+import { TimesheetModel } from '../../models/timesheet.model';
+import { WeekDaysConstant } from '../../constants/week-days.constant';
+import { StateInterface } from '../../interfaces/state.interface';
+import { ButtonModel } from '../../models/button.model';
+import { TtpBaseComponent } from '../../ng-core/ttp-base.component';
+import { StateService } from '../../services/state.service';
+import { takeUntil } from 'rxjs/operators';
+import { GroupModel } from '../../models/group.model';
 
 @Component({
   selector: 'ttp-timetable-parsing',
   templateUrl: './timetable-parsing.component.html'
 })
 export class TimetableParsingComponent extends TtpBaseComponent {
-
-  //todo test performance
-  /*
-  @HostListener('window:resize') screenResize(): void {
-    this.stateService.setStateComponent({
-      componentName: TimetableParsingComponent.name, payload: {
-        stateName: States.screenResizeState,
-        screenWidth: window.innerWidth
-      }
-    });
-  }
-   */
-
   public courses: ButtonModel[];
   public groups: ButtonModel[];
   public weekday: string[] = WeekDaysConstant.WEEK_DAYS_ARRAY;

@@ -1,7 +1,9 @@
-<div class="ttp-notification-container" *ngIf="visible">
-    <alert class="ttp-notification-container__alert" type="danger animated fadeInDown" [dismissible]="visible"
+<div *ngIf="visible"
+    class="ttp-notification-container animated" 
+    [ngClass]="animationType">
+    <alert class="ttp-notification-container__alert" type="danger" 
+    [dismissible]="visible"
         (onClose)="closeNotification()">
-        <h4 class="alert-heading">{{header}}</h4>
-        <p>{{description}}</p>
+        <h5 class="alert-heading">{{text}}</h5>
     </alert>
 </div>

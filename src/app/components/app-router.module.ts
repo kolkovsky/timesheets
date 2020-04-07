@@ -7,8 +7,8 @@ import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'welcome', component: WelcomePageComponent, data: {animation: 'WelcomePage'}},
-  {path: '', component: WelcomePageComponent, data: {animation: 'WelcomePage'}},
+  {path: 'welcome', component: WelcomePageComponent},
+  {path: '', component: LoginComponent},
   {path: 'admin-parsing', component: AdminParsingComponent},
   {path: 'timetable-parsing', component: TimetableParsingComponent}
 ];

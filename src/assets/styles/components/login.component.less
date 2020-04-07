@@ -1,30 +1,44 @@
-
-@import "./fonts.less";
-
 .ttp-login-container {
     display: flex;
-    height: 900px;
+    height: 56.25rem;
     justify-content: center;
 
+    @media screen and (max-width: 1080px) {
+        flex-direction: column;
+        height: auto;
+    }
 
     &__info-container {
-        flex: 0 0 60%;
+        flex: 0 0 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         padding: 2rem 1rem 2rem 1rem;
         align-items: center;
         height: 100%;
+        
+        @media screen and (max-width: 1080px) {
+            flex: 0 0 100%;
+            height: auto;
+            flex-direction: row;
+            padding: 1rem 1rem 1rem 1rem;
+        }
     }
 
     &__form-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        flex: 0 0 40%;
+        flex: 0 0 50%;
         padding: 3rem 1rem 3rem 1rem;
         align-items: center;
         height: 100%;
+        
+        @media screen and (max-width: 1080px) {
+            flex: 0 0 100%;
+            height: auto;
+            padding: 1rem 1rem 1rem 1rem;
+        }
     }
 
     &__form {
@@ -33,11 +47,10 @@
         justify-content: space-between;
         margin: 0 auto;
         border: 1px solid gray;
-        background-color: rgb(37, 37, 37);
         border-radius: 1rem;
         padding: 1rem 1rem 1rem 1rem;
-        height: 300px;
-        width: 400px;
+        height: 18.75rem;
+        width: 31.25rem;
 
         &-input {
             margin-top: 0.5rem;
@@ -45,9 +58,32 @@
         }
 
         &-label {
+            //todo add fonts
             .ttp-nunito-semi-bold();
             font-size: 1.25rem;
-            color:rgb(250, 242, 242);
+            color: black;
+        }
+
+        &-error {
+            display: inline-flex;
+            border-radius: 0.5rem;
+            background-color: #dc3545;;
+            color: rgb(73, 20, 20);
+            opacity: 0.3;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 0.5rem;
+            padding-left: 1rem;
+        }
+
+        &-warning {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 1rem;
+        }
+
+        @media screen and (max-width: 1080px) {
+            height: fit-content;
         }
     }
 
@@ -55,11 +91,10 @@
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        height: 400px;
-        width: 600px;
+        height: 25rem;
+        width: 37.5rem;
         padding-top:3rem;
     
-
         &-header {
             font-size: 3rem;
             color: black;
@@ -69,6 +104,11 @@
             font-size: 1.5rem;
             color: black;
             font-style: italic;
+        }
+
+        @media screen and (max-width: 1080px) {
+            height: fit-content;
+            width: fit-content;
         }
     }
 }
