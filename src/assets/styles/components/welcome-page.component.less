@@ -1,7 +1,39 @@
-.welcome-page {
+.ttp-welcome-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12rem 24rem 0 24rem;
 
-  &-container {
+  &__item {
+    width: 100%;
+  }
+
+  &__alert {
+    border-radius: 1rem;
+    background-color: rgb(182, 169, 169);
     display: flex;
-    justify-content: center;
+    padding: 2rem;
+
+    &-icon {
+      flex: 0 0 25%;
+      
+      &.info {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    &-text {
+      flex: 0 0 75%;
+    }
+
+  }
+
+  &__parsing {
+
+  }
+  
+  &__schedule {
+
   }
 }

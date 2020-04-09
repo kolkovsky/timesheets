@@ -1,24 +1,26 @@
-<div class="container-fluid img-fluid welcome-page">
-  <div class="row pt-5">
-    <div class="col-6">
-      <div class="welcome-page-container">
-        <ttp-shared-card [iconName]="'desktop-download'"
-                         [headerText]="'Загрузить расписание'"
-                         [description]="'Выберите нужный файл и сделайте ваше расписание общедоступным'"
-                         [buttonName]="'Перейти к загрузке'"
-                         (navigateChange)="navigateToAdminParsing()">
-        </ttp-shared-card>
+<div class="ttp-welcome-page-container">
+  <div class="ttp-welcome-page-container__item">
+    <div class="ttp-welcome-page-container__alert">
+      <div class="ttp-welcome-page-container__alert-icon">
+          <ttp-icon iconName="info"
+                    customFill="black"
+                    customClass="info">      
+          </ttp-icon>
+      </div>
+      <div class="ttp-welcome-page-container__alert-text">
+        <h4>Мы отображаем ваш последний визит</h4>
+        <p>Ваши последние действия были произведенны 24.03.2020 в 18:37:03</p>
       </div>
     </div>
-    <div class="col-6">
-      <div class="welcome-page-container">
-        <ttp-shared-card [iconName]="'calendar'"
-                         [headerText]="'Текущее расписание'"
-                         [description]="'Посмотрите текущее расписание для всех'"
-                         [buttonName]="'Перейти к просмотру'"
-                         (navigateChange)="navigateToTimetable()">
-        </ttp-shared-card>
-      </div>
+  </div>
+  <div class="ttp-welcome-page-container__item">
+    <div class="ttp-welcome-page-container__parsing">
+
+    </div>
+  </div>
+  <div class="ttp-welcome-page-container__item">
+    <div class="ttp-welcome-page-container__schedule">
+
     </div>
   </div>
 </div>
