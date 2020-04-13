@@ -4,26 +4,41 @@
     <div class="card bg-dark mb-3 admin-parsing-container-card">
       <div class="card-body">
         <div class="admin-parsing-container-text" *ngIf="!file">
-          <h1 class="display-4 text-white text-center">Загрузите файл для расписания!</h1>
+          <h1 class="display-4 text-white text-center">
+            Загрузите файл для расписания!
+          </h1>
         </div>
         <div class="admin-parsing-container-info animated fadeIn" *ngIf="file">
-          <ttp-icon iconName="issue-closed"
-                    customFill="#0f804a"
-                    customClass="admin-parsing-container-info-icon">
+          <ttp-icon
+            iconName="issue-closed"
+            customFill="#0f804a"
+            customClass="admin-parsing-container-info-icon"
+          >
           </ttp-icon>
           <div class="admin-parsing-container-info-text">
-            Файл загружен, размер {{fileSize}} kb
+            Файл загружен, размер {{ fileSize }} kb
           </div>
         </div>
         <div class="admin-parsing-container-buttons">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputGroupFile04" (select)="selectFile($event)"
-                   (change)="selectFile($event)">
-            <label class="custom-file-label" for="inputGroupFile04">Выберите файл</label>
+            <input
+              type="file"
+              class="custom-file-input"
+              id="inputGroupFile04"
+              (select)="selectFile($event)"
+              (change)="selectFile($event)"
+            />
+            <label class="custom-file-label" for="inputGroupFile04"
+              >Выберите файл</label
+            >
           </div>
-          <button type="button" class="btn btn-danger btn-block mt-4" (click)="sendFile()"
-                  [disabled]="!file || showErrorUpload">
-                  Загрузить
+          <button
+            type="button"
+            class="btn btn-danger btn-block mt-4"
+            (click)="sendFile()"
+            [disabled]="!file || showErrorUpload"
+          >
+            Загрузить
           </button>
         </div>
       </div>

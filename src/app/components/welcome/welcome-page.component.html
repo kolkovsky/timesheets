@@ -1,26 +1,80 @@
 <div class="ttp-welcome-page-container">
-  <div class="ttp-welcome-page-container__item">
+  <div class="ttp-welcome-page-container__item animated fadeInLeft">
     <div class="ttp-welcome-page-container__alert">
       <div class="ttp-welcome-page-container__alert-icon">
-          <ttp-icon iconName="info"
-                    customFill="black"
-                    customClass="info">      
-          </ttp-icon>
+        <ttp-icon iconName="info" customFill="white" customClass="info">
+        </ttp-icon>
       </div>
       <div class="ttp-welcome-page-container__alert-text">
-        <h4>Мы отображаем ваш последний визит</h4>
-        <p>Ваши последние действия были произведенны 24.03.2020 в 18:37:03</p>
+        <h4 class="ttp-welcome-page-container__alert-text__header">
+          Мы отображаем ваш последний визит
+        </h4>
+        <p class="ttp-welcome-page-container__alert-text__desc">
+          Ваши последние действия были произведенны 24.03.2020 в 18:37:03.
+        </p>
+        <p class="ttp-welcome-page-container__alert-text__desc">
+          Для подрбронной информации, вы можете обратиться к администратору или
+          напишите в службу поддержки.
+        </p>
       </div>
     </div>
   </div>
-  <div class="ttp-welcome-page-container__item">
+  <div class="ttp-welcome-page-container__item animated fadeInRight">
     <div class="ttp-welcome-page-container__parsing">
-
+      <div class="ttp-welcome-page-container__parsing-icon">
+        <ttp-icon
+          iconName="cloud-upload"
+          customFill="white"
+          customClass="upload"
+        ></ttp-icon>
+      </div>
+      <div class="ttp-welcome-page-container__parsing-text">
+        <h4 class="ttp-welcome-page-container__alert-text__header">
+          Преобразовать расписание из Excel формата в цифровой.
+        </h4>
+        <p class="ttp-welcome-page-container__alert-text__desc">
+          Подготовьте документ и загрузите его
+        </p>
+        <p class="ttp-welcome-page-container__alert-text__desc">
+          Нажмите на кнопку "Преобразовать", чтобы перейти на следующую страницу
+        </p>
+        <div class="ttp-welcome-page-container__parsing-text__button">
+          <button
+            class="btn btn-danger btn-block"
+            (click)="navigateToAdminParsing()"
+          >
+            Преобразовать
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="ttp-welcome-page-container__item">
+  <div class="ttp-welcome-page-container__item animated fadeInLeft">
     <div class="ttp-welcome-page-container__schedule">
-
+      <div class="ttp-welcome-page-container__schedule-icon">
+        <ttp-icon
+          iconName="calendar"
+          customClass="calendar"
+          customFill="white"
+        ></ttp-icon>
+      </div>
+      <div class="ttp-welcome-page-container__schedule-text">
+        <h4 class="ttp-welcome-page-container__schedule-text__header">
+          Просмотр расписания и его изменение.
+        </h4>
+        <p class="ttp-welcome-page-container__schedule-text__desc">
+          Посмотрите текущее раписание, а также отредактируйте по необходимости
+        </p>
+        <p class="ttp-welcome-page-container__schedule-text__desc">
+          Нажмите на кнопку "К расписанию", чтобы перейти на следующую страницу
+        </p>
+        <div
+          class="ttp-welcome-page-container__schedule-text__button btn btn-block btn-danger"
+          (click)="navigateToTimetable()"
+        >
+          К расписанию
+        </div>
+      </div>
     </div>
   </div>
 </div>

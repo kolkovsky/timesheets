@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { LoginService } from 'src/app/services/login.service';
-import { takeUntil, tap, catchError } from 'rxjs/operators';
-import { Subject, of } from 'rxjs';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  AbstractControl,
+} from "@angular/forms";
+import { LoginService } from "src/app/services/login.service";
+import { takeUntil, tap, catchError } from "rxjs/operators";
+import { Subject, of } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html'
+  selector: "app-login",
+  templateUrl: "./login.component.html",
 })
 export class LoginComponent implements OnInit {
   public fromGroup: FormGroup;
@@ -17,7 +23,7 @@ export class LoginComponent implements OnInit {
   public submitEnabled: boolean = false;
   public unsubscribeStream$: Subject<void> = new Subject();
 
-  constructor(private loginService: LoginService){}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   public ngOnInit(): void {
     this.isSmallScreen = !(window.innerWidth > 1080);
@@ -26,54 +32,66 @@ export class LoginComponent implements OnInit {
 
   private initForm(): void {
     this.fromGroup = new FormGroup({
-      login: new FormControl("", Validators.compose([Validators.required, Validators.maxLength(30)])),
-      password: new FormControl("", Validators.compose([Validators.required]))
+      login: new FormControl(
+        "",
+        Validators.compose([Validators.required, Validators.maxLength(30)])
+      ),
+      password: new FormControl("", Validators.compose([Validators.required])),
     });
-    this.fromGroup.statusChanges.subscribe(state => {
+    this.fromGroup.statusChanges.subscribe((state) => {
       this.submitEnabled = "valid" === state.toLowerCase();
     });
   }
 
   public submitForm(): void {
-    if(this.fromGroup.valid) {
+    if (this.fromGroup.valid) {
       this.submitEnabled = false;
-      const login: string = this.fromGroup.controls['login'].value;
-      const password: string = this.fromGroup.controls['password'].value;
-      this.loginService.sendLoginRequest(login, password).pipe(
-        takeUntil(this.unsubscribeStream$),
-        tap(() => console.log("Good")),
-        catchError(() => {
-          this.showErrorNotification = true;
-          this.submitEnabled = true;
-          return of(null);
-        })).subscribe();
+      const login: string = this.fromGroup.controls["login"].value;
+      const password: string = this.fromGroup.controls["password"].value;
+      this.loginService
+        .sendLoginRequest(login, password)
+        .pipe(
+          takeUntil(this.unsubscribeStream$),
+          tap(() => console.log("Good")),
+          catchError(() => {
+            this.navigateToWelcomePage();
+            // this.showErrorNotification = true;
+            // this.submitEnabled = true;
+            return of(null);
+          })
+        )
+        .subscribe();
     }
+  }
+
+  private navigateToWelcomePage(): void {
+    this.router.navigateByUrl("/welcome");
   }
 
   public checkInputState(controlName: string): void {
     const control: AbstractControl = this.fromGroup.controls[controlName];
-    if (control &&  control.errors) {
-      if(control.errors["required"] && controlName === "login") {
+    if (control && control.errors) {
+      if (control.errors["required"] && controlName === "login") {
         this.errorLoginMessage = "*это поле является обязательным!";
       }
-      if(control.errors["required"] && controlName === "password") {
+      if (control.errors["required"] && controlName === "password") {
         this.errorPasswordMessage = "*это поле является обязательным!";
       }
-      if(control.errors["maxlength"] && controlName === "login") {
-        this.errorLoginMessage = "*максимальное число символов 30"
+      if (control.errors["maxlength"] && controlName === "login") {
+        this.errorLoginMessage = "*максимальное число символов 30";
       }
     } else {
-      if(controlName === "login") {
+      if (controlName === "login") {
         this.errorLoginMessage = undefined;
       }
     }
   }
 
   public clearErrorMessage(controlName: string): void {
-    if(controlName === "password") {
+    if (controlName === "password") {
       this.errorPasswordMessage = undefined;
     }
-    if(controlName === "login") {
+    if (controlName === "login") {
       this.errorLoginMessage = undefined;
     }
   }
