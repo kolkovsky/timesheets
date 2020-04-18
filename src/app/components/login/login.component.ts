@@ -6,9 +6,10 @@ import {
   AbstractControl,
 } from "@angular/forms";
 import { LoginService } from "src/app/services/login.service";
-import { takeUntil, tap, catchError } from "rxjs/operators";
+import { takeUntil, tap, catchError, finalize } from "rxjs/operators";
 import { Subject, of } from "rxjs";
 import { Router } from "@angular/router";
+import { LoaderService } from "src/app/services/loader.service";
 
 @Component({
   selector: "app-login",
@@ -23,7 +24,11 @@ export class LoginComponent implements OnInit {
   public submitEnabled: boolean = false;
   public unsubscribeStream$: Subject<void> = new Subject();
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private loaderService: LoaderService
+  ) {}
 
   public ngOnInit(): void {
     this.isSmallScreen = !(window.innerWidth > 1080);
@@ -48,17 +53,18 @@ export class LoginComponent implements OnInit {
       this.submitEnabled = false;
       const login: string = this.fromGroup.controls["login"].value;
       const password: string = this.fromGroup.controls["password"].value;
+      this.loaderService.showDefaultLoader("Loading");
       this.loginService
         .sendLoginRequest(login, password)
         .pipe(
           takeUntil(this.unsubscribeStream$),
-          tap(() => console.log("Good")),
+          tap(() => this.navigateToWelcomePage()),
           catchError(() => {
-            this.navigateToWelcomePage();
-            // this.showErrorNotification = true;
-            // this.submitEnabled = true;
+            this.showErrorNotification = true;
+            this.submitEnabled = true;
             return of(null);
-          })
+          }),
+          finalize(() => this.loaderService.hideSpinner())
         )
         .subscribe();
     }

@@ -4,7 +4,6 @@
   "scripts": {
     "ng": "ng ",
     "start": "ng serve --port 4201 --proxy-config proxy.config.json",
-    "start stub-server": "json-server --proxy-config proxy.config.json --watch ./src/assets/mocks/import.json --routes ./src/assets/mocks/routes.json ",
     "stub-server": "node src/assets/stub-server/stub-server.js ",
     "build:stats": "ng build --stats-json",
     "analyze": "webpack-bundle-analyzer dist/TimeSheets/stats-es2015.json",
@@ -26,11 +25,12 @@
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
     "animate.css": "^3.7.2",
+    "body-parser": "^1.19.0",
     "bootstrap": "4.1.1",
     "express": "^4.17.1",
     "multer": "^1.4.2",
-    "ng4-loading-spinner": "^1.2.3",
     "ngx-bootstrap": "^5.1.2",
+    "ngx-spinner": "^9.0.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

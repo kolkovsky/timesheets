@@ -1,8 +1,9 @@
 import { Component, OnDestroy } from "@angular/core";
 import { AdminParsingService } from "../../services/admin-parsing.service";
-import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
+import { LoaderService } from "src/app/services/loader.service";
+import { finalize } from "rxjs/operators";
 
 @Component({
   selector: "admin-parsing",
@@ -18,8 +19,8 @@ export class AdminParsingComponent implements OnDestroy {
 
   constructor(
     private adminParsingService: AdminParsingService,
-    private loaderService: Ng4LoadingSpinnerService,
-    private router: Router
+    private router: Router,
+    private loaderService: LoaderService
   ) {}
 
   public selectFile(event: any): void {
@@ -36,12 +37,13 @@ export class AdminParsingComponent implements OnDestroy {
   }
 
   public sendFile(): void {
-    this.adminParsingService.importFile(this.file).subscribe((data) => {
-      this.adminParsingService.importData$.next(data);
-      setTimeout(() => {
-        this.router.navigateByUrl("timetable-parsing");
-      }, 2000);
-    });
+    this.loaderService.showDefaultLoader("Parsing");
+    this.adminParsingService
+      .importFile(this.file)
+      .pipe(finalize(() => this.loaderService.hideSpinner()))
+      .subscribe(() => {
+        //todo ask for navigate on other page
+      });
   }
 
   public ngOnDestroy(): void {

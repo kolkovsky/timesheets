@@ -1,20 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, RouterState} from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router, RouterState } from "@angular/router";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
+  selector: "app-root",
+  templateUrl: "./app.component.html",
 })
 export class AppComponent implements OnInit {
-
   public visibleHeader: boolean = true;
 
   constructor(private router: Router) {
     const state: RouterState = router.routerState;
-    console.log(state);
   }
 
-  public ngOnInit(): void {
-    console.log(this.router.routerState.snapshot.url);
-  }
+  public ngOnInit(): void {}
 }
