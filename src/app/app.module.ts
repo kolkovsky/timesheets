@@ -38,6 +38,7 @@ import { LoginService } from "./services/login.service";
 import { TtpLoaderComponent } from "./shared/loader/ttp-loader.component";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoaderService } from "./services/loader.service";
+import { TimetableService } from "./services/timetable.service";
 
 let adminConfigurations = [
   AppComponent,
@@ -93,6 +94,7 @@ let externalLibs = [
     StateService,
     LoginService,
     LoaderService,
+    TimetableService,
   ],
   bootstrap: [AppComponent],
 })

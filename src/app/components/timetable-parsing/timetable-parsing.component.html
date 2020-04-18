@@ -1,11 +1,27 @@
 <div class="ttp-timetable-parsing">
   <div class="ttp-timetable-parsing__course-container animated fadeInRight">
-    <ttp-group-button [items]="courses" (buttonClickChange)="chooseCourse($event)"></ttp-group-button>
+    <ttp-group-button
+      [items]="courses"
+      (buttonClickChange)="selectCourse($event)"
+    ></ttp-group-button>
   </div>
-  <div class="ttp-timetable-parsing__course-container animated fadeInRight" *ngIf="groups">
-    <ttp-group-button [items]="groups"></ttp-group-button>
+  <div
+    class="ttp-timetable-parsing__course-container animated fadeInRight"
+    *ngIf="groups"
+  >
+    <ttp-group-button
+      [items]="groups"
+      (buttonClickChange)="selectGroup($event)"
+    ></ttp-group-button>
   </div>
   <div class="ttp-timetable-parsing__timetable-container animated fadeInRight">
-    <ttp-banner></ttp-banner>
+    <ttp-banner>
+      <ttp-table
+        *ngIf="selectedUiGroup"
+        [weekdays]="weekdays"
+        [times]="times"
+        [uiGroup]="selectedUiGroup"
+      ></ttp-table>
+    </ttp-banner>
   </div>
 </div>
