@@ -1,5 +1,8 @@
 <div class="ttp-timetable-parsing">
-  <div class="ttp-timetable-parsing__course-container animated fadeInRight">
+  <div
+    class="ttp-timetable-parsing__course-container animated fadeInRight"
+    *ngIf="courses"
+  >
     <ttp-group-button
       [items]="courses"
       (buttonClickChange)="selectCourse($event)"
@@ -14,7 +17,10 @@
       (buttonClickChange)="selectGroup($event)"
     ></ttp-group-button>
   </div>
-  <div class="ttp-timetable-parsing__timetable-container animated fadeInRight">
+  <div
+    class="ttp-timetable-parsing__timetable-container animated fadeInRight"
+    *ngIf="courses"
+  >
     <ttp-banner
       [template]="timetable"
       [visibleTemplate]="selectedUiGroup"

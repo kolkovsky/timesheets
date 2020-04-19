@@ -45,50 +45,58 @@ export class TimetableParsingComponent extends TtpBaseComponent {
     this.loadTimetableFromServer();
   }
 
+  public processState(state: StateInterface): void {}
+
   private loadTimetable(): void {
     this.adminParsingService.importData$
       .pipe(
         takeUntil(this.unsubscribeStream$),
         finalize(() => this.loaderService.hideSpinner())
       )
-      .subscribe((data: TimesheetModel[]) => this.initTimetableData(data));
-  }
-
-  private initTimetableData(timetableResponse: any): void {
-    this.timeSheets = timetableResponse;
-    this.courses = this.initCourses(this.timeSheets);
-    this.uiTimesheets = this.timeSheets.map((timeSheet) =>
-      this.convertToUiTimesheet(timeSheet)
-    );
+      .subscribe((timeSheets: TimesheetModel[]) =>
+        this.initTimetableData(timeSheets)
+      );
   }
 
   private loadTimetableFromServer(): void {
     this.timetableService
       .getTimetable()
       .pipe(
-        tap((timetable) => this.initTimetableData(timetable)),
+        tap((timeSheets: TimesheetModel[]) =>
+          this.initTimetableData(timeSheets)
+        ),
         takeUntil(this.unsubscribeStream$),
         finalize(() => this.loaderService.hideSpinner())
       )
       .subscribe();
   }
 
-  public selectCourse(event: ButtonModel): void {
-    this.selectedCourse = event.label;
+  private initTimetableData(timeSheets: TimesheetModel[]): void {
+    this.timeSheets = timeSheets;
+    this.courses = this.initCourses(this.timeSheets);
+    this.uiTimesheets = this.timeSheets.map((timeSheet) =>
+      this.convertToUiTimesheet(timeSheet)
+    );
+  }
+
+  public selectCourse(selectedButton: ButtonModel): void {
+    this.selectedCourse = selectedButton.label;
     const timesheetModel: TimesheetModel = this.timeSheets.find(
-      (timesheet: TimesheetModel) => timesheet.course.toString() === event.label
+      (timesheet: TimesheetModel) =>
+        timesheet.course.toString() === selectedButton.label
     );
     this.groups = timesheetModel.groups.map(
       (group: GroupModel) => new ButtonModel(group.name, false)
     );
   }
 
-  public processState(state: StateInterface): void {}
-
-  private initGroups(timesheets: TimesheetModel[]): ButtonModel[] {
-    return timesheets.map(
+  public selectGroup(selectedButton: ButtonModel): void {
+    const timesheetModel: TimesheetModel = this.timeSheets.find(
       (timesheet: TimesheetModel) =>
-        new ButtonModel(timesheet.course.toString() + " курс", false)
+        timesheet.course.toString() === this.selectedCourse.toString()
+    );
+    this.selectedUiGroup = this.convertToUiGroup(timesheetModel.groups).find(
+      (group: UiGroupModel) => group.name == selectedButton.label
     );
   }
 
@@ -99,30 +107,20 @@ export class TimetableParsingComponent extends TtpBaseComponent {
     );
   }
 
-  private convertToUiTimesheet(timesheet: any): UiTimesheetModel {
+  private convertToUiTimesheet(timesheet: TimesheetModel): UiTimesheetModel {
     return new UiTimesheetModel(
       timesheet.course,
       this.convertToUiGroup(timesheet.groups)
     );
   }
 
-  private convertToUiGroup(groups: any): UiGroupModel[] {
+  private convertToUiGroup(groups: GroupModel[]): UiGroupModel[] {
     return groups.map(
-      (group) =>
+      (group: GroupModel) =>
         new UiGroupModel(
           group.name,
           TimetableUtils.sortSubjectsByWeekDay(group.subjects)
         )
-    );
-  }
-
-  public selectGroup(event: ButtonModel): void {
-    const timesheetModel: TimesheetModel = this.timeSheets.find(
-      (timesheet: TimesheetModel) =>
-        timesheet.course.toString() === this.selectedCourse.toString()
-    );
-    this.selectedUiGroup = this.convertToUiGroup(timesheetModel.groups).find(
-      (group) => group.name == event.label
     );
   }
 }
