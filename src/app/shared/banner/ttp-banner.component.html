@@ -1,10 +1,15 @@
 <div class="ttp-banner-container">
-  <ng-content></ng-content>
-  <div class="ttp-banner-container-title">
-    Выберите курс и группу, чтобы посмотреть расписание
-  </div>
-  <ttp-icon
-    iconName="issue-opened"
-    customClass="ttp-banner-container-icon"
-  ></ttp-icon>
+  <ng-container
+    *ngTemplateOutlet="template && visibleTemplate ? template : defaultTemplate"
+  ></ng-container>
+
+  <ng-template #defaultTemplate>
+    <div class="ttp-banner-container-title">
+      Выберите курс и группу, чтобы посмотреть расписание
+    </div>
+    <ttp-icon
+      iconName="issue-opened"
+      customClass="ttp-banner-container-icon"
+    ></ttp-icon>
+  </ng-template>
 </div>

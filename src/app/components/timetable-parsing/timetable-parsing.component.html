@@ -15,13 +15,18 @@
     ></ttp-group-button>
   </div>
   <div class="ttp-timetable-parsing__timetable-container animated fadeInRight">
-    <ttp-banner>
+    <ttp-banner
+      [template]="timetable"
+      [visibleTemplate]="selectedUiGroup"
+    ></ttp-banner>
+
+    <ng-template #timetable>
       <ttp-table
         *ngIf="selectedUiGroup"
         [weekdays]="weekdays"
         [times]="times"
         [uiGroup]="selectedUiGroup"
       ></ttp-table>
-    </ttp-banner>
+    </ng-template>
   </div>
 </div>

@@ -43,13 +43,13 @@ server.post("/api/login", (request, response) => {
 });
 
 server.get("/api/get/timetable", (request, response) => {
-  console.log(1);
   setTimeout(() => {
     const isError = Math.random() * Math.floor(10);
-    if (isError > 5) {
-      response.send(importFile);
-    } else {
-      throw Error("Error");
-    }
+    // if (isError > 5) {
+    //   response.send(importFile);
+    // } else {
+    //   throw Error("Error");
+    // }
+    response.send(importFile);
   }, 5000);
 });

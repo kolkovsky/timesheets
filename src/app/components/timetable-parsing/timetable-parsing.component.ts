@@ -51,9 +51,7 @@ export class TimetableParsingComponent extends TtpBaseComponent {
         takeUntil(this.unsubscribeStream$),
         finalize(() => this.loaderService.hideSpinner())
       )
-      .subscribe((data: TimesheetModel[]) => {
-        this.initTimetableData(data);
-      });
+      .subscribe((data: TimesheetModel[]) => this.initTimetableData(data));
   }
 
   private initTimetableData(timetableResponse: any): void {
@@ -120,7 +118,8 @@ export class TimetableParsingComponent extends TtpBaseComponent {
 
   public selectGroup(event: ButtonModel): void {
     const timesheetModel: TimesheetModel = this.timeSheets.find(
-      (timesheet: TimesheetModel) => timesheet.course.toString() === event.label
+      (timesheet: TimesheetModel) =>
+        timesheet.course.toString() === this.selectedCourse.toString()
     );
     this.selectedUiGroup = this.convertToUiGroup(timesheetModel.groups).find(
       (group) => group.name == event.label
