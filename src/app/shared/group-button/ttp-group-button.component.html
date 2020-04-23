@@ -1,11 +1,31 @@
 <div class="ttp-button-container">
   <ng-container *ngFor="let item of items">
     <div class="ttp-button-container-item">
-      <button type="button" class="btn"
-              [ngClass]="item.clicked ? buttonClass : buttonOutlineClass"
-              (click)="chooseElement(item)">
-        {{item.label}}
-      </button>
+      <ng-container *ngIf="item.isHasIcon; then editButton; else dataButton">
+      </ng-container>
+      <ng-template #editButton>
+        <button
+          type="button"
+          class="btn btn-outline-danger animated fadeInDown"
+          (click)="chooseElement(item)"
+        >
+          <ttp-icon
+            [iconName]="item.iconName"
+            customFill="white"
+            customClass="ttp-button-container-item-icon"
+          ></ttp-icon>
+        </button>
+      </ng-template>
+      <ng-template #dataButton>
+        <button
+          type="button"
+          class="btn"
+          [ngClass]="item.clicked ? buttonClass : buttonOutlineClass"
+          (click)="chooseElement(item)"
+        >
+          {{ item.label }}
+        </button>
+      </ng-template>
     </div>
   </ng-container>
 </div>

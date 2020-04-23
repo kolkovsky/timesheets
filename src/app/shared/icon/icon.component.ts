@@ -1,11 +1,10 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from "@angular/core";
 
 @Component({
-  selector: 'ttp-icon',
-  templateUrl: './icon.component.html'
+  selector: "ttp-icon",
+  templateUrl: "./icon.component.html",
 })
 export class IconComponent {
-
   @Input()
   public iconName: string;
 

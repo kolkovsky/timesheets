@@ -1,4 +1,4 @@
-<div class="ttp-banner-container">
+<div class="ttp-banner-container" [class.full-width]="!visibleTemplate">
   <ng-container
     *ngTemplateOutlet="template && visibleTemplate ? template : defaultTemplate"
   ></ng-container>

@@ -38,7 +38,39 @@ export class TtpGroupButtonComponent extends TtpBaseComponent {
     super.ngOnInit();
   }
 
-  public processState(state: StateInterface): void {}
+  private addEditButton(): void {
+    this.items.push({
+      id: "add",
+      isHasIcon: true,
+      iconName: "plus-small",
+    } as ButtonModel);
+  }
+
+  private removeEditButton(): void {
+    const isHasButtonAddType: boolean = this.items.some(
+      (button: ButtonModel) => button.id === "add"
+    );
+    if (isHasButtonAddType) {
+      const addElemet: ButtonModel = this.items.filter(
+        (element: ButtonModel) => element.id === "add"
+      )[0];
+      this.items.splice(this.items.indexOf(addElemet), 1);
+    }
+  }
+
+  public processState(state: StateInterface): void {
+    const stateName: string = state.payload.stateName;
+    switch (stateName) {
+      case States.showAddButton:
+        this.addEditButton();
+        break;
+      case States.hideAddButton:
+        this.removeEditButton();
+        break;
+      default:
+        break;
+    }
+  }
 
   public chooseElement(item: ButtonModel): void {
     this.items.find((button: ButtonModel) => (button.clicked = false));

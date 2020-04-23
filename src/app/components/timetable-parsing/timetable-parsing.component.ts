@@ -13,7 +13,7 @@ import { takeUntil, tap, finalize } from "rxjs/operators";
 import { GroupModel } from "../../models/group.model";
 import { TimetableService } from "src/app/services/timetable.service";
 import { LoaderService } from "src/app/services/loader.service";
-import { group } from "@angular/animations";
+import { States } from "src/app/constants/states";
 
 @Component({
   selector: "ttp-timetable-parsing",
@@ -28,6 +28,7 @@ export class TimetableParsingComponent extends TtpBaseComponent {
   public uiTimesheets: UiTimesheetModel[];
   public selectedCourse: any;
   public selectedUiGroup: UiGroupModel;
+  public showAddButton: boolean = false;
 
   constructor(
     private timetableService: TimetableService,

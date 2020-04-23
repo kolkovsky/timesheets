@@ -20,16 +20,13 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AdminParsingComponent } from "./components/admin-parsing/admin-parsing.component";
 import { AdminParsingService } from "./services/admin-parsing.service";
-import { PopupService } from "./shared/popup/popup.service";
 import { TimetableParsingComponent } from "./components/timetable-parsing/timetable-parsing.component";
 import { CardComponent } from "./shared/card/card.component";
 import { IconComponent } from "./shared/icon/icon.component";
-import { PopupComponent } from "./shared/popup/popup.component";
 import { StateService } from "./services/state.service";
 import { TableComponent } from "./components/timetable-parsing/table/table.component";
 import { TtpGroupButtonComponent } from "./shared/group-button/ttp-group-button.component";
 import { TtpButtonComponent } from "./shared/button/ttp-button.component";
-import { TtpDropdownComponent } from "./shared/dropdown/ttp-dropdown.component";
 import { TtpBaseComponent } from "./ng-core/ttp-base.component";
 import { TtpBannerComponent } from "./shared/banner/ttp-banner.component";
 import { LoginComponent } from "./components/login/login.component";
@@ -39,6 +36,7 @@ import { TtpLoaderComponent } from "./shared/loader/ttp-loader.component";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoaderService } from "./services/loader.service";
 import { TimetableService } from "./services/timetable.service";
+import { TtpEditTimetableComponent } from "./components/timetable-parsing/edit-timetable/edit-timetable.component";
 
 let adminConfigurations = [
   AppComponent,
@@ -48,16 +46,15 @@ let adminConfigurations = [
   AdminParsingComponent,
   TableComponent,
   LoginComponent,
+  TtpEditTimetableComponent,
 ];
 
 let sharedComponents = [
   SelectorComponent,
   CardComponent,
   IconComponent,
-  PopupComponent,
   TtpGroupButtonComponent,
   TtpButtonComponent,
-  TtpDropdownComponent,
   TtpBannerComponent,
   NotificationComponent,
   TtpLoaderComponent,
@@ -90,7 +87,6 @@ let externalLibs = [
   ],
   providers: [
     AdminParsingService,
-    PopupService,
     StateService,
     LoginService,
     LoaderService,

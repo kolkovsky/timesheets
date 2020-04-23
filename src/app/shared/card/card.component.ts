@@ -1,13 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
   selector: "ttp-shared-card",
   templateUrl: "./card.component.html",
-  styleUrls: ["../../../assets/styles/components/card.component.less"]
 })
-
-export class CardComponent implements OnInit {
-
+export class CardComponent {
   @Input()
   public iconName: string;
   @Input()
@@ -19,12 +16,7 @@ export class CardComponent implements OnInit {
   @Output()
   public navigateChange: EventEmitter<void> = new EventEmitter();
 
-  ngOnInit(): void {
-
-  }
-
   public clickHandler(): void {
     this.navigateChange.emit();
   }
-
 }

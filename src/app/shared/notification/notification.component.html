@@ -1,9 +1,14 @@
-<div *ngIf="visible"
-    class="ttp-notification-container animated" 
-    [ngClass]="animationType">
-    <alert class="ttp-notification-container__alert" type="danger" 
+<div
+  *ngIf="visible"
+  class="ttp-notification-container animated"
+  [ngClass]="animationType"
+>
+  <alert
+    class="ttp-notification-container__alert"
+    type="danger"
     [dismissible]="visible"
-        (onClose)="closeNotification()">
-        <h5 class="alert-heading">{{text}}</h5>
-    </alert>
+    (onClose)="closeNotification()"
+  >
+    <h5 class="alert-heading">{{ text }}</h5>
+  </alert>
 </div>

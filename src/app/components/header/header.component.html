@@ -1,4 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-  <a class="navbar-brand" href="#">TTP-Администратор</a>
-  <button class="btn btn-outline-danger">Выйти</button>
-</nav>
+<div class="ttp-header">
+  <label class="ttp-header__label">Расписание</label>
+  <div class="ttp-header__button-container">
+    <button
+      class="ttp-header__button-container-item btn btn-outline-danger"
+      *ngIf="visibleAddTimetableButton"
+    >
+      Создать новое расписание
+    </button>
+    <button
+      class="ttp-header__button-container-item btn btn-outline-danger"
+      *ngIf="visibleEditTimetableButton"
+      (click)="turnOnorOffEditMode()"
+    >
+      {{
+        editModeDisabled ? "Изменить расписание" : "Закончить редактирование"
+      }}
+    </button>
+    <button class="ttp-header__button-container-item btn btn-outline-danger">
+      Выйти
+    </button>
+  </div>
+</div>
