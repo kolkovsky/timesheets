@@ -1,6 +1,9 @@
 <div class="ttp-login-container">
   <div class="ttp-login-container__info-container">
-    <div class="ttp-login-container__info animated" [ngClass]="isSmallScreen ? 'fadeInDown' : 'fadeInLeft'">
+    <div
+      class="ttp-login-container__info animated"
+      [ngClass]="isSmallScreen ? 'fadeInDown' : 'fadeInLeft'"
+    >
       <div class="ttp-login-container__info-header" *ngIf="isSmallScreen">
         Войдите в систему
       </div>
@@ -24,53 +27,72 @@
     </div>
   </div>
   <div class="ttp-login-container__form-container">
+    <ttp-shared-notification
+      [visible]="showErrorNotification"
+      text="Ошибка! Проверьте введенные данные"
+      [animationType]="isSmallScreen ? 'fadeInLeft' : 'fadeInDown'"
+      (closeNotificationChange)="showErrorNotification = false"
+    >
+    </ttp-shared-notification>
 
-    <ttp-notification [visible]="showErrorNotification"
-                      text="Ошибка! Проверьте введенные данные" 
-                      [animationType]="isSmallScreen ? 'fadeInLeft' : 'fadeInDown'"
-                      (closeNotificationChange)="showErrorNotification=false">
-    </ttp-notification>
-
-    <div class="ttp-login-container__form animated fadeInDown" [formGroup]="fromGroup">
-      <label class="ttp-login-container__form-label" for="form-login">Имя пользователя:</label>
-      <input class="ttp-login-container__form-input form-control" 
-            id="form-login" 
-            placeholder="Username" 
-            formControlName="login"  
-            (focus)="clearErrorMessage('login')"    
-            (blur)="checkInputState('login')"
-            (input)="checkInputState('login')">
-      <p *ngIf="errorLoginMessage" 
-        class="ttp-login-container__form-error animated fadeInDown">
-        <ttp-icon iconName="alert"
-                  customClass="ttp-login-container__form-warning">
+    <div
+      class="ttp-login-container__form animated fadeInDown"
+      [formGroup]="fromGroup"
+    >
+      <label class="ttp-login-container__form-label" for="form-login"
+        >Имя пользователя:</label
+      >
+      <input
+        class="ttp-login-container__form-input form-control"
+        id="form-login"
+        placeholder="Username"
+        formControlName="login"
+        (focus)="clearErrorMessage('login')"
+        (blur)="checkInputState('login')"
+        (input)="checkInputState('login')"
+      />
+      <p
+        *ngIf="errorLoginMessage"
+        class="ttp-login-container__form-error animated fadeInDown"
+      >
+        <ttp-icon
+          iconName="alert"
+          customClass="ttp-login-container__form-warning"
+        >
         </ttp-icon>
-        {{errorLoginMessage}}
+        {{ errorLoginMessage }}
       </p>
-      <label class="ttp-login-container__form-label"
-             for="form-password">
-             Пароль:
+      <label class="ttp-login-container__form-label" for="form-password">
+        Пароль:
       </label>
-      <input class="ttp-login-container__form-input form-control" 
-            id="form-password" 
-            type="password"
-            formControlName="password"
-            placeholder="Password"
-            (focus)="clearErrorMessage('password')"
-            (blur)="checkInputState('password')">
-       <p *ngIf="errorPasswordMessage" 
-        class="ttp-login-container__form-error animated fadeInDown">
-        <ttp-icon iconName="alert"
-                  customClass="ttp-login-container__form-warning">
+      <input
+        class="ttp-login-container__form-input form-control"
+        id="form-password"
+        type="password"
+        formControlName="password"
+        placeholder="Password"
+        (focus)="clearErrorMessage('password')"
+        (blur)="checkInputState('password')"
+      />
+      <p
+        *ngIf="errorPasswordMessage"
+        class="ttp-login-container__form-error animated fadeInDown"
+      >
+        <ttp-icon
+          iconName="alert"
+          customClass="ttp-login-container__form-warning"
+        >
         </ttp-icon>
-        {{errorPasswordMessage}}
+        {{ errorPasswordMessage }}
       </p>
-      <button class="btn btn-block"
-              [ngClass]="submitEnabled ? 'btn-danger' : 'btn-outline-danger'"
-              type="submit" 
-              [disabled]="!submitEnabled"
-              (click)="submitForm()">
-              Войти
+      <button
+        class="btn btn-block"
+        [ngClass]="submitEnabled ? 'btn-danger' : 'btn-outline-danger'"
+        type="submit"
+        [disabled]="!submitEnabled"
+        (click)="submitForm()"
+      >
+        Войти
       </button>
     </div>
   </div>

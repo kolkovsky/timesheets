@@ -6,10 +6,10 @@ import { LoaderService } from "src/app/services/loader.service";
 import { finalize } from "rxjs/operators";
 
 @Component({
-  selector: "admin-parsing",
-  templateUrl: "./admin-parsing.component.html",
+  selector: "ttp-file-parsing",
+  templateUrl: "./file-parsing.component.html",
 })
-export class AdminParsingComponent implements OnDestroy {
+export class TtpFileParsingComponent implements OnDestroy {
   public fileSize: number;
   public add: boolean;
   public showErrorUpload: boolean = false;

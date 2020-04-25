@@ -1,21 +1,19 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {WelcomePageComponent} from './welcome/welcome-page.component';
-import {AdminParsingComponent} from './admin-parsing/admin-parsing.component';
-import {TimetableParsingComponent} from './timetable-parsing/timetable-parsing.component';
-import {LoginComponent} from './login/login.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { TtpHomeComponent } from "./home/home.component";
+import { TtpFileParsingComponent } from "./parsing/file-parsing.component";
+import { TtpTimetableComponent } from "./timetable/timetable.component";
+import { TtpLoginComponent } from "./login/login.component";
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'welcome', component: WelcomePageComponent},
-  {path: '', component: LoginComponent},
-  {path: 'admin-parsing', component: AdminParsingComponent},
-  {path: 'timetable-parsing', component: TimetableParsingComponent}
+  { path: "login", component: TtpLoginComponent },
+  { path: "home", component: TtpHomeComponent },
+  { path: "", component: TtpLoginComponent },
+  { path: "file-parsing", component: TtpFileParsingComponent },
+  { path: "timetable", component: TtpTimetableComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)]
+  imports: [RouterModule.forRoot(routes)],
 })
-
-export class AppRouterModule {
-}
+export class AppRouterModule {}

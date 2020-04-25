@@ -16,10 +16,10 @@ import { LoaderService } from "src/app/services/loader.service";
 import { States } from "src/app/constants/states";
 
 @Component({
-  selector: "ttp-timetable-parsing",
-  templateUrl: "./timetable-parsing.component.html",
+  selector: "ttp-timetable",
+  templateUrl: "./timetable.component.html",
 })
-export class TimetableParsingComponent extends TtpBaseComponent {
+export class TtpTimetableComponent extends TtpBaseComponent {
   public courses: ButtonModel[];
   public groups: ButtonModel[];
   public weekdays: string[] = WeekDaysConstant.WEEK_DAYS_ARRAY;

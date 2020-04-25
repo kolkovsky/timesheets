@@ -27,7 +27,7 @@ export class SelectorComponent implements OnInit {
   @Input()
   public placeholder: string;
 
-  private _value: any;
+  public value: any;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
@@ -38,7 +38,7 @@ export class SelectorComponent implements OnInit {
   }
 
   public changeValueSelector(event): void {
-    this.items.map((item) => (item.selected = item.value === this._value));
-    this.valueChange.emit(this._value);
+    this.items.map((item) => (item.selected = item.value === this.value));
+    this.valueChange.emit(this.value);
   }
 }

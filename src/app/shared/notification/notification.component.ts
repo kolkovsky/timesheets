@@ -1,24 +1,24 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-    selector: "ttp-notification",
-    templateUrl: "./notification.component.html"
+  selector: "ttp-shared-notification",
+  templateUrl: "./notification.component.html",
 })
-export class NotificationComponent {
-    @Input()
-    public visible: boolean;
+export class TtpNotificationComponent {
+  @Input()
+  public visible: boolean;
 
-    @Input()
-    public text: string;
+  @Input()
+  public text: string;
 
-    @Input()
-    public animationType: string = "fadeIdDown";
+  @Input()
+  public animationType: string = "fadeIdDown";
 
-    @Output()
-    public closeNotificationChange: EventEmitter<any> = new EventEmitter<any>();
+  @Output()
+  public closeNotificationChange: EventEmitter<void> = new EventEmitter<void>();
 
-    public closeNotification(): void {
-        this.visible = false;
-        this.closeNotificationChange.emit();
-    }
+  public closeNotification(): void {
+    this.visible = false;
+    this.closeNotificationChange.emit();
+  }
 }

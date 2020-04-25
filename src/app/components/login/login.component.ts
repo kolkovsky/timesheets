@@ -12,10 +12,10 @@ import { Router } from "@angular/router";
 import { LoaderService } from "src/app/services/loader.service";
 
 @Component({
-  selector: "app-login",
+  selector: "ttp-login",
   templateUrl: "./login.component.html",
 })
-export class LoginComponent implements OnInit {
+export class TtpLoginComponent implements OnInit {
   public fromGroup: FormGroup;
   public showErrorNotification: boolean;
   public isSmallScreen: boolean;

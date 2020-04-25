@@ -1,13 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { StateService } from "src/app/services/state.service";
-import { TimetableParsingComponent } from "../timetable-parsing/timetable-parsing.component";
 import { TtpGroupButtonComponent } from "src/app/shared/group-button/ttp-group-button.component";
 
 @Component({
   selector: "ttp-header",
   templateUrl: "./header.component.html",
 })
-export class HeaderComponent implements OnInit {
+export class TtpHeaderComponent implements OnInit {
   public visibleEditTimetableButton: boolean = true;
   public visibleAddTimetableButton: boolean = true;
   public editModeDisabled: boolean = true;
