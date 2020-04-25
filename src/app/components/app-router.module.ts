@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: "login", component: TtpLoginComponent },
   { path: "home", component: TtpHomeComponent },
   { path: "", component: TtpLoginComponent },
-  { path: "file-parsing", component: TtpFileParsingComponent },
+  { path: "parsing", component: TtpFileParsingComponent },
   { path: "timetable", component: TtpTimetableComponent },
 ];
 

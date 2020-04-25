@@ -1,5 +1,6 @@
-.admin-parsing {
+.file-parsing {
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-top: 18.75rem;
 
@@ -46,12 +47,12 @@
     }
   }
 
-  &__progress-bar-container {
-    z-index: 10;
-    width: 50%;
-    top: 10rem;
-    left: 5rem;
-    margin: 0 auto;
+  &__notification {
+    min-width: 51.75rem;
+    height: fit-content;
+
+    & .ttp-notification-container__alert .alert {
+      width: 51.75rem !important;
+    }
   }
 }
-

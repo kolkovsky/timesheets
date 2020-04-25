@@ -1,6 +1,6 @@
-import {Paylod} from './paylod.interface';
+import { Paylod } from "./paylod.interface";
 
-export interface StateInterface {
+export interface State {
   componentName: string;
   payload: Paylod;
 }

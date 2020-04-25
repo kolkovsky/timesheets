@@ -21,8 +21,8 @@ export class TtpLoginComponent implements OnInit {
   public isSmallScreen: boolean;
   public errorLoginMessage: string;
   public errorPasswordMessage: string;
-  public submitEnabled: boolean = false;
-  public unsubscribeStream$: Subject<void> = new Subject();
+  public submitEnabled: boolean;
+  private unsubscribeStream$: Subject<void> = new Subject();
 
   constructor(
     private loginService: LoginService,
@@ -71,7 +71,7 @@ export class TtpLoginComponent implements OnInit {
   }
 
   private navigateToWelcomePage(): void {
-    this.router.navigateByUrl("/welcome");
+    this.router.navigateByUrl("/home");
   }
 
   public checkInputState(controlName: string): void {

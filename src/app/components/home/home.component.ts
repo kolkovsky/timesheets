@@ -9,10 +9,10 @@ export class TtpHomeComponent {
   constructor(private router: Router) {}
 
   public navigateToTimetable(): void {
-    this.router.navigateByUrl("/timetable-parsing");
+    this.router.navigateByUrl("/timetable");
   }
 
   public navigateToAdminParsing(): void {
-    this.router.navigateByUrl("/admin-parsing");
+    this.router.navigateByUrl("/parsing");
   }
 }

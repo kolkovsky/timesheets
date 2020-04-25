@@ -5,7 +5,7 @@ import { UiTimesheetModel } from "../../models/ui-timesheet.model";
 import { UiGroupModel } from "../../models/ui-group.model";
 import { TimesheetModel } from "../../models/timesheet.model";
 import { WeekDaysConstant } from "../../constants/week-days.constant";
-import { StateInterface } from "../../interfaces/state.interface";
+import { State } from "../../interfaces/state.interface";
 import { ButtonModel } from "../../models/button.model";
 import { TtpBaseComponent } from "../../ng-core/ttp-base.component";
 import { StateService } from "../../services/state.service";
@@ -46,7 +46,7 @@ export class TtpTimetableComponent extends TtpBaseComponent {
     this.loadTimetableFromServer();
   }
 
-  public processState(state: StateInterface): void {}
+  public processState(state: State): void {}
 
   private loadTimetable(): void {
     this.adminParsingService.importData$

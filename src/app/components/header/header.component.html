@@ -3,7 +3,7 @@
   <div class="ttp-header__button-container">
     <button
       class="ttp-header__button-container-item btn btn-outline-danger"
-      *ngIf="visibleAddTimetableButton"
+      *ngIf="visibleCreateTimetableButton"
     >
       Создать новое расписание
     </button>
@@ -16,6 +16,15 @@
         editModeDisabled ? "Изменить расписание" : "Закончить редактирование"
       }}
     </button>
+
+    <button
+      class="ttp-header__button-container-item btn btn-outline-danger"
+      *ngIf="visibleAllUploadedFiles"
+      (click)="showAllUploadedFiles()"
+    >
+      Загруженные файлы
+    </button>
+
     <button class="ttp-header__button-container-item btn btn-outline-danger">
       Выйти
     </button>

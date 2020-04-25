@@ -1,0 +1,48 @@
+.ttp-shared-popup {
+  position: absolute;
+  top: 5rem;
+  z-index: 10;
+
+  &.center {
+    left: 50%;
+  }
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    right: 0;
+  }
+
+  &__header {
+    flex: 0 0 100%;
+  }
+
+  &__body {
+    flex: 0 0 100%;
+  }
+
+  &__container {
+    position: relative;
+    display: flex;
+    min-width: 35rem;
+    min-height: 25rem;
+    border-radius: 2rem;
+    padding: 1.5rem;
+    flex-direction: column;
+    background-color: #23252e;
+
+    &.right {
+      left: -8%;
+    }
+
+    &.left {
+      left: 8%;
+    }
+
+    &.center {
+      left: -50%;
+    }
+  }
+}

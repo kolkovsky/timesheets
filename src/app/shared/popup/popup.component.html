@@ -1,0 +1,26 @@
+<div
+  class="ttp-shared-popup"
+  [ngClass]="{
+    right: position === 'right',
+    center: position === 'center',
+    left: position === 'left'
+  }"
+>
+  <div
+    class="ttp-shared-popup__container"
+    [ngClass]="{
+      right: position === 'right',
+      center: position === 'center',
+      left: position === 'left'
+    }"
+  >
+    <ng-container
+      *ngTemplateOutlet="useCustomTemplate ? customTemplate : defaultTemplate"
+    ></ng-container>
+
+    <ng-template #defaultTemplate>
+      <div class="ttp-shared-popup__header">Привет</div>
+      <div class="ttp-shared-popup__body">Как дела</div>
+    </ng-template>
+  </div>
+</div>

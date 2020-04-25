@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { ButtonModel } from "../../models/button.model";
-import { StateInterface } from "../../interfaces/state.interface";
+import { State } from "../../interfaces/state.interface";
 import { StateService } from "../../services/state.service";
 import { TtpBaseComponent } from "../../ng-core/ttp-base.component";
 import { States } from "src/app/constants/states";
@@ -58,7 +58,7 @@ export class TtpGroupButtonComponent extends TtpBaseComponent {
     }
   }
 
-  public processState(state: StateInterface): void {
+  public processState(state: State): void {
     const stateName: string = state.payload.stateName;
     switch (stateName) {
       case States.showAddButton:

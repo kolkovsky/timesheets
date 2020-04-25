@@ -16,11 +16,10 @@ server.post(
   (request, response) => {
     setTimeout(() => {
       const isError = Math.random() * Math.floor(10);
-      if (isError > 5) {
-        response.send(importFile);
-      } else {
-        response.send(Error("Fuck you"));
-      }
+      // if (isError > 5) {
+      //   response.send(importFile);
+      // } else {
+      response.status(422).send("Error");
     }, 5000);
   }
 );
@@ -34,10 +33,10 @@ server.post("/api/login", (request, response) => {
       if (userLogin === adminLogin && userPassword === adminPassword) {
         response.send({ isSuccess: true });
       } else {
-        response.send({ isSuccess: false });
+        response.status(401).send({ isSuccess: false });
       }
     } else {
-      response.send(Error("Fuck you"));
+      response.status(500).send("Error");
     }
   }, 5000);
 });
@@ -45,11 +44,10 @@ server.post("/api/login", (request, response) => {
 server.get("/api/get/timetable", (request, response) => {
   setTimeout(() => {
     const isError = Math.random() * Math.floor(10);
-    // if (isError > 5) {
-    //   response.send(importFile);
-    // } else {
-    //   throw Error("Error");
-    // }
-    response.send(importFile);
+    if (isError > 5) {
+      response.send(importFile);
+    } else {
+      response.status(422).send("Error");
+    }
   }, 5000);
 });

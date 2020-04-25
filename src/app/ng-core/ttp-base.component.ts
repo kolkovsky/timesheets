@@ -1,12 +1,12 @@
 import { HostListener, OnDestroy, OnInit } from "@angular/core";
 import { StateService } from "../services/state.service";
 import { takeUntil, tap } from "rxjs/operators";
-import { StateInterface } from "../interfaces/state.interface";
+import { State } from "../interfaces/state.interface";
 import { Subject } from "rxjs";
 import { States } from "../constants/states";
 
 export class TtpBaseComponent implements OnInit, OnDestroy {
-  protected stateComponent: StateInterface;
+  protected stateComponent: State;
   protected unsubscribeStream$: Subject<void> = new Subject<void>();
 
   constructor(protected stateService: StateService) {}
@@ -16,7 +16,7 @@ export class TtpBaseComponent implements OnInit, OnDestroy {
     this.stateService
       .getStateComponent()
       .pipe(
-        tap((state: StateInterface) => {
+        tap((state: State) => {
           const componentName: string = this.getComponentName();
           if (state.componentName === componentName) {
             this.processState(state);
@@ -41,7 +41,7 @@ export class TtpBaseComponent implements OnInit, OnDestroy {
     return Object.getPrototypeOf(this).constructor.name;
   }
 
-  protected processState(state: StateInterface): void {
+  protected processState(state: State): void {
     this.stateComponent = state;
   }
 
