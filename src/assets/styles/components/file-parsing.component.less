@@ -55,4 +55,40 @@
       width: 51.75rem !important;
     }
   }
+
+  &__popup-header {
+    flex: 0 0 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    &-icon {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &__popup-files {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    flex: 0 0 100%;
+    display: flex;
+    max-height: 18.75rem;
+    max-width: 31rem;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &-item {
+      display: flex;
+      justify-content: center;
+      flex: 0 0 50%;
+      width: 50%;
+      height: 8.75rem;
+
+      &-icon {
+        width: 6rem;
+        height: 6rem;
+      }
+    }
+  }
 }

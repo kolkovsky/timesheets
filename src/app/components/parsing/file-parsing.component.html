@@ -53,4 +53,29 @@
   </div>
 </div>
 
-<ttp-shared-popup></ttp-shared-popup>
+<ttp-shared-popup
+  [position]="'right'"
+  [visiblePopup]="visibleAllUploadedFilesModal"
+  [useCustomTemplate]="true"
+  [customTemplate]="allUploadedFiles"
+></ttp-shared-popup>
+
+<ng-template #allUploadedFiles>
+  <div class="file-parsing__popup-header">
+    Загруженные файлы
+  </div>
+  <div class="file-parsing__popup-files">
+    <ng-container *ngFor="let item of files">
+      <div class="file-parsing__popup-files-item">
+        <ttp-icon
+          iconName="file"
+          customFill="white"
+          customClass="file-parsing__popup-files-item-icon"
+        ></ttp-icon>
+      </div>
+    </ng-container>
+  </div>
+  <div class="file-parsing__popup-button">
+    <button class="btn btn-block btn-outline-danger">Закрыть</button>
+  </div>
+</ng-template>

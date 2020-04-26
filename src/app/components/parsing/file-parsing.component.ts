@@ -24,6 +24,7 @@ export class TtpFileParsingComponent extends TtpBaseComponent
   implements OnDestroy {
   public fileSize: number;
   public file: File;
+  public files: File[] = [];
   public showErrorUpload: boolean;
   public visibleNotification: boolean;
   public visibleAllUploadedFilesModal: boolean;
@@ -50,6 +51,17 @@ export class TtpFileParsingComponent extends TtpBaseComponent
       );
       this.file = !this.showErrorUpload ? file : null;
       if (this.file) {
+        this.files.push(file);
+        this.files.push(file);
+        this.files.push(file);
+        this.files.push(file);
+        this.files.push(file);
+        this.files.push(file);
+        this.files.push(file);
+        this.files.push(file);
+        this.files.push(file);
+        this.files.push(file);
+        this.files.push(file);
         this.fileSize = this.file.size;
       }
     }

@@ -1,26 +1,28 @@
-<div
-  class="ttp-shared-popup"
-  [ngClass]="{
-    right: position === 'right',
-    center: position === 'center',
-    left: position === 'left'
-  }"
->
+<ng-container *ngIf="visiblePopup">
   <div
-    class="ttp-shared-popup__container"
+    class="ttp-shared-popup"
     [ngClass]="{
       right: position === 'right',
       center: position === 'center',
       left: position === 'left'
     }"
   >
-    <ng-container
-      *ngTemplateOutlet="useCustomTemplate ? customTemplate : defaultTemplate"
-    ></ng-container>
+    <div
+      class="ttp-shared-popup__container animated fadeInRight"
+      [ngClass]="{
+        right: position === 'right',
+        center: position === 'center',
+        left: position === 'left'
+      }"
+    >
+      <ng-container
+        *ngTemplateOutlet="useCustomTemplate ? customTemplate : defaultTemplate"
+      ></ng-container>
 
-    <ng-template #defaultTemplate>
-      <div class="ttp-shared-popup__header">Привет</div>
-      <div class="ttp-shared-popup__body">Как дела</div>
-    </ng-template>
+      <ng-template #defaultTemplate>
+        <div class="ttp-shared-popup__header"></div>
+        <div class="ttp-shared-popup__body"></div>
+      </ng-template>
+    </div>
   </div>
-</div>
+</ng-container>
