@@ -1,5 +1,5 @@
-import { Component, HostListener, OnInit } from "@angular/core";
-import { AdminParsingService } from "../../services/admin-parsing.service";
+import { Component } from "@angular/core";
+import { FileService } from "../../services/file.service";
 import { TimetableUtils } from "../../utils/timetable.utils";
 import { UiTimesheetModel } from "../../models/ui-timesheet.model";
 import { UiGroupModel } from "../../models/ui-group.model";
@@ -13,7 +13,6 @@ import { takeUntil, tap, finalize } from "rxjs/operators";
 import { GroupModel } from "../../models/group.model";
 import { TimetableService } from "src/app/services/timetable.service";
 import { LoaderService } from "src/app/services/loader.service";
-import { States } from "src/app/constants/states";
 
 @Component({
   selector: "ttp-timetable",
@@ -33,7 +32,7 @@ export class TtpTimetableComponent extends TtpBaseComponent {
   constructor(
     private timetableService: TimetableService,
     private loaderService: LoaderService,
-    private adminParsingService: AdminParsingService,
+    private fileService: FileService,
     protected stateService: StateService
   ) {
     super(stateService);
@@ -41,7 +40,7 @@ export class TtpTimetableComponent extends TtpBaseComponent {
 
   public ngOnInit(): void {
     super.ngOnInit();
-    this.loaderService.showDefaultLoader("Loading");
+    this.loaderService.showLoader("Loading");
     this.loadTimetable();
     this.loadTimetableFromServer();
   }
@@ -49,7 +48,7 @@ export class TtpTimetableComponent extends TtpBaseComponent {
   public processState(state: State): void {}
 
   private loadTimetable(): void {
-    this.adminParsingService.importData$
+    this.fileService.importData$
       .pipe(
         takeUntil(this.unsubscribeStream$),
         finalize(() => this.loaderService.hideSpinner())

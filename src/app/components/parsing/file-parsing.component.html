@@ -1,4 +1,4 @@
-<div class="file-parsing">
+<div class="file-parsing" *ngIf="uploadedFiles">
   <ttp-shared-notification
     class="file-parsing__notification"
     [visible]="visibleNotification"
@@ -57,25 +57,62 @@
   [position]="'right'"
   [visiblePopup]="visibleAllUploadedFilesModal"
   [useCustomTemplate]="true"
-  [customTemplate]="allUploadedFiles"
+  [customTemplate]="uploadedFilesTemplate"
 ></ttp-shared-popup>
 
-<ng-template #allUploadedFiles>
+<ng-template #uploadedFilesTemplate>
   <div class="file-parsing__popup-header">
-    Загруженные файлы
+    {{
+      uploadedFiles.length === 0
+        ? "Здесь будут ваши все загруженные файлы"
+        : "Загруженные файлы"
+    }}
   </div>
-  <div class="file-parsing__popup-files">
-    <ng-container *ngFor="let item of files">
-      <div class="file-parsing__popup-files-item">
+  <div
+    class="file-parsing__popup-files"
+    [class.empty]="uploadedFiles.length === 0"
+  >
+    <ng-container
+      *ngTemplateOutlet="uploadedFiles.length !== 0 ? fullFiles : emptyFiles"
+    ></ng-container>
+    <ng-template #fullFiles>
+      <div
+        class="file-parsing__popup-files-item"
+        *ngFor="let item of uploadedFiles"
+      >
+        <ttp-icon
+          iconName="x"
+          customFill="white"
+          customClass="file-parsing__popup-files-item-x"
+          (click)="removeFile(item)"
+        ></ttp-icon>
         <ttp-icon
           iconName="file"
           customFill="white"
           customClass="file-parsing__popup-files-item-icon"
+          (click)="saveFile(item, item.name)"
         ></ttp-icon>
+
+        <p class="file-parsing__popup-files-item-text">{{ item.name }}</p>
       </div>
-    </ng-container>
+    </ng-template>
+    <ng-template #emptyFiles>
+      <div class="file-parsing__popup-files-empty">
+        <ttp-icon
+          iconName="package"
+          customFill="white"
+          customClass="file-parsing__popup-files-empty-icon"
+        >
+        </ttp-icon>
+      </div>
+    </ng-template>
   </div>
   <div class="file-parsing__popup-button">
-    <button class="btn btn-block btn-outline-danger">Закрыть</button>
+    <button
+      class="btn btn-block btn-outline-danger"
+      (click)="closeAllUploadedFilesPopup()"
+    >
+      Закрыть
+    </button>
   </div>
 </ng-template>

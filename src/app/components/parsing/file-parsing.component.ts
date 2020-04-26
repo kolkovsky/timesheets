@@ -1,20 +1,14 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ViewChild,
-  ElementRef,
-} from "@angular/core";
-import { AdminParsingService } from "../../services/admin-parsing.service";
-import { Router } from "@angular/router";
+import { Component, OnDestroy } from "@angular/core";
+import { FileService } from "../../services/file.service";
 import { Subject, of } from "rxjs";
 import { LoaderService } from "src/app/services/loader.service";
-import { finalize, tap, catchError } from "rxjs/operators";
+import { finalize, tap, catchError, takeUntil } from "rxjs/operators";
 import { HttpErrorResponse } from "@angular/common/http";
 import { TtpBaseComponent } from "src/app/ng-core/ttp-base.component";
 import { StateService } from "src/app/services/state.service";
 import { State } from "src/app/interfaces/state.interface";
 import { States } from "src/app/constants/states";
+import { saveAs } from "file-saver";
 
 @Component({
   selector: "ttp-file-parsing",
@@ -22,9 +16,9 @@ import { States } from "src/app/constants/states";
 })
 export class TtpFileParsingComponent extends TtpBaseComponent
   implements OnDestroy {
-  public fileSize: number;
   public file: File;
-  public files: File[] = [];
+  public fileSize: number;
+  public uploadedFiles: File[];
   public showErrorUpload: boolean;
   public visibleNotification: boolean;
   public visibleAllUploadedFilesModal: boolean;
@@ -33,7 +27,7 @@ export class TtpFileParsingComponent extends TtpBaseComponent
 
   constructor(
     public stateService: StateService,
-    private adminParsingService: AdminParsingService,
+    private fileService: FileService,
     private loaderService: LoaderService
   ) {
     super(stateService);
@@ -41,6 +35,17 @@ export class TtpFileParsingComponent extends TtpBaseComponent
 
   public ngOnInit(): void {
     super.ngOnInit();
+    this.loaderService.showLoader("Загрузка");
+    this.fileService
+      .getAllUploadedFiles()
+      .pipe(
+        tap((files: File[]) => {
+          this.uploadedFiles = files;
+        }),
+        takeUntil(this.unsubscribeStream$),
+        finalize(() => this.loaderService.hideSpinner())
+      )
+      .subscribe();
   }
 
   public selectFile(event: any): void {
@@ -51,30 +56,26 @@ export class TtpFileParsingComponent extends TtpBaseComponent
       );
       this.file = !this.showErrorUpload ? file : null;
       if (this.file) {
-        this.files.push(file);
-        this.files.push(file);
-        this.files.push(file);
-        this.files.push(file);
-        this.files.push(file);
-        this.files.push(file);
-        this.files.push(file);
-        this.files.push(file);
-        this.files.push(file);
-        this.files.push(file);
-        this.files.push(file);
+        //For stub getting uploaded Files
+        this.uploadedFiles.push(this.file);
+        this.uploadedFiles.push(this.file);
+        this.uploadedFiles.push(this.file);
+        this.uploadedFiles.push(this.file);
+        this.uploadedFiles.push(this.file);
+        this.uploadedFiles.push(this.file);
         this.fileSize = this.file.size;
       }
     }
   }
 
   public sendFile(): void {
-    this.loaderService.showDefaultLoader("Parsing");
-    this.adminParsingService
+    this.loaderService.showLoader("Parsing");
+    this.fileService
       .importFile(this.file)
       .pipe(
         tap((response) => {
           this.visibleNotification = false;
-          this.adminParsingService.importData$.next(response);
+          this.fileService.importData$.next(response);
         }),
         catchError((error: HttpErrorResponse) => {
           this.visibleNotification = true;
@@ -94,6 +95,21 @@ export class TtpFileParsingComponent extends TtpBaseComponent
       default:
         break;
     }
+  }
+
+  public closeAllUploadedFilesPopup(): void {
+    this.visibleAllUploadedFilesModal = false;
+  }
+
+  public saveFile(blobContent: Blob, fileName: string): void {
+    console.log(blobContent);
+    const blob = new Blob([blobContent], { type: "application/json" });
+    saveAs(blob, fileName);
+  }
+
+  public removeFile(file: File): void {
+    console.log(file);
+    this.uploadedFiles.splice(this.uploadedFiles.indexOf(file), 1);
   }
 
   public ngOnDestroy(): void {

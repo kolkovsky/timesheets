@@ -7,7 +7,7 @@ import { Subject, Observable } from "rxjs";
 export class LoaderService {
   private loaderState: Subject<any> = new Subject<any>();
 
-  public showDefaultLoader(text: string): void {
+  public showLoader(text: string): void {
     this.loaderState.next({ loaderText: text, visible: true });
   }
 

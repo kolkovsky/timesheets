@@ -11,7 +11,7 @@ import { tap } from "rxjs/operators";
 @Injectable({
   providedIn: "root",
 })
-export class AdminParsingService {
+export class FileService {
   private controllerName: string = "/api/v1/ttp-administrator";
   public importData$: ReplaySubject<any> = new ReplaySubject(1);
 
@@ -23,5 +23,9 @@ export class AdminParsingService {
     return this.http
       .post<any>(this.controllerName.concat("/time-tables/import"), body)
       .pipe(tap((data) => this.importData$.next(data)));
+  }
+
+  public getAllUploadedFiles(): Observable<File[]> {
+    return this.http.get<File[]>(this.controllerName.concat("/uploaded-files"));
   }
 }

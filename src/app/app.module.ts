@@ -19,7 +19,7 @@ import { SelectorComponent } from "./shared/selector/selector.component";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TtpFileParsingComponent } from "./components/parsing/file-parsing.component";
-import { AdminParsingService } from "./services/admin-parsing.service";
+import { FileService } from "./services/file.service";
 import { TtpTimetableComponent } from "./components/timetable/timetable.component";
 import { CardComponent } from "./shared/card/card.component";
 import { IconComponent } from "./shared/icon/icon.component";
@@ -88,7 +88,7 @@ let externalLibs = [
     externalLibs,
   ],
   providers: [
-    AdminParsingService,
+    FileService,
     StateService,
     LoginService,
     LoaderService,

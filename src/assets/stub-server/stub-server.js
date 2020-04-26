@@ -2,6 +2,9 @@ const express = require("express");
 const server = express();
 const bodyParser = require("body-parser");
 const importFile = require("../mocks/import");
+const xlsx = require("xlsx");
+const excelFile = xlsx.read("S_13579_19-20.xlsx");
+const fs = require("fs");
 const listenPort = "3001";
 const adminPassword = "admin";
 const adminLogin = "admin";
@@ -16,10 +19,11 @@ server.post(
   (request, response) => {
     setTimeout(() => {
       const isError = Math.random() * Math.floor(10);
-      // if (isError > 5) {
-      //   response.send(importFile);
-      // } else {
-      response.status(422).send("Error");
+      if (isError > 5) {
+        response.send(importFile);
+      } else {
+        response.status(422).send("Error");
+      }
     }, 5000);
   }
 );
@@ -49,5 +53,13 @@ server.get("/api/get/timetable", (request, response) => {
     } else {
       response.status(422).send("Error");
     }
+  }, 5000);
+});
+
+server.get("/api/v1/ttp-administrator/uploaded-files", (request, response) => {
+  setTimeout(() => {
+    const isError = Math.random() * Math.floor(10);
+    const uploadedFiles = [];
+    response.send(uploadedFiles);
   }, 5000);
 });

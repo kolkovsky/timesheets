@@ -53,7 +53,7 @@ export class TtpLoginComponent implements OnInit {
       this.submitEnabled = false;
       const login: string = this.fromGroup.controls["login"].value;
       const password: string = this.fromGroup.controls["password"].value;
-      this.loaderService.showDefaultLoader("Loading");
+      this.loaderService.showLoader("Loading");
       this.loginService
         .sendLoginRequest(login, password)
         .pipe(
