@@ -56,24 +56,20 @@
 <ttp-shared-popup
   [position]="'right'"
   [visiblePopup]="visibleAllUploadedFilesModal"
-  [useCustomTemplate]="true"
-  [customTemplate]="uploadedFilesTemplate"
-></ttp-shared-popup>
-
-<ng-template #uploadedFilesTemplate>
+>
   <div class="file-parsing__popup-header">
     {{
-      uploadedFiles.length === 0
+      uploadedFiles?.length === 0
         ? "Здесь будут ваши все загруженные файлы"
         : "Загруженные файлы"
     }}
   </div>
   <div
     class="file-parsing__popup-files"
-    [class.empty]="uploadedFiles.length === 0"
+    [class.empty]="uploadedFiles?.length === 0"
   >
     <ng-container
-      *ngTemplateOutlet="uploadedFiles.length !== 0 ? fullFiles : emptyFiles"
+      *ngTemplateOutlet="uploadedFiles?.length !== 0 ? fullFiles : emptyFiles"
     ></ng-container>
     <ng-template #fullFiles>
       <div
@@ -100,7 +96,7 @@
       <div class="file-parsing__popup-files-empty">
         <ttp-icon
           iconName="package"
-          customFill="white"
+          customFill="orange"
           customClass="file-parsing__popup-files-empty-icon"
         >
         </ttp-icon>
@@ -109,10 +105,10 @@
   </div>
   <div class="file-parsing__popup-button">
     <button
-      class="btn btn-block btn-outline-danger"
+      class="btn btn-outline-danger"
       (click)="closeAllUploadedFilesPopup()"
     >
       Закрыть
     </button>
   </div>
-</ng-template>
+</ttp-shared-popup>

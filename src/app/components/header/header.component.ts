@@ -15,6 +15,7 @@ export class TtpHeaderComponent extends TtpBaseComponent implements OnInit {
   public visibleCreateTimetableButton: boolean;
   public visibleAllUploadedFiles: boolean;
   public editModeDisabled: boolean;
+  public links: any[];
 
   constructor(public stateService: StateService) {
     super(stateService);
@@ -66,6 +67,9 @@ export class TtpHeaderComponent extends TtpBaseComponent implements OnInit {
         break;
       case States.hideAllUploadedFilesButton:
         this.visibleAllUploadedFiles = false;
+        break;
+      case States.headerLinksChange:
+        this.links = state.payload.value;
         break;
       default:
         break;

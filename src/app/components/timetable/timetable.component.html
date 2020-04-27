@@ -35,4 +35,11 @@
       ></ttp-table>
     </ng-template>
   </div>
+
+  <div
+    class="ttp-timetable__timetable-container animated fadeInRight"
+    *ngIf="visibleWarningMessage"
+  >
+    <ttp-banner [visibleWarningMessage]="true"></ttp-banner>
+  </div>
 </div>

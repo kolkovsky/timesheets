@@ -1,0 +1,14 @@
+<div class="btn-group" dropdown [insideClick]="true">
+  <button
+    dropdownToggle
+    type="button"
+    class="btn btn-outline-danger dropdown-toggle"
+  >
+    Ссылки <span class="caret"></span>
+  </button>
+  <ul *dropdownMenu class="dropdown-menu" role="menu">
+    <li role="menuitem" *ngFor="let item of items">
+      <a class="dropdown-item" [href]="item.link">{{ item.name }}</a>
+    </li>
+  </ul>
+</div>

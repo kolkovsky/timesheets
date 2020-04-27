@@ -6,15 +6,7 @@ import { TtpHeaderComponent } from "./components/header/header.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRouterModule } from "./components/app-router.module";
 import { RouterModule } from "@angular/router";
-import {
-  AlertModule,
-  BsDropdownModule,
-  ButtonsModule,
-  ModalModule,
-  ProgressbarModule,
-  TabsModule,
-  CarouselModule,
-} from "ngx-bootstrap";
+import { AlertModule, BsDropdownModule, ButtonsModule } from "ngx-bootstrap";
 import { SelectorComponent } from "./shared/selector/selector.component";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -38,6 +30,8 @@ import { LoaderService } from "./services/loader.service";
 import { TimetableService } from "./services/timetable.service";
 import { TtpEditTimetableComponent } from "./components/timetable/edit-timetable/edit-timetable.component";
 import { TtpPopupComponent } from "./shared/popup/popup.component";
+import { TtpDropdownComponent } from "./shared/dropdown/dropdown.component";
+import { TtpAddTimetableComponent } from "./components/timetable/add-timetable/add-timetable.component";
 
 let adminConfigurations = [
   AppComponent,
@@ -48,6 +42,7 @@ let adminConfigurations = [
   TableComponent,
   TtpLoginComponent,
   TtpEditTimetableComponent,
+  TtpAddTimetableComponent,
 ];
 
 let sharedComponents = [
@@ -60,18 +55,15 @@ let sharedComponents = [
   TtpNotificationComponent,
   TtpLoaderComponent,
   TtpPopupComponent,
+  TtpDropdownComponent,
 ];
 
 export const AppComponents = [sharedComponents, adminConfigurations];
 
 let externalLibs = [
   ButtonsModule.forRoot(),
-  ModalModule.forRoot(),
   AlertModule.forRoot(),
-  TabsModule.forRoot(),
-  ProgressbarModule.forRoot(),
   BsDropdownModule.forRoot(),
-  CarouselModule.forRoot(),
   NgxSpinnerModule,
 ];
 

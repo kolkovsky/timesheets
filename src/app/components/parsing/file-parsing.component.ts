@@ -108,7 +108,6 @@ export class TtpFileParsingComponent extends TtpBaseComponent
   }
 
   public removeFile(file: File): void {
-    console.log(file);
     this.uploadedFiles.splice(this.uploadedFiles.indexOf(file), 1);
   }
 

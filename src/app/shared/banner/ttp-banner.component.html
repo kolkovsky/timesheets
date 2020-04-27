@@ -1,7 +1,20 @@
-<div class="ttp-banner-container" [class.full-width]="!visibleTemplate">
+<div
+  class="ttp-banner-container"
+  [class.full-width]="!visibleTemplate"
+  [class.transparent]="visibleWarningMessage || !visibleTemplate"
+>
   <ng-container
-    *ngTemplateOutlet="template && visibleTemplate ? template : defaultTemplate"
+    *ngTemplateOutlet="
+      template && visibleTemplate
+        ? template
+        : !visibleWarningMessage
+        ? defaultTemplate
+        : ''
+    "
   ></ng-container>
+
+  <ng-container *ngTemplateOutlet="visibleWarningMessage ? warningBanner : ''">
+  </ng-container>
 
   <ng-template #defaultTemplate>
     <div class="ttp-banner-container-title">
@@ -9,6 +22,17 @@
     </div>
     <ttp-icon
       iconName="issue-opened"
+      customClass="ttp-banner-container-icon"
+    ></ttp-icon>
+  </ng-template>
+
+  <ng-template #warningBanner>
+    <div class="ttp-banner-container-title">
+      Произошла ошибка во время загрузки расписания
+    </div>
+    <ttp-icon
+      iconName="alert"
+      customFill="orange"
       customClass="ttp-banner-container-icon"
     ></ttp-icon>
   </ng-template>

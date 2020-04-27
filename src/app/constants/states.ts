@@ -17,4 +17,5 @@ export class States {
     "hideAllUploadedFIlesButton";
   public static readonly showAllUploadedFilesModal: string =
     "showAllUploadedFilesModal";
+  public static readonly headerLinksChange: string = "headerLinksChange";
 }

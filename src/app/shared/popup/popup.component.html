@@ -15,14 +15,13 @@
         left: position === 'left'
       }"
     >
-      <ng-container
-        *ngTemplateOutlet="useCustomTemplate ? customTemplate : defaultTemplate"
-      ></ng-container>
-
-      <ng-template #defaultTemplate>
-        <div class="ttp-shared-popup__header"></div>
-        <div class="ttp-shared-popup__body"></div>
-      </ng-template>
+      <div class="ttp-shared-popup__header" *ngIf="header">{{ header }}</div>
+      <div class="ttp-shared-popup__description" *ngIf="description">
+        {{ description }}
+      </div>
+      <ng-content></ng-content>
     </div>
   </div>
+
+  <div class="ttp-shared-popup__overlay"></div>
 </ng-container>

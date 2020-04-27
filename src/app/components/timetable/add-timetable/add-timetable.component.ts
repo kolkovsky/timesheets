@@ -1,21 +1,19 @@
-import { Component, Input, TemplateRef } from "@angular/core";
+import { Component } from "@angular/core";
 import { TtpBaseComponent } from "src/app/ng-core/ttp-base.component";
 import { StateService } from "src/app/services/state.service";
 import { State } from "src/app/interfaces/state.interface";
+import { FormGroup } from "@angular/forms";
 
 @Component({
-  selector: "ttp-shared-popup",
-  templateUrl: "./popup.component.html",
+  selector: "ttp-add-timetable",
+  templateUrl: "./add-timetable.component.html",
 })
-export class TtpPopupComponent extends TtpBaseComponent {
-  @Input()
-  public visiblePopup: boolean = false;
-  @Input()
-  public position: string = "right";
-  @Input()
-  public header: string;
-  @Input()
-  public description: string;
+export class TtpAddTimetableComponent extends TtpBaseComponent {
+  public timetableTemplateCreated: boolean;
+
+  public termFormGroup: FormGroup;
+  public courseFormGroup: FormGroup;
+  public groupsFormGroup: FormGroup;
 
   constructor(public stateService: StateService) {
     super(stateService);

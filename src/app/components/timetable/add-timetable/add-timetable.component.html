@@ -1,0 +1,14 @@
+<div class="ttp-add-timetable-container" *ngIf="timetableTemplateCreated">
+  <div class="ttp-add-timetable-container__item"></div>
+</div>
+
+<ttp-shared-popup class="ttp-add-timetable-popup" [position]="'center'">
+</ttp-shared-popup>
+
+<ng-template #termModal>
+  <div class="ttp-add-timetable-popup__header"></div>
+  <div class="ttp-add-timetable-popup__body" [formGroup]="courseFormGroup">
+    <label class="ttp-add-timetable-popup__body-label">Введите </label>
+    <input class="form-control" />
+  </div>
+</ng-template>

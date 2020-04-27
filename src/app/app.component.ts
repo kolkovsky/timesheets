@@ -3,6 +3,7 @@ import { Router, NavigationStart, Event } from "@angular/router";
 import { filter, tap } from "rxjs/operators";
 import { StateService } from "./services/state.service";
 import { States } from "./constants/states";
+import { TtpHeaderComponent } from "./components/header/header.component";
 
 @Component({
   selector: "app-root",
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
         tap((event: NavigationStart) => {
           const url: string = event.url;
           this.headerEnabled = !(url === "/" || url == "/login");
+          this.changeHeaderLinks(url);
           this.processURLPATH(url);
         })
       )
@@ -58,5 +60,58 @@ export class AppComponent implements OnInit {
         payload: { stateName: States.hideAllUploadedFilesButton },
       });
     }
+  }
+
+  private changeHeaderLinks(url: string): void {
+    switch (url) {
+      case "/timetable":
+        this.setHeaderComponentState([
+          {
+            link: "/home",
+            name: "Главная",
+          },
+          {
+            link: "/parsing",
+            name: "Файлы",
+          },
+        ]);
+        break;
+      case "/parsing":
+        this.setHeaderComponentState([
+          {
+            link: "/home",
+            name: "Главная",
+          },
+          {
+            link: "/timetable",
+            name: "Раписание",
+          },
+        ]);
+        break;
+      case "/home":
+        this.setHeaderComponentState([
+          {
+            link: "/parsing",
+            name: "Файлы",
+          },
+          {
+            link: "/timetable",
+            name: "Расписание",
+          },
+        ]);
+        break;
+      default:
+        break;
+    }
+  }
+
+  private setHeaderComponentState(items: any[]): void {
+    this.stateService.setStateComponent({
+      componentName: TtpHeaderComponent.name,
+      payload: {
+        stateName: States.headerLinksChange,
+        value: items,
+      },
+    });
   }
 }

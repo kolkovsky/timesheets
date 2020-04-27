@@ -13,7 +13,7 @@
       (click)="turnOnorOffEditMode()"
     >
       {{
-        editModeDisabled ? "Изменить расписание" : "Закончить редактирование"
+        editModeDisabled ? "Закончить редактирование" : "Изменить расписание"
       }}
     </button>
 
@@ -24,6 +24,12 @@
     >
       Загруженные файлы
     </button>
+
+    <ttp-shared-dropdown
+      class="ttp-header__button-container-item"
+      [items]="links"
+    >
+    </ttp-shared-dropdown>
 
     <button class="ttp-header__button-container-item btn btn-outline-danger">
       Выйти

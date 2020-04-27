@@ -9,10 +9,14 @@ import { State } from "../../interfaces/state.interface";
 import { ButtonModel } from "../../models/button.model";
 import { TtpBaseComponent } from "../../ng-core/ttp-base.component";
 import { StateService } from "../../services/state.service";
-import { takeUntil, tap, finalize } from "rxjs/operators";
+import { takeUntil, tap, finalize, catchError } from "rxjs/operators";
 import { GroupModel } from "../../models/group.model";
 import { TimetableService } from "src/app/services/timetable.service";
 import { LoaderService } from "src/app/services/loader.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { of } from "rxjs";
+import { TtpHeaderComponent } from "../header/header.component";
+import { States } from "src/app/constants/states";
 
 @Component({
   selector: "ttp-timetable",
@@ -27,7 +31,8 @@ export class TtpTimetableComponent extends TtpBaseComponent {
   public uiTimesheets: UiTimesheetModel[];
   public selectedCourse: any;
   public selectedUiGroup: UiGroupModel;
-  public showAddButton: boolean = false;
+  public showAddButton: boolean;
+  public visibleWarningMessage: boolean;
 
   constructor(
     private timetableService: TimetableService,
@@ -66,6 +71,12 @@ export class TtpTimetableComponent extends TtpBaseComponent {
           this.initTimetableData(timeSheets)
         ),
         takeUntil(this.unsubscribeStream$),
+        catchError((error: HttpErrorResponse) => {
+          console.log(error);
+          this.hideHeaderButtons();
+          this.visibleWarningMessage = true;
+          return of(null);
+        }),
         finalize(() => this.loaderService.hideSpinner())
       )
       .subscribe();
@@ -77,6 +88,18 @@ export class TtpTimetableComponent extends TtpBaseComponent {
     this.uiTimesheets = this.timeSheets.map((timeSheet) =>
       this.convertToUiTimesheet(timeSheet)
     );
+  }
+
+  private hideHeaderButtons(): void {
+    this.stateService.setStateComponent({
+      componentName: TtpHeaderComponent.name,
+      payload: { stateName: States.hideCreateTimetableButton },
+    });
+
+    this.stateService.setStateComponent({
+      componentName: TtpHeaderComponent.name,
+      payload: { stateName: States.hideEditTimtableButton },
+    });
   }
 
   public selectCourse(selectedButton: ButtonModel): void {

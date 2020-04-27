@@ -1,24 +1,36 @@
-<table class="table table-hover table-dark ttp-table table-borderless">
+<table class="table table-dark ttp-table table-borderless">
   <thead>
-  <tr>
-    <th scope="col"></th>
-    <th scope="col" class="text-center" *ngFor="let weekday of weekdays">{{weekday}}</th>
-  </tr>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col" class="text-center" *ngFor="let weekday of weekdays">
+        {{ weekday }}
+      </th>
+    </tr>
   </thead>
   <tbody>
-  <tr class="ttp-table-subjects" *ngFor="let time of times">
-    <th>{{time}}</th>
-    <ng-container *ngFor="let weekday of weekdays">
-      <td class="text-capitalize ttp-table-subjects-item"
-          [ngClass]="'text-' + getClassForLessonType(getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).classLessonType)"
-          *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday])">
-        {{getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).name}}
-      </td>
-      <td class="timetable__subjects__item text-warning"
-          *ngIf="!getSubjectByTime(time, uiGroup.sortedSubjects[weekday])">
-        [Пусто]
-      </td>
-    </ng-container>
-  </tr>
+    <tr class="ttp-table-subjects" *ngFor="let time of times">
+      <th>{{ time }}</th>
+      <ng-container *ngFor="let weekday of weekdays">
+        <td
+          class="text-capitalize ttp-table-subjects-item"
+          [ngClass]="
+            'text-' +
+            getClassForLessonType(
+              getSubjectByTime(time, uiGroup.sortedSubjects[weekday])
+                .classLessonType
+            )
+          "
+          *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday])"
+        >
+          {{ getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).name }}
+        </td>
+        <td
+          class="timetable__subjects__item text-warning"
+          *ngIf="!getSubjectByTime(time, uiGroup.sortedSubjects[weekday])"
+        >
+          [Пусто]
+        </td>
+      </ng-container>
+    </tr>
   </tbody>
 </table>

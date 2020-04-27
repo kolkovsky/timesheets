@@ -10,4 +10,7 @@ export class TtpBannerComponent {
 
   @Input()
   public visibleTemplate: boolean;
+
+  @Input()
+  public visibleWarningMessage: boolean;
 }
