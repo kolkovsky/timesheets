@@ -4,17 +4,25 @@
     <button
       class="ttp-header__button-container-item btn btn-outline-danger"
       *ngIf="visibleCreateTimetableButton"
+      (click)="showAddingTimetablePopup()"
     >
       Создать новое расписание
     </button>
+
     <button
       class="ttp-header__button-container-item btn btn-outline-danger"
-      *ngIf="visibleEditTimetableButton"
-      (click)="turnOnorOffEditMode()"
+      *ngIf="visibleEditTimetableButton && !editModeEnabled"
+      (click)="turnOnEditMode()"
     >
-      {{
-        editModeDisabled ? "Закончить редактирование" : "Изменить расписание"
-      }}
+      {{ "Изменить расписание" }}
+    </button>
+
+    <button
+      class="ttp-header__button-container-item btn btn-outline-danger"
+      *ngIf="visibleEditTimetableButton && editModeEnabled"
+      (click)="turnOffEditMode()"
+    >
+      {{ "Закончить редактирование" }}
     </button>
 
     <button
@@ -36,3 +44,30 @@
     </button>
   </div>
 </div>
+
+<ttp-shared-popup
+  *ngIf="visibleAddTimetablePopup"
+  class="ttp-term-popup"
+  [visiblePopup]="visibleAddTimetablePopup"
+  header="Введите год действия расписания"
+>
+  <!-- todo: add validators and save model -->
+  <div class="ttp-shared-popup__form">
+    <div class="ttp-shared-popup__form-item">
+      <label class="ttp-shared-popup__form-label">C</label>
+      <input class="form-control ttp-shared-popup__form-input" />
+    </div>
+    <div class="ttp-shared-popup__form-item">
+      <label class="ttp-shared-popup__form-label">По</label>
+      <input class="form-control ttp-shared-popup__form-input" />
+    </div>
+    <div class="ttp-shared-popup__form-buttons">
+      <div
+        class="btn btn-danger ttp-shared-popup__form-buttons-item"
+        (click)="goToTimetableDetails()"
+      >
+        Создать расписание
+      </div>
+    </div>
+  </div>
+</ttp-shared-popup>

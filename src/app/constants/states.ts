@@ -18,4 +18,5 @@ export class States {
   public static readonly showAllUploadedFilesModal: string =
     "showAllUploadedFilesModal";
   public static readonly headerLinksChange: string = "headerLinksChange";
+  public static readonly addTimetable: string = "addTimetable";
 }

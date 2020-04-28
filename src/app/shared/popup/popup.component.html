@@ -15,6 +15,14 @@
         left: position === 'left'
       }"
     >
+      <div
+        class="ttp-shared-popup__circle"
+        *ngIf="visibleCloseButton"
+        (click)="closePopup()"
+      >
+        <ttp-icon iconName="x" customClass="ttp-shared-popup__close"></ttp-icon>
+      </div>
+
       <div class="ttp-shared-popup__header" *ngIf="header">{{ header }}</div>
       <div class="ttp-shared-popup__description" *ngIf="description">
         {{ description }}
@@ -23,5 +31,5 @@
     </div>
   </div>
 
-  <div class="ttp-shared-popup__overlay"></div>
+  <div class="ttp-shared-popup__overlay" (click)="closePopup()"></div>
 </ng-container>

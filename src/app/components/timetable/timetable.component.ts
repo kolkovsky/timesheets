@@ -33,6 +33,7 @@ export class TtpTimetableComponent extends TtpBaseComponent {
   public selectedUiGroup: UiGroupModel;
   public showAddButton: boolean;
   public visibleWarningMessage: boolean;
+  public visibleAddTimetablePopup: boolean;
 
   constructor(
     private timetableService: TimetableService,

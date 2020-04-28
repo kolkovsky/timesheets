@@ -1,14 +1,50 @@
-<div class="ttp-add-timetable-container" *ngIf="timetableTemplateCreated">
-  <div class="ttp-add-timetable-container__item"></div>
+<div class="ttp-add-timetable-container" *ngIf="true">
+  <div class="ttp-add-timetable-container__item">
+    <ttp-group-button
+      [label]="courseLabel"
+      [items]="courseItems"
+      (editButtonClickChange)="showAddCoursePopup()"
+    >
+    </ttp-group-button>
+  </div>
+
+  <div class="ttp-add-timetable-container__item" *ngIf="false">
+    <ttp-group-button [items]="courseItems" [label]="groupLabel">
+    </ttp-group-button>
+  </div>
+
+  <ttp-banner *ngIf="false"> </ttp-banner>
 </div>
 
-<ttp-shared-popup class="ttp-add-timetable-popup" [position]="'center'">
-</ttp-shared-popup>
-
-<ng-template #termModal>
-  <div class="ttp-add-timetable-popup__header"></div>
-  <div class="ttp-add-timetable-popup__body" [formGroup]="courseFormGroup">
-    <label class="ttp-add-timetable-popup__body-label">Введите </label>
-    <input class="form-control" />
+<ttp-shared-popup
+  *ngIf="visibleAddCoursePopup"
+  class="ttp-course-popup"
+  [visibleCloseButton]="true"
+  [visiblePopup]="visibleAddCoursePopup"
+  (visibleChange)="visibleAddCoursePopup = $event"
+  header="Какой курс хотите добавить?"
+>
+  <!-- todo: add validators and save model -->
+  <div class="ttp-shared-popup__course-form">
+    <div
+      class="ttp-shared-popup__course-form-item"
+      [formGroup]="courseFormGroup"
+    >
+      <label class="ttp-shared-popup__course-form-label">Номер курса: </label>
+      <input
+        class="form-control ttp-shared-popup__course-form-input"
+        [formControlName]="'course'"
+      />
+    </div>
+    <div class="ttp-shared-popup__course-form-buttons">
+      <button
+        class="btn ttp-shared-popup__course-form-buttons-item"
+        [ngClass]="isCourseFormValid ? 'btn-danger' : 'btn-outline-danger'"
+        [disabled]="!isCourseFormValid"
+        (click)="addCourse()"
+      >
+        Добавить курс
+      </button>
+    </div>
   </div>
-</ng-template>
+</ttp-shared-popup>

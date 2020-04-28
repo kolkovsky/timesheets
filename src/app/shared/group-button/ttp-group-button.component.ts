@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChanges,
+} from "@angular/core";
 import { ButtonModel } from "../../models/button.model";
 import { State } from "../../interfaces/state.interface";
 import { StateService } from "../../services/state.service";
@@ -9,7 +16,8 @@ import { States } from "src/app/constants/states";
   selector: "ttp-group-button",
   templateUrl: "./ttp-group-button.component.html",
 })
-export class TtpGroupButtonComponent extends TtpBaseComponent {
+export class TtpGroupButtonComponent extends TtpBaseComponent
+  implements OnChanges {
   @Input()
   public items: ButtonModel[];
 
@@ -22,10 +30,16 @@ export class TtpGroupButtonComponent extends TtpBaseComponent {
   @Input()
   public title: string;
 
+  @Input()
+  public label: string;
+
   @Output()
   public buttonClickChange: EventEmitter<ButtonModel> = new EventEmitter<
     ButtonModel
   >();
+
+  @Output()
+  public editButtonClickChange: EventEmitter<void> = new EventEmitter<void>();
 
   public buttonClass: string = "btn-" + this.color;
   public buttonOutlineClass: string = "btn-outline-" + this.color;
@@ -34,8 +48,15 @@ export class TtpGroupButtonComponent extends TtpBaseComponent {
     super(stateService);
   }
 
+  public ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
+
   public ngOnInit(): void {
     super.ngOnInit();
+    if (this.items.length === 0) {
+      this.addEditButton();
+    }
   }
 
   private addEditButton(): void {
@@ -73,19 +94,17 @@ export class TtpGroupButtonComponent extends TtpBaseComponent {
   }
 
   public chooseElement(item: ButtonModel): void {
-    this.items.find((button: ButtonModel) => (button.clicked = false));
-    const clickedButton = this.items.find(
-      (button: ButtonModel) =>
-        (button.clicked =
-          button.label.toLowerCase() === item.label.toLowerCase())
-    );
-    this.stateService.setStateComponent({
-      componentName: TtpGroupButtonComponent.name,
-      payload: {
-        stateName: States.clickButton,
-        value: clickedButton,
-      },
-    });
-    this.buttonClickChange.emit(clickedButton);
+    //checking edit-button
+    if (item.id === "add") {
+      this.editButtonClickChange.emit();
+    } else {
+      this.items.find((button: ButtonModel) => (button.clicked = false));
+      const clickedButton = this.items.find(
+        (button: ButtonModel) =>
+          (button.clicked =
+            button.label.toLowerCase() === item.label.toLowerCase())
+      );
+      this.buttonClickChange.emit(clickedButton);
+    }
   }
 }

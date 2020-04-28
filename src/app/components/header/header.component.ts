@@ -5,6 +5,13 @@ import { TtpBaseComponent } from "src/app/ng-core/ttp-base.component";
 import { State } from "src/app/interfaces/state.interface";
 import { States } from "src/app/constants/states";
 import { TtpFileParsingComponent } from "../parsing/file-parsing.component";
+import { TtpTimetableComponent } from "../timetable/timetable.component";
+import { ActivatedRoute, Router } from "@angular/router";
+import { TimetableService } from "src/app/services/timetable.service";
+import { tap, finalize, catchError } from "rxjs/operators";
+import { LoaderService } from "src/app/services/loader.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { of } from "rxjs";
 
 @Component({
   selector: "ttp-header",
@@ -14,10 +21,16 @@ export class TtpHeaderComponent extends TtpBaseComponent implements OnInit {
   public visibleEditTimetableButton: boolean;
   public visibleCreateTimetableButton: boolean;
   public visibleAllUploadedFiles: boolean;
-  public editModeDisabled: boolean;
+  public editModeEnabled: boolean;
   public links: any[];
+  public visibleAddTimetablePopup: boolean;
 
-  constructor(public stateService: StateService) {
+  constructor(
+    public stateService: StateService,
+    private router: Router,
+    private timetableService: TimetableService,
+    private loaderService: LoaderService
+  ) {
     super(stateService);
   }
 
@@ -25,19 +38,49 @@ export class TtpHeaderComponent extends TtpBaseComponent implements OnInit {
     super.ngOnInit();
   }
 
-  public turnOnorOffEditMode(): void {
-    if (this.editModeDisabled) {
-      this.stateService.setStateComponent({
-        componentName: TtpGroupButtonComponent.name,
-        payload: { stateName: States.showAddButton },
-      });
-    } else {
-      this.stateService.setStateComponent({
-        componentName: TtpGroupButtonComponent.name,
-        payload: { stateName: States.hideAddButton },
-      });
-    }
-    this.editModeDisabled = !this.editModeDisabled;
+  public turnOnEditMode(): void {
+    this.stateService.setStateComponent({
+      componentName: TtpGroupButtonComponent.name,
+      payload: { stateName: States.showAddButton },
+    });
+    this.editModeEnabled = true;
+  }
+
+  public turnOffEditMode(): void {
+    this.stateService.setStateComponent({
+      componentName: TtpGroupButtonComponent.name,
+      payload: { stateName: States.hideAddButton },
+    });
+    this.editModeEnabled = false;
+  }
+
+  public showAddingTimetablePopup(): void {
+    this.visibleAddTimetablePopup = true;
+  }
+
+  public goToTimetableDetails(): void {
+    /*It's stub-object, because we need implement validators
+    https://trello.com/c/l9sZPJPz/15-create-validatior-for-create-timetable-template-form
+    */
+    const object: any = {
+      start: 2019,
+      end: 2020,
+    };
+    this.loaderService.showLoader("Создание шаблона");
+    this.timetableService.createTimetableTemplate(object).pipe(
+      tap((response) => {
+        localStorage.setItem("timetable", JSON.stringify(response));
+      }),
+      catchError((error: HttpErrorResponse) => {
+        //todo: show notification
+        return of(null);
+      }),
+      finalize(() => this.loaderService.hideSpinner())
+    );
+
+    this.visibleAddTimetablePopup = false;
+    this.visibleCreateTimetableButton = false;
+    this.router.navigateByUrl("/timetable-details");
   }
 
   public showAllUploadedFiles(): void {

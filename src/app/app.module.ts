@@ -32,6 +32,7 @@ import { TtpEditTimetableComponent } from "./components/timetable/edit-timetable
 import { TtpPopupComponent } from "./shared/popup/popup.component";
 import { TtpDropdownComponent } from "./shared/dropdown/dropdown.component";
 import { TtpAddTimetableComponent } from "./components/timetable/add-timetable/add-timetable.component";
+import { TtpAllTimetablesComponent } from "./components/timetable/all-timetables/all-timtables.component";
 
 let adminConfigurations = [
   AppComponent,
@@ -43,6 +44,7 @@ let adminConfigurations = [
   TtpLoginComponent,
   TtpEditTimetableComponent,
   TtpAddTimetableComponent,
+  TtpAllTimetablesComponent,
 ];
 
 let sharedComponents = [

@@ -4,6 +4,7 @@ import { TtpHomeComponent } from "./home/home.component";
 import { TtpFileParsingComponent } from "./parsing/file-parsing.component";
 import { TtpTimetableComponent } from "./timetable/timetable.component";
 import { TtpLoginComponent } from "./login/login.component";
+import { TtpAddTimetableComponent } from "./timetable/add-timetable/add-timetable.component";
 
 const routes: Routes = [
   { path: "login", component: TtpLoginComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: "", component: TtpLoginComponent },
   { path: "parsing", component: TtpFileParsingComponent },
   { path: "timetable", component: TtpTimetableComponent },
+  { path: "timetable-details", component: TtpAddTimetableComponent },
 ];
 
 @NgModule({

@@ -9,13 +9,34 @@
     display: flex;
     justify-content: center;
     width: 100%;
+
+    &.single {
+      display: flex;
+    }
+
     & .btn {
       width: 80%;
+      display: flex;
+      justify-content: center;
     }
 
     &-icon {
-      width: 1.7rem;
-      height: 1.7rem;
+      width: 2.7rem;
+      height: 2.7rem;
+      display: block;
+    }
+
+    &-label {
+      display: inline-flex;
+      justify-content: center;
+      flex: 0 0 55%;
+      font-size: 1.5rem;
+
+      &-arrow {
+        margin-left: 2rem;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
     }
   }
 

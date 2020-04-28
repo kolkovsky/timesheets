@@ -25,7 +25,7 @@ server.post(
   }
 );
 
-server.post("/api/login", (request, response) => {
+server.post("/api/v1/ttp-administrator/login", (request, response) => {
   setTimeout(() => {
     const isError = Math.random() * Math.floor(10);
     if (isError > 5) {
@@ -42,7 +42,7 @@ server.post("/api/login", (request, response) => {
   }, 5000);
 });
 
-server.get("/api/get/timetable", (request, response) => {
+server.get("/api/v1/ttp-administrator/time-tables", (request, response) => {
   setTimeout(() => {
     const isError = Math.random() * Math.floor(10);
     if (isError > 5) {

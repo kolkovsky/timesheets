@@ -1,8 +1,18 @@
 <div class="ttp-button-container">
   <ng-container *ngFor="let item of items">
-    <div class="ttp-button-container-item">
+    <div class="ttp-button-container-item" [class.single]="label">
+      <div class="ttp-button-container-item-label" *ngIf="label">
+        {{ label }}
+        <ttp-icon
+          iconName="line-arrow-right"
+          customClass="ttp-button-container-item-label-arrow"
+          customFill="white"
+        ></ttp-icon>
+      </div>
+
       <ng-container *ngIf="item.isHasIcon; then editButton; else dataButton">
       </ng-container>
+
       <ng-template #editButton>
         <button
           type="button"
@@ -16,6 +26,7 @@
           ></ttp-icon>
         </button>
       </ng-template>
+
       <ng-template #dataButton>
         <button
           type="button"
