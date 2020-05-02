@@ -33,6 +33,9 @@ export class TtpGroupButtonComponent extends TtpBaseComponent
   @Input()
   public label: string;
 
+  @Input()
+  public editModeEnabled: boolean;
+
   @Output()
   public buttonClickChange: EventEmitter<ButtonModel> = new EventEmitter<
     ButtonModel
@@ -50,11 +53,14 @@ export class TtpGroupButtonComponent extends TtpBaseComponent
 
   public ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
+    if (changes.label && !changes.label.firstChange) {
+      this.label = changes.label.currentValue;
+    }
   }
 
   public ngOnInit(): void {
     super.ngOnInit();
-    if (this.items.length === 0) {
+    if (this.items.length === 0 && this.editModeEnabled) {
       this.addEditButton();
     }
   }

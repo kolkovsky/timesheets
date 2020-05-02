@@ -9,10 +9,12 @@
   </thead>
   <tbody>
     <tr class="ttp-table-subjects" *ngFor="let time of times">
-      <th>{{ time }}</th>
+      <th class="ttp-table__time">{{ time }}</th>
       <ng-container *ngFor="let weekday of weekdays">
         <td
+          *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday])"
           class="text-capitalize ttp-table-subjects-item"
+          [class.edit]="editModeEnabled"
           [ngClass]="
             'text-' +
             getClassForLessonType(
@@ -20,13 +22,21 @@
                 .classLessonType
             )
           "
-          *ngIf="getSubjectByTime(time, uiGroup.sortedSubjects[weekday])"
+          (click)="
+            clickOnElement.emit({
+              time: time,
+              weekday: weekday,
+              subject: getSubjectByTime(time, uiGroup.sortedSubjects[weekday])
+            })
+          "
         >
           {{ getSubjectByTime(time, uiGroup.sortedSubjects[weekday]).name }}
         </td>
         <td
-          class="timetable__subjects__item text-warning"
           *ngIf="!getSubjectByTime(time, uiGroup.sortedSubjects[weekday])"
+          class="ttp-table-subjects-item text-warning"
+          [class.edit]="editModeEnabled"
+          (click)="clickOnEmptyElement.emit({ time: time, weekday: weekday })"
         >
           [Пусто]
         </td>

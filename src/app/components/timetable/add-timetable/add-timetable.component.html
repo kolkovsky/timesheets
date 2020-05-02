@@ -1,21 +1,49 @@
-<div class="ttp-add-timetable-container" *ngIf="true">
+<div class="ttp-add-timetable-container">
   <div class="ttp-add-timetable-container__item">
     <ttp-group-button
       [label]="courseLabel"
       [items]="courseItems"
+      [editModeEnabled]="true"
+      (buttonClickChange)="selectCourse($event)"
       (editButtonClickChange)="showAddCoursePopup()"
     >
     </ttp-group-button>
   </div>
 
-  <div class="ttp-add-timetable-container__item" *ngIf="false">
-    <ttp-group-button [items]="courseItems" [label]="groupLabel">
+  <div class="ttp-add-timetable-container__item" *ngIf="selectedCourse">
+    <ttp-group-button
+      [items]="groupItems"
+      [label]="groupLabel"
+      [editModeEnabled]="true"
+      (buttonClickChange)="selectGroup($event)"
+      (editButtonClickChange)="showAddGroupPopup()"
+    >
     </ttp-group-button>
   </div>
 
-  <ttp-banner *ngIf="false"> </ttp-banner>
+  <div class="ttp-add-timetable-container__item" *ngIf="selectedUiGroup">
+    <ttp-banner
+      class="ttp-add-timetable-container__table"
+      [template]="timetable"
+      [visibleTemplate]="selectedUiGroup"
+    ></ttp-banner>
+
+    <ng-template #timetable>
+      <ttp-table
+        class="ttp-add-timetable-container__table"
+        *ngIf="selectedUiGroup"
+        [editModeEnabled]="true"
+        [weekdays]="weekdays"
+        [times]="times"
+        [uiGroup]="selectedUiGroup"
+        (clickOnElement)="showAddSubjectPopup($event)"
+        (clickOnEmptyElement)="showAddSubjectPopup($event)"
+      ></ttp-table>
+    </ng-template>
+  </div>
 </div>
 
+<!-- For creating course -->
 <ttp-shared-popup
   *ngIf="visibleAddCoursePopup"
   class="ttp-course-popup"
@@ -44,6 +72,101 @@
         (click)="addCourse()"
       >
         Добавить курс
+      </button>
+    </div>
+  </div>
+</ttp-shared-popup>
+
+<!-- For creating group -->
+<ttp-shared-popup
+  *ngIf="visibleAddGroupForCourse"
+  class="ttp-course-popup"
+  [visibleCloseButton]="true"
+  [visiblePopup]="visibleAddGroupForCourse"
+  (visibleChange)="visibleAddGroupForCourse = $event"
+  header="Введите название группы"
+>
+  <!-- todo: add validators and save model -->
+  <div class="ttp-shared-popup__course-form">
+    <div
+      class="ttp-shared-popup__course-form-item"
+      [formGroup]="groupsFormGroup"
+    >
+      <label class="ttp-shared-popup__course-form-label">Имя группы: </label>
+      <input
+        class="form-control ttp-shared-popup__course-form-input"
+        [formControlName]="'group'"
+      />
+    </div>
+    <div class="ttp-shared-popup__course-form-buttons">
+      <button
+        class="btn ttp-shared-popup__course-form-buttons-item"
+        [ngClass]="isGroupFormValid ? 'btn-danger' : 'btn-outline-danger'"
+        [disabled]="!isGroupFormValid"
+        (click)="addGroup()"
+      >
+        Добавить группу
+      </button>
+    </div>
+  </div>
+</ttp-shared-popup>
+
+<!-- For creating subject -->
+<ttp-shared-popup
+  *ngIf="visibleAddSubjectPopup"
+  class="ttp-subject-popup"
+  [visibleCloseButton]="true"
+  [visiblePopup]="visibleAddSubjectPopup"
+  (visibleChange)="visibleAddSubjectPopup = $event"
+  header="Предмет"
+>
+  <!-- todo: add validators and save model -->
+  <div class="ttp-shared-popup__subject-form" [formGroup]="subjectFormGroup">
+    <div class="ttp-shared-popup__subject-form-item">
+      <label class="ttp-shared-popup__subject-form-label">Имя предмета: </label>
+      <input
+        class="form-control ttp-shared-popup__subject-form-input"
+        [formControlName]="'name'"
+      />
+    </div>
+    <div class="ttp-shared-popup__subject-form-item">
+      <label class="ttp-shared-popup__subject-form-label">Тип занятия: </label>
+      <input
+        class="form-control ttp-shared-popup__subject-form-input"
+        [formControlName]="'classLessonType'"
+      />
+    </div>
+    <div class="ttp-shared-popup__subject-section">
+      <div class="ttp-shared-popup__subject-form-item">
+        <label class="ttp-shared-popup__subject-form-label"
+          >Преподаватель:
+        </label>
+        <input
+          class="form-control ttp-shared-popup__subject-form-input"
+          [formControlName]="'teacher1'"
+        />
+      </div>
+      <div class="ttp-shared-popup__subject-form-item">
+        <label class="ttp-shared-popup__subject-form-label">Аудитория: </label>
+        <input
+          class="form-control ttp-shared-popup__subject-form-input"
+          [formControlName]="'classroom1'"
+        />
+      </div>
+      <div class="ttp-shared-popup__subject-section__button">
+        <button class="btn btn-danger">
+          Добавить преподавателя
+        </button>
+      </div>
+    </div>
+    <div class="ttp-shared-popup__subject-form-buttons">
+      <button
+        class="btn ttp-shared-popup__subject-form-buttons-item"
+        [ngClass]="isSubjectFormValid ? 'btn-danger' : 'btn-outline-danger'"
+        [disabled]="!isSubjectFormValid"
+        (click)="addSubject()"
+      >
+        Добавить предмет
       </button>
     </div>
   </div>

@@ -85,9 +85,9 @@ export class TtpTimetableComponent extends TtpBaseComponent {
 
   private initTimetableData(timeSheets: TimesheetModel[]): void {
     this.timeSheets = timeSheets;
-    this.courses = this.initCourses(this.timeSheets);
+    this.courses = TimetableUtils.initCourses(this.timeSheets);
     this.uiTimesheets = this.timeSheets.map((timeSheet) =>
-      this.convertToUiTimesheet(timeSheet)
+      TimetableUtils.convertToUiTimesheet(timeSheet)
     );
   }
 
@@ -119,32 +119,8 @@ export class TtpTimetableComponent extends TtpBaseComponent {
       (timesheet: TimesheetModel) =>
         timesheet.course.toString() === this.selectedCourse.toString()
     );
-    this.selectedUiGroup = this.convertToUiGroup(timesheetModel.groups).find(
-      (group: UiGroupModel) => group.name == selectedButton.label
-    );
-  }
-
-  private initCourses(timesheets: TimesheetModel[]): ButtonModel[] {
-    return timesheets.map(
-      (timesheet: TimesheetModel) =>
-        new ButtonModel(timesheet.course.toString(), false)
-    );
-  }
-
-  private convertToUiTimesheet(timesheet: TimesheetModel): UiTimesheetModel {
-    return new UiTimesheetModel(
-      timesheet.course,
-      this.convertToUiGroup(timesheet.groups)
-    );
-  }
-
-  private convertToUiGroup(groups: GroupModel[]): UiGroupModel[] {
-    return groups.map(
-      (group: GroupModel) =>
-        new UiGroupModel(
-          group.name,
-          TimetableUtils.sortSubjectsByWeekDay(group.subjects)
-        )
-    );
+    this.selectedUiGroup = TimetableUtils.convertToUiGroup(
+      timesheetModel.groups
+    ).find((group: UiGroupModel) => group.name == selectedButton.label);
   }
 }
