@@ -1,4 +1,4 @@
-const pathMainLess = './src/assets/styles/common.less';
+const pathMainLess = "./src/assets/styles/common.less";
 const pathDist = "./dist";
 
 const gulp = require("gulp");
@@ -12,44 +12,56 @@ const minifyCss = require("gulp-clean-css");
 
 gulp.task("prepare-svgstore", () => {
   var svgs = gulp
-    .src('src/assets/images/icons/*.svg')
-    .pipe(svgmin(function () {
-      return {
-        plugins: [{
-          cleanupIDs: {
-            minify: true
+    .src("src/assets/images/icons/*.svg")
+    .pipe(
+      svgmin(function () {
+        return {
+          plugins: [
+            {
+              cleanupIDs: {
+                minify: true,
+              },
+            },
+          ],
+        };
+      })
+    )
+    .pipe(
+      cheerio({
+        run: function ($) {
+          const svgs = Object.values($("svg"));
+          if (svgs[0].attribs.width && svgs[0].attribs.height) {
+            $("svg").attr(
+              "viewBox",
+              "0 0" + " " + svgs[0].attribs.width + " " + svgs[0].attribs.height
+            );
           }
-        }]
-      }
-    }))
-    .pipe(cheerio({
-      run: function ($) {
-        const svgs = Object.values($('svg'));
-        if (svgs[0].attribs.width && svgs[0].attribs.height) {
-          $('svg').attr("viewBox", "0 0" + " " + svgs[0].attribs.width + " " + svgs[0].attribs.height);
-        }
-      }
-    }))
-    .pipe(svgstore({inlineSvg: true}))
-    .pipe(cheerio({
-      run: function ($) {
-        $('svg').attr('style', 'display:none');
-      }
-    }));
+        },
+      })
+    )
+    .pipe(svgstore({ inlineSvg: true }))
+    .pipe(
+      cheerio({
+        run: function ($) {
+          $("svg").attr("style", "display:none");
+        },
+      })
+    );
 
   function fileContents(filePath, file) {
     return file.contents.toString();
   }
 
   return gulp
-    .src('./src/index.html')
-    .pipe(inject(svgs, {transform: fileContents}))
+    .src("./src/index.html")
+    .pipe(inject(svgs, { transform: fileContents }))
     .pipe(gulp.dest("./src/"));
 });
 
 gulp.task("prepare-styles", () => {
-           return gulp.src(pathMainLess)
-                  .pipe(less())
-                  .pipe(minifyCss())
-                  .pipe(gulp.dest([pathDist]))
+  return gulp
+    .src(pathMainLess)
+    .pipe(less())
+    .pipe(minifyCss())
+    .pipe(gulp.dest([pathDist]));
 });

@@ -2,7 +2,12 @@ import { Component } from "@angular/core";
 import { TtpBaseComponent } from "src/app/ng-core/ttp-base.component";
 import { StateService } from "src/app/services/state.service";
 import { State } from "src/app/interfaces/state.interface";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  AbstractControl,
+} from "@angular/forms";
 import { Router } from "@angular/router";
 import { ButtonModel } from "src/app/models/button.model";
 import { UiTimesheetModel } from "src/app/models/ui-timesheet.model";
@@ -10,6 +15,12 @@ import { TimetableUtils } from "src/app/utils/timetable.utils";
 import { UiGroupModel } from "src/app/models/ui-group.model";
 import { TimesheetModel } from "src/app/models/timesheet.model";
 import { WeekDaysConstant } from "src/app/constants/week-days.constant";
+import { TabHeadingDirective } from "ngx-bootstrap";
+import { of } from "rxjs";
+
+interface TeacherControl {
+  id: string | number;
+}
 
 @Component({
   selector: "ttp-add-timetable",
@@ -18,11 +29,13 @@ import { WeekDaysConstant } from "src/app/constants/week-days.constant";
 export class TtpAddTimetableComponent extends TtpBaseComponent {
   public readonly weekdays: string[] = WeekDaysConstant.WEEK_DAYS_ARRAY;
   public readonly times: string[] = Object.keys(TimetableUtils.lessonTimes);
+  public readonly MAX_TEACHERS: number = 3;
 
   public termFormGroup: FormGroup;
   public courseFormGroup: FormGroup;
   public groupsFormGroup: FormGroup;
   public subjectFormGroup: FormGroup;
+  public teacherSectionControlsIds: string[] = [];
 
   public readonly labelForCourse: string =
     "Здесь еще нет учебных курсов. Нажмите, чтобы добавить ";
@@ -50,6 +63,7 @@ export class TtpAddTimetableComponent extends TtpBaseComponent {
   public isGroupFormValid: boolean;
   public visibleAddSubjectPopup: boolean = true;
   public isSubjectFormValid: boolean;
+  public visibleAddTeacherButton: boolean = true;
 
   constructor(public stateService: StateService, private router: Router) {
     super(stateService);
@@ -87,6 +101,7 @@ export class TtpAddTimetableComponent extends TtpBaseComponent {
         Validators.compose([Validators.required])
       ),
     });
+    this.initTeacherSectionControlsIds();
   }
 
   public processState(state: State): void {}
@@ -159,9 +174,69 @@ export class TtpAddTimetableComponent extends TtpBaseComponent {
   }
 
   public showAddSubjectPopup(subject: any): void {
-    console.log(subject);
     this.visibleAddSubjectPopup = true;
   }
 
   public addSubject(): void {}
+
+  public addTeacherSection(): void {
+    this.addTeacherSectionControls(this.subjectFormGroup);
+    if (this.teacherSectionControlsIds.length > 2) {
+      this.visibleAddTeacherButton = false;
+    }
+  }
+
+  private initTeacherSectionControlsIds(): void {
+    Object.keys(this.subjectFormGroup.controls).forEach((controlName) => {
+      if (
+        controlName.includes("teacher") ||
+        controlName.includes("classroom")
+      ) {
+        const id: string = controlName
+          .replace("teacher", "")
+          .replace("classroom", "");
+        if (this.teacherSectionControlsIds.length === 0) {
+          this.teacherSectionControlsIds.push(id);
+        } else {
+          if (this.teacherSectionControlsIds.indexOf(id) === -1) {
+            this.teacherSectionControlsIds.push(id);
+          }
+        }
+      }
+    });
+  }
+
+  private addTeacherSectionControls(formGroup: FormGroup) {
+    const controls: { [key: string]: AbstractControl } = formGroup.controls;
+    let index: string;
+    Object.keys(controls).forEach((controlName: string) => {
+      if (
+        controlName.includes("teacher") ||
+        controlName.includes("classroom")
+      ) {
+        index = controlName.replace("teacher", "").replace("classroom", "");
+      }
+    });
+    formGroup.addControl(
+      "teacher" + (parseInt(index) + 1),
+      new FormControl("", Validators.compose([Validators.required]))
+    );
+    formGroup.addControl(
+      "classroom" + (parseInt(index) + 1),
+      new FormControl("", Validators.compose([Validators.required]))
+    );
+    this.initTeacherSectionControlsIds();
+  }
+
+  public removeTeacher(id: any): void {
+    this.subjectFormGroup.removeControl("teacher" + id);
+    this.subjectFormGroup.removeControl("classroom" + id);
+    this.teacherSectionControlsIds.splice(
+      this.teacherSectionControlsIds.indexOf(id),
+      1
+    );
+    if (this.teacherSectionControlsIds.length < 3) {
+      this.visibleAddTeacherButton = true;
+    }
+  }
 }

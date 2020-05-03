@@ -123,41 +123,58 @@
   <!-- todo: add validators and save model -->
   <div class="ttp-shared-popup__subject-form" [formGroup]="subjectFormGroup">
     <div class="ttp-shared-popup__subject-form-item">
-      <label class="ttp-shared-popup__subject-form-label">Имя предмета: </label>
+      <label class="ttp-shared-popup__subject-form-label">Имя предмета:</label>
       <input
         class="form-control ttp-shared-popup__subject-form-input"
         [formControlName]="'name'"
       />
     </div>
     <div class="ttp-shared-popup__subject-form-item">
-      <label class="ttp-shared-popup__subject-form-label">Тип занятия: </label>
+      <label class="ttp-shared-popup__subject-form-label">Тип занятия:</label>
       <input
         class="form-control ttp-shared-popup__subject-form-input"
         [formControlName]="'classLessonType'"
       />
     </div>
-    <div class="ttp-shared-popup__subject-section">
-      <div class="ttp-shared-popup__subject-form-item">
-        <label class="ttp-shared-popup__subject-form-label"
+    <div class="ttp-shared-popup__subject-form-item section">
+      <ng-container *ngFor="let id of teacherSectionControlsIds">
+        <label class="ttp-shared-popup__subject-form-label section-item"
           >Преподаватель:
         </label>
         <input
-          class="form-control ttp-shared-popup__subject-form-input"
-          [formControlName]="'teacher1'"
+          class="form-control ttp-shared-popup__subject-form-input section-item"
+          [formControlName]="'teacher' + id"
         />
-      </div>
-      <div class="ttp-shared-popup__subject-form-item">
-        <label class="ttp-shared-popup__subject-form-label">Аудитория: </label>
+
+        <label class="ttp-shared-popup__subject-form-label section-item"
+          >Аудитория:
+        </label>
         <input
-          class="form-control ttp-shared-popup__subject-form-input"
-          [formControlName]="'classroom1'"
+          class="form-control ttp-shared-popup__subject-form-input section-item"
+          [formControlName]="'classroom' + id"
         />
-      </div>
-      <div class="ttp-shared-popup__subject-section__button">
-        <button class="btn btn-danger">
-          Добавить преподавателя
-        </button>
-      </div>
+
+        <div
+          class="ttp-shared-popup__subject-form-button"
+          *ngIf="teacherSectionControlsIds.length > 1"
+        >
+          <button
+            (click)="removeTeacher(id)"
+            class="btn btn-danger ttp-shared-popup__subject-form-button-item"
+          >
+            Удалить
+          </button>
+        </div>
+      </ng-container>
+    </div>
+    <div class="ttp-shared-popup__subject-form-button">
+      <button
+        *ngIf="visibleAddTeacherButton"
+        class="btn btn-danger ttp-shared-popup__subject-form-button-item"
+        (click)="addTeacherSection()"
+      >
+        Добавить преподавателя
+      </button>
     </div>
     <div class="ttp-shared-popup__subject-form-buttons">
       <button
@@ -166,7 +183,7 @@
         [disabled]="!isSubjectFormValid"
         (click)="addSubject()"
       >
-        Добавить предмет
+        Добавить запись
       </button>
     </div>
   </div>

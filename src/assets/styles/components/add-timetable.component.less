@@ -69,11 +69,25 @@
       flex-wrap: wrap;
       align-items: baseline;
       justify-content: space-around;
+      margin-bottom: 1rem;
+
+      &.section {
+        border: 2px dashed white;
+        border-radius: 1rem;
+        padding: 1rem 0.5rem 1.5rem 0.5rem;
+      }
     }
 
     &-label {
-      font-size: 1.3rem;
+      display: inline-flex;
+      flex: 0 0 30%;
+      font-size: 1.2rem;
       font-weight: bold;
+      word-break: break-all;
+
+      &.section-item {
+        margin-bottom: 1rem;
+      }
     }
 
     &-buttons {
@@ -87,7 +101,25 @@
       }
     }
 
+    &-button {
+      display: flex;
+      flex: 0 0 100%;
+      justify-content: flex-end;
+      margin-bottom: 1rem;
+
+      &-item {
+        display: block;
+      }
+    }
+
     &-input {
+      display: block;
+      flex: 0 0 70%;
+
+      &.section-item {
+        margin-bottom: 1rem;
+      }
+
       &.form-control {
         width: 15rem !important;
         font-size: 1rem;
@@ -112,7 +144,7 @@
   & .ttp-shared-popup__container {
     top: 7rem;
     min-height: 7rem !important;
-    width: 20rem !important;
+    width: 40rem !important;
     padding: 2.3rem !important;
     border-radius: 1rem;
   }
