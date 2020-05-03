@@ -144,6 +144,34 @@ export class TimetableUtils {
     );
   }
 
+  public static convertToTimesheet(
+    uiTimehseet: UiTimesheetModel
+  ): TimesheetModel {
+    return {
+      course: uiTimehseet.course,
+      groups: TimetableUtils.convertToGroups(uiTimehseet.uiGroups),
+    } as TimesheetModel;
+  }
+
+  public static convertToGroups(uiGroups: UiGroupModel[]): GroupModel[] {
+    return uiGroups.map((uiGroup: UiGroupModel) => {
+      return {
+        name: uiGroup.name,
+        subjects: this.getAllSubjectFromSortedSubjects(uiGroup.sortedSubjects),
+      } as GroupModel;
+    });
+  }
+
+  private static getAllSubjectFromSortedSubjects(sortedSubjects: {
+    [key: string]: SubjectModel[];
+  }): SubjectModel[] {
+    let subjects: SubjectModel[] = [];
+    Object.keys(sortedSubjects).forEach((key: string) => {
+      subjects.push(...sortedSubjects[key]);
+    });
+    return subjects;
+  }
+
   public static initCourses(timesheets: TimesheetModel[]): ButtonModel[] {
     return timesheets.map(
       (timesheet: TimesheetModel) =>

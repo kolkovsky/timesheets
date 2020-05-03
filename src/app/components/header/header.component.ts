@@ -12,6 +12,8 @@ import { LoaderService } from "src/app/services/loader.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { of } from "rxjs";
 import { TimesheetModel } from "src/app/models/timesheet.model";
+import { UiTimesheetModel } from "src/app/models/ui-timesheet.model";
+import { TimetableUtils } from "src/app/utils/timetable.utils";
 
 @Component({
   selector: "ttp-header",
@@ -56,7 +58,14 @@ export class TtpHeaderComponent extends TtpBaseComponent implements OnInit {
   }
 
   public saveTimetable(): void {
-    const timesheets: any[] = JSON.parse(localStorage.getItem("timesheets"));
+    const uiTimesheets: UiTimesheetModel[] = JSON.parse(
+      localStorage.getItem("uiTimesheets")
+    );
+    const timesheets: TimesheetModel[] = uiTimesheets.map(
+      (uiTimesheet: UiTimesheetModel) => {
+        return TimetableUtils.convertToTimesheet(uiTimesheet);
+      }
+    );
     this.timetableService.saveTimetable(timesheets).subscribe(() => {
       console.log("success");
     });

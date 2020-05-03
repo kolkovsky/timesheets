@@ -1,4 +1,4 @@
-import {SubjectModel} from "./subject.model";
+import { SubjectModel } from "./subject.model";
 
 export class GroupModel {
   id: string;
