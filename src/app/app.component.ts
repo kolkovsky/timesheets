@@ -60,6 +60,18 @@ export class AppComponent implements OnInit {
         payload: { stateName: States.hideAllUploadedFilesButton },
       });
     }
+
+    if (url === "/timetable-details") {
+      this.stateService.setStateComponent({
+        componentName: TtpHeaderComponent.name,
+        payload: { stateName: States.visibleSaveTimetableButton, value: true },
+      });
+    } else {
+      this.stateService.setStateComponent({
+        componentName: TtpHeaderComponent.name,
+        payload: { stateName: States.visibleSaveTimetableButton, value: false },
+      });
+    }
   }
 
   private changeHeaderLinks(url: string): void {

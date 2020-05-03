@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { Time } from "@angular/common";
+import { TimesheetModel } from "../models/timesheet.model";
 
 @Injectable()
 export class TimetableService {
@@ -12,6 +14,13 @@ export class TimetableService {
     return this.httpClient.post<any>(
       this.controllerName.concat("/time-table/template"),
       template
+    );
+  }
+
+  public saveTimetable(timesheets: TimesheetModel[]): Observable<void> {
+    return this.httpClient.post<void>(
+      this.controllerName.concat("/time-table/save"),
+      timesheets
     );
   }
 

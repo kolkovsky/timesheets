@@ -19,4 +19,6 @@ export class States {
     "showAllUploadedFilesModal";
   public static readonly headerLinksChange: string = "headerLinksChange";
   public static readonly addTimetable: string = "addTimetable";
+  public static readonly visibleSaveTimetableButton: string =
+    "visibleSaveTimetableButton";
 }

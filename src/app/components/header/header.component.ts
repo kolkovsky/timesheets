@@ -5,13 +5,13 @@ import { TtpBaseComponent } from "src/app/ng-core/ttp-base.component";
 import { State } from "src/app/interfaces/state.interface";
 import { States } from "src/app/constants/states";
 import { TtpFileParsingComponent } from "../parsing/file-parsing.component";
-import { TtpTimetableComponent } from "../timetable/timetable.component";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { TimetableService } from "src/app/services/timetable.service";
 import { tap, finalize, catchError } from "rxjs/operators";
 import { LoaderService } from "src/app/services/loader.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { of } from "rxjs";
+import { TimesheetModel } from "src/app/models/timesheet.model";
 
 @Component({
   selector: "ttp-header",
@@ -21,6 +21,7 @@ export class TtpHeaderComponent extends TtpBaseComponent implements OnInit {
   public visibleEditTimetableButton: boolean;
   public visibleCreateTimetableButton: boolean;
   public visibleAllUploadedFiles: boolean;
+  public visibleSaveTimetableButton: boolean;
   public editModeEnabled: boolean;
   public links: any[];
   public visibleAddTimetablePopup: boolean;
@@ -52,6 +53,13 @@ export class TtpHeaderComponent extends TtpBaseComponent implements OnInit {
       payload: { stateName: States.hideAddButton },
     });
     this.editModeEnabled = false;
+  }
+
+  public saveTimetable(): void {
+    const timesheets: any[] = JSON.parse(localStorage.getItem("timesheets"));
+    this.timetableService.saveTimetable(timesheets).subscribe(() => {
+      console.log("success");
+    });
   }
 
   public showAddingTimetablePopup(): void {
@@ -92,6 +100,7 @@ export class TtpHeaderComponent extends TtpBaseComponent implements OnInit {
 
   public processState(state: State): void {
     const stateName: string = state.payload.stateName;
+    const stateValue: any = state.payload.value;
     switch (stateName) {
       case States.showCreateTimetableButton:
         this.visibleCreateTimetableButton = true;
@@ -113,6 +122,9 @@ export class TtpHeaderComponent extends TtpBaseComponent implements OnInit {
         break;
       case States.headerLinksChange:
         this.links = state.payload.value;
+        break;
+      case States.visibleSaveTimetableButton:
+        this.visibleSaveTimetableButton = stateValue;
         break;
       default:
         break;

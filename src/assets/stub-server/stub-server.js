@@ -60,3 +60,8 @@ server.get("/api/v1/ttp-administrator/uploaded-files", (request, response) => {
     response.send(uploadedFiles);
   }, 5000);
 });
+
+server.post("/api/v1/ttp-administrator/time-table/save", (req, res) => {
+  console.log(req.body);
+  res.send();
+});

@@ -11,6 +11,14 @@
 
     <button
       class="ttp-header__button-container-item btn btn-outline-danger"
+      *ngIf="visibleSaveTimetableButton"
+      (click)="saveTimetable()"
+    >
+      {{ "Сохранить" }}
+    </button>
+
+    <button
+      class="ttp-header__button-container-item btn btn-outline-danger"
       *ngIf="visibleEditTimetableButton && !editModeEnabled"
       (click)="turnOnEditMode()"
     >

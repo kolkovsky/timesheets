@@ -13,15 +13,8 @@ import { ButtonModel } from "src/app/models/button.model";
 import { UiTimesheetModel } from "src/app/models/ui-timesheet.model";
 import { TimetableUtils } from "src/app/utils/timetable.utils";
 import { UiGroupModel } from "src/app/models/ui-group.model";
-import { TimesheetModel } from "src/app/models/timesheet.model";
 import { WeekDaysConstant } from "src/app/constants/week-days.constant";
-import { TabHeadingDirective } from "ngx-bootstrap";
-import { of } from "rxjs";
 import { SubjectModel } from "src/app/models/subject.model";
-
-interface TeacherControl {
-  id: string | number;
-}
 
 @Component({
   selector: "ttp-add-timetable",
@@ -120,6 +113,7 @@ export class TtpAddTimetableComponent extends TtpBaseComponent {
     this.uiTimesheets.push(
       new UiTimesheetModel(Number.parseInt(addedCourse), [])
     );
+    localStorage.setItem("uiTimesheets", JSON.stringify(this.uiTimesheets));
     this.courseItems.unshift(new ButtonModel(addedCourse, false));
     this.courseFormGroup.reset();
     this.courseLabel = undefined;
@@ -164,7 +158,8 @@ export class TtpAddTimetableComponent extends TtpBaseComponent {
     const uiTimesheetFounded: UiTimesheetModel = this.uiTimesheets.find(
       (uiTimesheet) => uiTimesheet.course.toString() === this.selectedCourse
     );
-    uiTimesheetFounded.uiGroups.push(new UiGroupModel(addedGroup, []));
+    uiTimesheetFounded.uiGroups.push(new UiGroupModel(addedGroup, {}));
+    localStorage.setItem("uiTimesheets", JSON.stringify(this.uiTimesheets));
     this.groupItems.unshift(new ButtonModel(addedGroup, false));
     this.groupsFormGroup.reset();
     this.groupLabel = undefined;
@@ -190,7 +185,7 @@ export class TtpAddTimetableComponent extends TtpBaseComponent {
     Object.keys(this.subjectFormGroup.controls).forEach(
       (controlName: string) => {
         const controlValue: string = controls[controlName].value;
-        if (controlName.includes("treacher")) {
+        if (controlName.includes("teacher")) {
           if (!subject.teachers) {
             subject.teachers = [];
           }
@@ -207,14 +202,14 @@ export class TtpAddTimetableComponent extends TtpBaseComponent {
     );
     subject.time = this.selectedTableElement.time;
     subject.day = this.selectedTableElement.weekday;
-    console.log(subject);
     if (!this.selectedUiGroup.sortedSubjects[subject.day]) {
       this.selectedUiGroup.sortedSubjects[subject.day] = [];
     }
     this.selectedUiGroup.sortedSubjects[subject.day].push(subject);
-    console.log(this.selectedUiGroup);
-    console.log(this.uiTimesheets);
     this.visibleAddSubjectPopup = false;
+    console.log(this.uiTimesheets);
+    console.log(JSON.stringify(this.uiTimesheets));
+    localStorage.setItem("uiTimesheets", JSON.stringify(this.uiTimesheets));
     this.subjectFormGroup.reset();
   }
 
