@@ -17,6 +17,7 @@ import { TimesheetModel } from "src/app/models/timesheet.model";
 import { WeekDaysConstant } from "src/app/constants/week-days.constant";
 import { TabHeadingDirective } from "ngx-bootstrap";
 import { of } from "rxjs";
+import { SubjectModel } from "src/app/models/subject.model";
 
 interface TeacherControl {
   id: string | number;
@@ -30,6 +31,7 @@ export class TtpAddTimetableComponent extends TtpBaseComponent {
   public readonly weekdays: string[] = WeekDaysConstant.WEEK_DAYS_ARRAY;
   public readonly times: string[] = Object.keys(TimetableUtils.lessonTimes);
   public readonly MAX_TEACHERS: number = 3;
+  public selectedTableElement: any;
 
   public termFormGroup: FormGroup;
   public courseFormGroup: FormGroup;
@@ -61,7 +63,7 @@ export class TtpAddTimetableComponent extends TtpBaseComponent {
   public isCourseFormValid: boolean;
   public visibleAddGroupForCourse: boolean;
   public isGroupFormValid: boolean;
-  public visibleAddSubjectPopup: boolean = true;
+  public visibleAddSubjectPopup: boolean;
   public isSubjectFormValid: boolean;
   public visibleAddTeacherButton: boolean = true;
 
@@ -101,6 +103,9 @@ export class TtpAddTimetableComponent extends TtpBaseComponent {
         Validators.compose([Validators.required])
       ),
     });
+    this.subjectFormGroup.statusChanges.subscribe(
+      (status) => (this.isSubjectFormValid = "valid" === status.toLowerCase())
+    );
     this.initTeacherSectionControlsIds();
   }
 
@@ -173,11 +178,45 @@ export class TtpAddTimetableComponent extends TtpBaseComponent {
     );
   }
 
-  public showAddSubjectPopup(subject: any): void {
+  public showAddSubjectPopup(tableElement: any): void {
+    this.selectedTableElement = tableElement;
     this.visibleAddSubjectPopup = true;
   }
 
-  public addSubject(): void {}
+  public addSubject(time: string, day: string): void {
+    let subject: SubjectModel = new SubjectModel();
+    const controls: { [key: string]: AbstractControl } = this.subjectFormGroup
+      .controls;
+    Object.keys(this.subjectFormGroup.controls).forEach(
+      (controlName: string) => {
+        const controlValue: string = controls[controlName].value;
+        if (controlName.includes("treacher")) {
+          if (!subject.teachers) {
+            subject.teachers = [];
+          }
+          subject.teachers.push(controlValue);
+        } else if (controlName.includes("classroom")) {
+          if (!subject.classsrooms) {
+            subject.classsrooms = [];
+          }
+          subject.classsrooms.push(controlValue);
+        } else {
+          subject[controlName] = controlValue;
+        }
+      }
+    );
+    subject.time = this.selectedTableElement.time;
+    subject.day = this.selectedTableElement.weekday;
+    console.log(subject);
+    if (!this.selectedUiGroup.sortedSubjects[subject.day]) {
+      this.selectedUiGroup.sortedSubjects[subject.day] = [];
+    }
+    this.selectedUiGroup.sortedSubjects[subject.day].push(subject);
+    console.log(this.selectedUiGroup);
+    console.log(this.uiTimesheets);
+    this.visibleAddSubjectPopup = false;
+    this.subjectFormGroup.reset();
+  }
 
   public addTeacherSection(): void {
     this.addTeacherSectionControls(this.subjectFormGroup);
